@@ -13,7 +13,6 @@ export default function Footer() {
         <div className="sm:col-span-2">
           <div className="flex items-center space-x-3 mb-4">
             <Image
-              src="/logo.png"
               alt="HR Classic Events Logo"
               width={40}
               height={40}

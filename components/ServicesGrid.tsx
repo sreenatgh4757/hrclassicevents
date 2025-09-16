@@ -15,15 +15,15 @@ const services = [
     title: "Corporate Functions & Galas",
     description:
       "Delivering polished and memorable corporate events that strengthen relationships, showcase achievements, and leave a lasting impact on clients and colleagues.",
-    media: "/services/corporate.jpg", // static image
+    media: "/pictures/pexels-pavel-danilyuk-6405757.jpg", // static image
     type: "image",
   },
   {
     title: "Private Celebrations",
     description:
       "From milestone birthdays to anniversaries, we bring creativity and personal touches that make your special day unforgettable for you and your guests.",
-    media: "/services/celebration.mp4", // looped video
-    type: "video",
+    media: "/pictures/pexels-boko-shots-812604874-33854722.jpg", // static image
+    type: "image",
   },
   {
     title: "Event Coordination",

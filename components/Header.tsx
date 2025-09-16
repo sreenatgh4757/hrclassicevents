@@ -34,6 +34,7 @@ export default function Header() {
                 src="/Hrlogo.png"
                 width={50}
                 height={50}
+               alt="HR Classic Events Logo"
                 className="object-contain"
               />
               <span className="text-2xl lg:text-3xl font-playfair font-bold text-charcoal">

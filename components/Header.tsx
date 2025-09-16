@@ -29,9 +29,9 @@ export default function Header() {
               transition={{ duration: 0.3 }}
               className="flex items-center hover:opacity-80 transition-opacity duration-200"
             >
-              <span className="text-2xl lg:text-3xl font-playfair font-bold text-charcoal">
-                HR Classic Events
-              </span>
+              <span className="text-2xl lg:text-3xl font-playfair font-bold text-white">
+  HR Classic Events
+</span>
             </motion.div>
           </Link>
 

@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { motion } from "framer-motion";
 
 const galleryImages = [
@@ -15,18 +16,28 @@ const galleryImages = [
 export default function GalleryPage() {
   return (
     <main className="bg-ivory min-h-screen">
-      {/* Page Heading */}
-      <section className="py-16 text-center">
-        <h1 className="text-4xl sm:text-5xl font-playfair font-bold text-charcoal">
+      {/* ===== Page Header Section ===== */}
+      <section className="py-16 text-center bg-gradient-to-b from-white to-ivory">
+        {/* Back Button */}
+        <div className="max-w-7xl mx-auto px-4 text-left mb-6">
+          <Link
+            href="/"
+            className="inline-block text-gold font-medium hover:underline"
+          >
+            ← Back to Home
+          </Link>
+        </div>
+
+        <h1 className="text-5xl font-playfair font-bold text-charcoal">
           Event <span className="text-gold">Gallery</span>
         </h1>
         <p className="mt-4 text-lg text-warm-gray max-w-2xl mx-auto">
-          Explore moments we’ve brought to life — from weddings and anniversaries 
+          Explore moments we’ve brought to life — from weddings and anniversaries
           to private celebrations and grand corporate functions.
         </p>
       </section>
 
-      {/* Gallery Grid */}
+      {/* ===== Gallery Grid ===== */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {galleryImages.map((image, index) => (

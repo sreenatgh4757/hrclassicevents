@@ -4,7 +4,6 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
-import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 
 // ✅ Removed Services + Portfolio
@@ -22,21 +21,14 @@ export default function Header() {
     <header className="fixed top-0 left-0 right-0 z-50 bg-ivory/95 backdrop-blur-md border-b border-gold/20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 lg:h-20">
-          {/* Logo */}
+          {/* Logo - Text Only */}
           <Link href="/" className="flex-shrink-0">
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.3 }}
-              className="flex items-center space-x-3 hover:opacity-80 transition-opacity duration-200"
+              className="flex items-center hover:opacity-80 transition-opacity duration-200"
             >
-              <Image
-                src=""
-               alt="HR Classic Events Logo"
-                width={50}
-                height={50}
-                className="object-contain"
-              />
               <span className="text-2xl lg:text-3xl font-playfair font-bold text-charcoal">
                 HR Classic Events
               </span>
@@ -73,7 +65,7 @@ export default function Header() {
               asChild
               className="bg-gold hover:bg-gold/90 text-charcoal font-semibold px-6 py-2 rounded-2xl transition-all duration-200 hover:shadow-lg"
             >
-              <Link href="/contact">Check Availability</Link>
+              <Link href="/contact">Plan My Event</Link>
             </Button>
           </motion.div>
 
@@ -112,7 +104,7 @@ export default function Header() {
                 className="bg-gold hover:bg-gold/90 text-charcoal font-semibold px-6 py-3 rounded-2xl transition-all duration-200 hover:shadow-lg mt-4"
               >
                 <Link href="/contact" onClick={() => setIsOpen(false)}>
-                  Check Availability
+                  Plan My Event
                 </Link>
               </Button>
             </div>

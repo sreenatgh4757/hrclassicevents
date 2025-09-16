@@ -31,8 +31,7 @@ export default function Header() {
               className="flex items-center space-x-3 hover:opacity-80 transition-opacity duration-200"
             >
               <Image
-                src="/logo.png"
-                alt="HR Classic Events Logo"
+                src="/Hrlogo.png"
                 width={50}
                 height={50}
                 className="object-contain"

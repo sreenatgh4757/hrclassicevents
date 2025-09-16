@@ -9,7 +9,7 @@ const services = [
     description:
       "Whether in the UK or abroad, we plan elegant and stress-free weddings that capture your story and style. From décor to coordination, every detail is handled with care.",
     media: "app/pictures/pexels-masoodaslami-29624029.jpg", // static image
-    type: "video",
+    type: "image",
   },
   {
     title: "Corporate Functions & Galas",

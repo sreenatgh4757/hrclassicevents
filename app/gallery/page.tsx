@@ -1,35 +1,21 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
 import { motion } from "framer-motion";
-import { ArrowLeft } from "lucide-react";
 
-const galleryImages = [
-  { src: "/gallery/photo1.jpg", alt: "Wedding ceremony in elegant venue" },
-  { src: "/gallery/photo2.jpg", alt: "Destination wedding by the beach" },
-  { src: "/gallery/photo3.jpg", alt: "Corporate gala dinner setup" },
-  { src: "/gallery/photo4.jpg", alt: "Private celebration outdoor decor" },
-  { src: "/gallery/photo5.jpg", alt: "Couple’s first dance with lights" },
-  { src: "/gallery/photo6.jpg", alt: "Elegant table setup with flowers" },
+const galleryItems = [
+  { type: "image", src: "/gallery/wedding1.jpg", alt: "Wedding ceremony in elegant venue" },
+  { type: "image", src: "/gallery/beach-wedding.jpg", alt: "Destination wedding by the beach" },
+  { type: "image", src: "/gallery/corporate1.jpg", alt: "Corporate gala dinner setup" },
+  { type: "image", src: "/gallery/private1.jpg", alt: "Private celebration outdoor decor" },
+  { type: "video", src: "/gallery/dance.mp4", alt: "Couple’s first dance with lights" },
+  { type: "image", src: "/gallery/table.jpg", alt: "Elegant table setup with flowers" },
 ];
 
 export default function GalleryPage() {
   return (
-    <section className="py-20 bg-ivory min-h-screen">
+    <section className="py-20 bg-ivory">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Back Button */}
-        <div className="mb-8">
-          <Link
-            href="/"
-            className="inline-flex items-center text-purple-700 hover:text-gold font-semibold transition-colors"
-          >
-            <ArrowLeft className="mr-2 h-5 w-5" />
-            Back to Home
-          </Link>
-        </div>
-
-        {/* Title */}
         <motion.h2
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -39,9 +25,8 @@ export default function GalleryPage() {
           Event <span className="text-gold">Gallery</span>
         </motion.h2>
 
-        {/* Gallery Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {galleryImages.map((image, index) => (
+          {galleryItems.map((item, index) => (
             <motion.div
               key={index}
               initial={{ opacity: 0, scale: 0.95 }}
@@ -50,13 +35,21 @@ export default function GalleryPage() {
               viewport={{ once: true }}
               className="overflow-hidden rounded-2xl shadow-lg"
             >
-              <Image
-                src={image.src}
-                alt={image.alt}
-                width={600}
-                height={400}
-                className="w-full h-64 object-cover hover:scale-105 transition-transform duration-300"
-              />
+              {item.type === "image" ? (
+                <Image
+                  src={item.src}
+                  alt={item.alt}
+                  width={600}
+                  height={400}
+                  className="w-full h-64 object-cover hover:scale-105 transition-transform duration-300"
+                />
+              ) : (
+                <video
+                  src={item.src}
+                  controls
+                  className="w-full h-64 object-cover"
+                />
+              )}
             </motion.div>
           ))}
         </div>

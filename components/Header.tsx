@@ -45,11 +45,11 @@ export default function Header() {
                 transition={{ duration: 0.3, delay: index * 0.1 }}
               >
                 <Link
-                  href={item.href}
-                  className="text-warm-gray hover:text-gold transition-colors duration-200 font-medium"
-                >
-                  {item.name}
-                </Link>
+  href={item.href}
+  className="text-white hover:text-gold transition-colors duration-200 font-medium"
+>
+  {item.name}
+</Link>
               </motion.div>
             ))}
           </nav>

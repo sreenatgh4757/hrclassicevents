@@ -4,6 +4,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
+import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 
 // ✅ Removed Services + Portfolio
@@ -27,9 +28,18 @@ export default function Header() {
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.3 }}
-              className="text-2xl lg:text-3xl font-playfair font-bold text-charcoal hover:text-gold transition-colors duration-200"
+              className="flex items-center space-x-3 hover:opacity-80 transition-opacity duration-200"
             >
-              HR Classic Events
+              <Image
+                src="/logo.png"
+                alt="HR Classic Events Logo"
+                width={50}
+                height={50}
+                className="object-contain"
+              />
+              <span className="text-2xl lg:text-3xl font-playfair font-bold text-charcoal">
+                HR Classic Events
+              </span>
             </motion.div>
           </Link>
 

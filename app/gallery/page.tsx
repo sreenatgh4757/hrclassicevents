@@ -21,8 +21,17 @@ export default function GalleryPage() {
       <header className="bg-ivory shadow-sm">
         <div className="max-w-7xl mx-auto px-6 lg:px-8 py-4 flex items-center justify-between">
           {/* Logo */}
-          <Link href="/" className="text-2xl font-bold text-charcoal">
-            HR Classic Events
+          <Link href="/" className="flex items-center space-x-3 hover:opacity-80 transition-opacity duration-200">
+            <Image
+              src="/logo.png"
+              alt="HR Classic Events Logo"
+              width={40}
+              height={40}
+              className="object-contain"
+            />
+            <span className="text-2xl font-bold text-charcoal">
+              HR Classic Events
+            </span>
           </Link>
 
           {/* Navigation */}

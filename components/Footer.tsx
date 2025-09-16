@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { Facebook, Instagram, Linkedin, MapPin, Phone, Mail } from "lucide-react";
 
 export default function Footer() {
@@ -10,9 +11,18 @@ export default function Footer() {
         
         {/* Company Info */}
         <div className="sm:col-span-2">
-          <h3 className="text-2xl font-playfair font-bold mb-4">
-            HR Classic Events
-          </h3>
+          <div className="flex items-center space-x-3 mb-4">
+            <Image
+              src="/logo.png"
+              alt="HR Classic Events Logo"
+              width={40}
+              height={40}
+              className="object-contain"
+            />
+            <h3 className="text-2xl font-playfair font-bold text-white">
+              HR Classic Events
+            </h3>
+          </div>
           <p className="text-gray-300 mb-6 leading-relaxed text-sm sm:text-base">
             We believe every occasion should feel effortless and extraordinary. 
             From elegant UK venues to breathtaking destination weddings abroad, 

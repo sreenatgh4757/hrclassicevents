@@ -1,6 +1,7 @@
 "use client";
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { Home } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
@@ -24,6 +25,16 @@ export default function NotFound() {
 
       {/* Foreground content */}
       <div className="relative z-10 text-center max-w-md text-white">
+        <div className="flex justify-center mb-6">
+          <Image
+            src="/logo.png"
+            alt="HR Classic Events Logo"
+            width={80}
+            height={80}
+            className="object-contain opacity-80"
+          />
+        </div>
+        
         <h1 className="text-8xl font-playfair font-bold text-gold mb-4">
           404
         </h1>

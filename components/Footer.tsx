@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { Facebook, Instagram, Linkedin, MapPin, Phone, Mail } from "lucide-react";
+import { Instagram, MapPin, Phone, Mail } from "lucide-react";
 
 export default function Footer() {
   return (
@@ -60,7 +60,7 @@ export default function Footer() {
               <Phone size={16} /> <span>+44 7909067857</span>
             </li>
             <li className="flex items-center space-x-2">
-              <Mail size={16} /> <span>Afusatsaka@hrclassicevents.co.uk</span>
+              <Mail size={16} /> <span>info@hrclassicevents.co.uk</span>
             </li>
             <li className="flex items-center space-x-2">
               <MapPin size={16} /> <span>Bournemouth, UK</span>
@@ -71,7 +71,7 @@ export default function Footer() {
 
       {/* Bottom Bar */}
       <div className="text-center text-xs sm:text-sm text-gray-400 py-6">
-        © 2024 HR Classic Events. All rights reserved. Crafted with care in the UK 🇬🇧
+        © 2025 HRClassic Events. All rights reserved. Crafted with care in the UK 🇬🇧
       </div>
     </footer>
   );

@@ -1,9 +1,10 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { motion } from "framer-motion";
+import { ArrowLeft } from "lucide-react";
 
-// Gallery images
 const galleryImages = [
   { src: "/gallery/photo1.jpg", alt: "Wedding ceremony in elegant venue" },
   { src: "/gallery/photo2.jpg", alt: "Destination wedding by the beach" },
@@ -15,25 +16,30 @@ const galleryImages = [
 
 export default function GalleryPage() {
   return (
-    <section className="py-20 bg-ivory">
+    <section className="py-20 bg-ivory min-h-screen">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Page Title */}
+        {/* Back Button */}
+        <div className="mb-8">
+          <Link
+            href="/"
+            className="inline-flex items-center text-purple-700 hover:text-gold font-semibold transition-colors"
+          >
+            <ArrowLeft className="mr-2 h-5 w-5" />
+            Back to Home
+          </Link>
+        </div>
+
+        {/* Title */}
         <motion.h2
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="text-4xl sm:text-5xl font-playfair font-bold text-center text-charcoal mb-6"
+          className="text-4xl sm:text-5xl font-playfair font-bold text-center text-charcoal mb-12"
         >
           Event <span className="text-gold">Gallery</span>
         </motion.h2>
 
-        {/* Subtitle */}
-        <p className="text-center text-warm-gray max-w-2xl mx-auto mb-12">
-          Explore moments we’ve brought to life — from weddings and anniversaries
-          to private celebrations and grand corporate functions.
-        </p>
-
-        {/* Grid of Images */}
+        {/* Gallery Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {galleryImages.map((image, index) => (
             <motion.div

@@ -32,6 +32,7 @@ export default function Header() {
             >
               <Image
                 src="/Hrlogo.png"
+               alt="HR Classic Events Logo"
                 width={50}
                 height={50}
                 className="object-contain"

@@ -8,7 +8,7 @@ const services = [
     title: "Weddings",
     description:
       "Whether in the UK or abroad, we plan elegant and stress-free weddings that capture your story and style. From décor to coordination, every detail is handled with care.",
-    media: "/services/wedding.mp4", // looped video
+    media: "app/pictures/pexels-masoodaslami-29624029.jpg", // static image
     type: "video",
   },
   {

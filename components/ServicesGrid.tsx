@@ -26,10 +26,10 @@ const services = [
     type: "video",
   },
   {
-    title: "Venue Sourcing & Décor",
+    title: "Event Coordination",
     description:
-      "Transform spaces into extraordinary settings with access to exclusive venues and bespoke décor solutions tailored to your vision.",
-    media: "/services/decor.jpg",
+      "Professional coordination and management ensuring your event runs seamlessly from start to finish, allowing you to enjoy every moment.",
+    media: "/pictures/pexels-asadphoto-169189.jpg",
     type: "image",
   },
 ];

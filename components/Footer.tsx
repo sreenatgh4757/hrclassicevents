@@ -52,7 +52,7 @@ export default function Footer() {
               <Phone size={16} /> <span>+44 7909067857</span>
             </li>
             <li className="flex items-center space-x-2">
-              <Mail size={16} /> <span>info@hrclassicevents.co.uk</span>
+              <Mail size={16} /> <span>info@hrclassicevents.com</span>
             </li>
             <li className="flex items-center space-x-2">
               <MapPin size={16} /> <span>Bournemouth, UK</span>

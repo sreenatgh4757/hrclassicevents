@@ -59,7 +59,6 @@ const eventTypes = [
   "Conference & Exhibition",
   "Private Celebration",
   "Venue Sourcing Only",
-  "Day-of Coordination",
   "Other"
 ];
 

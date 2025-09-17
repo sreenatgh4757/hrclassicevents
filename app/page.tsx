@@ -50,12 +50,6 @@ export default function HomePage() {
             >
               Plan My Event
             </a>
-            <a
-              href="/portfolio"
-              className="px-6 py-3 rounded-2xl border border-white font-semibold hover:bg-white hover:text-black transition"
-            >
-              View Portfolio
-            </a>
           </div>
         </div>
       </section>

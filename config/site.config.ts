@@ -42,6 +42,15 @@ export const siteConfig = {
       rating: 5,
       eventDate: "2023",
     },
+    {
+      id: 4,
+      name: "Charlotte & James",
+      eventType: "Destination Wedding – Santorini, Greece",
+      quote:
+        "Our destination wedding in Santorini was beyond our dreams, all thanks to HR Classic Events. From travel logistics to the breathtaking setup overlooking the sea, every single detail was flawless. The team ensured we were relaxed and focused on enjoying our big day while they worked behind the scenes to perfection. We couldn’t have asked for a better planner to make our wedding feel like a true fairytale.",
+      rating: 5,
+      eventDate: "September 2024",
+    },
   ],
 
   heroSlides: [

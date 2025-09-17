@@ -20,7 +20,7 @@ export const siteConfig = {
       name: "OluwaDara & Akinyemi",
       eventType: "Wedding Celebration",
       quote:
-        "Every perfect day needs a perfect professional touch — and HR Classic Events delivered just that. From guests, food, drinks, décor, and vendor timing, everything was handled with such professionalism. I had nothing to worry about, only dancing with my husband and enjoying every moment. Thank you for making our big day stress-free. I’ll recommend HR Classic Events over and over again! ❤️",
+        "Every perfect day needs a perfect professional touch and HRClassic Events delivered just that. From guests, food, drinks, décor, and vendor timing, everything was handled with such professionalism. I had nothing to worry about, only dancing with my husband and enjoying every moment. Thank you for making our big day stress-free. I’ll recommend HR Classic Events over and over again! ❤️",
       rating: 5,
       eventDate: "March 2025",
     },
@@ -29,7 +29,7 @@ export const siteConfig = {
       name: "Ifeoluwa & Etse",
       eventType: "Wedding",
       quote:
-        "Working with HR Classic Events was one of the best decisions we made! From our very first meeting, she listened to our vision, understood our style, and handled every detail with professionalism and care. Our wedding day was stress-free, stunning, and everything we dreamed of. I could truly enjoy the day knowing everything was in capable hands. I’ll always recommend HR Classic Events!",
+        "Working with HRClassic Events was one of the best decisions we made! From our very first meeting, she listened to our vision, understood our style, and handled every detail with professionalism and care. Our wedding day was stress-free, stunning, and everything we dreamed of. I could truly enjoy the day knowing everything was in capable hands. I’ll always recommend HR Classic Events!",
       rating: 5,
       eventDate: "April 2025",
     },
@@ -38,7 +38,7 @@ export const siteConfig = {
       name: "Fatimah & Kabir",
       eventType: "Wedding",
       quote:
-        "HR Classic Events truly made our wedding unforgettable. From planning to coordination and execution, everything was handled with perfection. I’ve never come across a wedding planner as considerate and professional. Choosing HR was one of the best decisions we made—everything was seamless and stress-free. Thank you so much for making our special day magical. We’ll always be grateful and recommend HR Classic Events to everyone! ❤️",
+        "HR Classic Events truly made our wedding unforgettable. From planning to coordination and execution, everything was handled with perfection. I’ve never come across a wedding planner as considerate and professional. Choosing HR was one of the best decisions we made everything was seamless and stress-free. Thank you so much for making our special day magical. We’ll always be grateful and recommend HR Classic Events to everyone! ❤️",
       rating: 5,
       eventDate: "2023",
     },

@@ -1,8 +1,9 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
 import { motion } from "framer-motion";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 
 // Gallery images
 const galleryImages = [
@@ -16,26 +17,30 @@ const galleryImages = [
 
 export default function GalleryPage() {
   return (
-    <section className="bg-ivory min-h-screen pt-24 pb-20">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        {/* ✅ Contact-style Header */}
-        <motion.h1
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="text-4xl sm:text-5xl font-playfair font-bold text-charcoal mb-4"
-        >
-          Event <span className="text-gold">Gallery</span>
-        </motion.h1>
+    <div className="min-h-screen bg-ivory">
+      <Header />
 
-        <p className="text-lg sm:text-xl text-warm-gray max-w-2xl mx-auto mb-12">
-          Explore moments we’ve brought to life — from weddings and anniversaries
-          to private celebrations and grand corporate functions.
-        </p>
-      </div>
+      {/* ✅ Hero Section like Contact Page */}
+      <section className="pt-32 pb-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+          >
+            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-playfair font-bold text-charcoal mb-6">
+              Our <span className="text-gold text-shimmer">Gallery</span>
+            </h1>
+            <p className="text-xl text-warm-gray max-w-3xl mx-auto leading-relaxed">
+              Explore moments we’ve brought to life — from weddings and anniversaries
+              to private celebrations and grand corporate functions.
+            </p>
+          </motion.div>
+        </div>
+      </section>
 
       {/* Gallery Grid */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {galleryImages.map((image, index) => (
             <motion.div
@@ -57,6 +62,8 @@ export default function GalleryPage() {
           ))}
         </div>
       </div>
-    </section>
+
+      <Footer />
+    </div>
   );
 }

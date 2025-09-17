@@ -9,6 +9,7 @@ const services = [
     description:
       "Whether in the UK or abroad, we plan elegant and stress-free weddings that capture your story and style. From décor to coordination, every detail is handled with care.",
     media: "/pictures/pexels-masoodaslami-29624029.jpg", // static image
+    media: "https://s3.eu-west-2.amazonaws.com/www.hrclassicevents.com/assets/pexels-masoodaslami-29624029.jpg", // static image
     type: "image",
   },
   {
@@ -16,6 +17,7 @@ const services = [
     description:
       "Delivering polished and memorable corporate events that strengthen relationships, showcase achievements, and leave a lasting impact on clients and colleagues.",
     media: "/pictures/pexels-pavel-danilyuk-6405757.jpg", // static image
+    media: "https://s3.eu-west-2.amazonaws.com/www.hrclassicevents.com/assets/pexels-pavel-danilyuk-6405757.jpg", // static image
     type: "image",
   },
   {
@@ -23,6 +25,7 @@ const services = [
     description:
       "From milestone birthdays to anniversaries, we bring creativity and personal touches that make your special day unforgettable for you and your guests.",
     media: "/pictures/pexels-boko-shots-812604874-33854722.jpg", // static image
+    media: "https://s3.eu-west-2.amazonaws.com/www.hrclassicevents.com/assets/pexels-boko-shots-812604874-33854722.jpg", // static image
     type: "image",
   },
   {
@@ -30,6 +33,7 @@ const services = [
     description:
       "Professional coordination and management ensuring your event runs seamlessly from start to finish, allowing you to enjoy every moment.",
     media: "/pictures/pexels-asadphoto-169189.jpg",
+    media: "https://s3.eu-west-2.amazonaws.com/www.hrclassicevents.com/assets/pexels-asadphoto-169189.jpg",
     type: "image",
   },
 ];

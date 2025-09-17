@@ -7,12 +7,12 @@ import Footer from "@/components/Footer";
 
 // Gallery images
 const galleryImages = [
-  { src: "/gallery/photo1.jpg", alt: "Wedding ceremony in elegant venue" },
-  { src: "/gallery/photo2.jpg", alt: "Destination wedding by the beach" },
-  { src: "/gallery/photo3.jpg", alt: "Corporate gala dinner setup" },
-  { src: "/gallery/photo4.jpg", alt: "Private celebration outdoor decor" },
-  { src: "/gallery/photo5.jpg", alt: "Couple’s first dance with lights" },
-  { src: "/gallery/photo6.jpg", alt: "Elegant table setup with flowers" },
+  { src: "https://s3.eu-west-2.amazonaws.com/www.hrclassicevents.com/assets/WhatsApp+Image+2025-09-11+at+21.41.12.jpeg", alt: "Wedding ceremony in elegant venue" },
+  { src: "https://s3.eu-west-2.amazonaws.com/www.hrclassicevents.com/assets/WhatsApp+Image+2025-09-11+at+21.44.47.jpeg", alt: "Destination wedding by the beach" },
+  { src: "https://s3.eu-west-2.amazonaws.com/www.hrclassicevents.com/assets/WhatsApp+Image+2025-09-11+at+21.44.48.jpeg", alt: "Corporate gala dinner setup" },
+  { src: "https://s3.eu-west-2.amazonaws.com/www.hrclassicevents.com/assets/WhatsApp+Image+2025-09-11+at+21.48.54+(4).jpeg", alt: "Private celebration outdoor decor" },
+  { src: "https://s3.eu-west-2.amazonaws.com/www.hrclassicevents.com/assets/WhatsApp+Image+2025-09-11+at+21.48.54+(5).jpeg", alt: "Couple's first dance with lights" },
+  { src: "https://s3.eu-west-2.amazonaws.com/www.hrclassicevents.com/assets/WhatsApp+Image+2025-09-11+at+21.48.54+(6).jpeg", alt: "Elegant table setup with flowers" },
 ];
 
 export default function GalleryPage() {

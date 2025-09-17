@@ -21,7 +21,7 @@ export default function HomePage() {
           playsInline
           className="absolute top-0 left-0 w-full h-full object-cover z-0"
         >
-          <source src="/couple-tradition.mp4" type="video/mp4" />
+          <source src="https://s3.eu-west-2.amazonaws.com/www.hrclassicevents.com/assets/couple-tradition.mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
 

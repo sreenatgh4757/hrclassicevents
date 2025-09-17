@@ -17,7 +17,7 @@ export default function ContactVideoSection() {
             viewport={{ once: true }}
           >
             <video
-              src="/decor.mp4"
+              src="https://s3.eu-west-2.amazonaws.com/www.hrclassicevents.com/assets/decor.mp4"
               autoPlay
               muted
               loop

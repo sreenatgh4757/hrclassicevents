@@ -13,42 +13,34 @@ export const siteConfig = {
     linkedin: "https://linkedin.com/company/hrclassicevents",
   },
 
+  // ✅ Updated Reviews
   reviews: [
     {
       id: 1,
-      name: "Claire & David M.",
-      eventType: "Wedding Ceremony",
+      name: "OluwaDara & Akinyemi",
+      eventType: "Wedding Celebration",
       quote:
-        "Our wedding day was absolutely magical. The attention to detail, vendor coordination, and day-of management were impeccable. We couldn’t have asked for better.",
+        "Every perfect day needs a perfect professional touch — and HR Classic Events delivered just that. From guests, food, drinks, décor, and vendor timing, everything was handled with such professionalism. I had nothing to worry about, only dancing with my husband and enjoying every moment. Thank you for making our big day stress-free. I’ll recommend HR Classic Events over and over again! ❤️",
       rating: 5,
-      eventDate: "August 2024",
+      eventDate: "March 2025",
     },
     {
       id: 2,
-      name: "Nadia & Rahul",
-      eventType: "Destination Wedding – Spain",
+      name: "Ifeoluwa & Etse",
+      eventType: "Wedding",
       quote:
-        "HR Classic Events made our dream of a beautiful destination wedding come true. From arranging travel logistics to the stunning décor on the beach, everything was handled seamlessly.",
+        "Working with HR Classic Events was one of the best decisions we made! From our very first meeting, she listened to our vision, understood our style, and handled every detail with professionalism and care. Our wedding day was stress-free, stunning, and everything we dreamed of. I could truly enjoy the day knowing everything was in capable hands. I’ll always recommend HR Classic Events!",
       rating: 5,
-      eventDate: "June 2024",
+      eventDate: "April 2025",
     },
     {
       id: 3,
-      name: "S. Mensah",
-      eventType: "50th Birthday Celebration",
+      name: "Fatimah & Kabir",
+      eventType: "Wedding",
       quote:
-        "From the initial consultation to the final farewell, HR Classic Events understood exactly what we wanted. The garden party was elegant, fun, and stress-free for our family.",
+        "HR Classic Events truly made our wedding unforgettable. From planning to coordination and execution, everything was handled with perfection. I’ve never come across a wedding planner as considerate and professional. Choosing HR was one of the best decisions we made—everything was seamless and stress-free. Thank you so much for making our special day magical. We’ll always be grateful and recommend HR Classic Events to everyone! ❤️",
       rating: 5,
-      eventDate: "July 2024",
-    },
-    {
-      id: 4,
-      name: "A. Patel",
-      eventType: "Wedding Reception",
-      quote:
-        "HR Classic Events made our dream wedding a reality. Every detail was perfect, from the stunning décor to the seamless coordination. Our guests are still talking about it months later.",
-      rating: 5,
-      eventDate: "September 2024",
+      eventDate: "2023",
     },
   ],
 
@@ -84,31 +76,31 @@ export const siteConfig = {
   ],
 
   services: [
-  {
-    title: "Weddings",
-    description:
-      "Whether in the UK or abroad, we plan elegant and stress-free weddings that capture your story and style. From décor to coordination, every detail is handled with care.",
-    icon: "Heart",
-  },
-  {
-    title: "Corporate Functions & Galas",
-    description:
-      "Delivering polished and memorable corporate events that strengthen relationships, showcase achievements, and leave a lasting impact on clients and colleagues.",
-    icon: "Building",
-  },
-  {
-    title: "Private Celebrations",
-    description:
-      "From milestone birthdays to anniversaries, we bring creativity and personal touches that make your special day unforgettable for you and your guests.",
-    icon: "Gift",
-  },
-  {
-    title: "Venue Sourcing & Décor",
-    description:
-      "Transform spaces into extraordinary settings with access to exclusive venues and bespoke décor solutions tailored to your vision.",
-    icon: "MapPin",
-  },
-],
+    {
+      title: "Weddings",
+      description:
+        "Whether in the UK or abroad, we plan elegant and stress-free weddings that capture your story and style. From décor to coordination, every detail is handled with care.",
+      icon: "Heart",
+    },
+    {
+      title: "Corporate Functions & Galas",
+      description:
+        "Delivering polished and memorable corporate events that strengthen relationships, showcase achievements, and leave a lasting impact on clients and colleagues.",
+      icon: "Building",
+    },
+    {
+      title: "Private Celebrations",
+      description:
+        "From milestone birthdays to anniversaries, we bring creativity and personal touches that make your special day unforgettable for you and your guests.",
+      icon: "Gift",
+    },
+    {
+      title: "Venue Sourcing & Décor",
+      description:
+        "Transform spaces into extraordinary settings with access to exclusive venues and bespoke décor solutions tailored to your vision.",
+      icon: "MapPin",
+    },
+  ],
 
   stats: [
     { label: "Years perfecting events", value: 5 },

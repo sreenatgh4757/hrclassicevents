@@ -436,69 +436,6 @@ export default function ContactPage() {
             viewport={{ once: true }}
             className="space-y-8"
           >
-            {/* Office Hours */}
-            <Card className="p-6 bg-white border-0 shadow-lg">
-              <div className="flex items-center space-x-3 mb-4">
-                <Clock size={24} className="text-gold" />
-                <h3 className="text-lg font-playfair font-semibold text-charcoal">
-                  Office Hours
-                </h3>
-              </div>
-              <div className="space-y-2 text-warm-gray">
-                <div className="flex justify-between">
-                  <span>Monday - Friday</span>
-                  <span>9:00 AM - 6:00 PM</span>
-                </div>
-                <div className="flex justify-between">
-                  <span>Saturday</span>
-                  <span>10:00 AM - 4:00 PM</span>
-                </div>
-                <div className="flex justify-between">
-                  <span>Sunday</span>
-                  <span>By appointment</span>
-                </div>
-              </div>
-              <p className="text-sm text-warm-gray/70 mt-4">
-                Evening and weekend consultations available for weddings and special events.
-              </p>
-            </Card>
-
-            {/* Location */}
-            <Card className="p-6 bg-white border-0 shadow-lg">
-              <div className="flex items-center space-x-3 mb-4">
-                <MapPin size={24} className="text-gold" />
-                <h3 className="text-lg font-playfair font-semibold text-charcoal">
-                  Location
-                </h3>
-              </div>
-              <p className="text-warm-gray mb-4">
-                Based in Bournemouth, we serve clients across the UK and internationally.
-              </p>
-              <div className="aspect-video bg-warm-gray/10 rounded-lg flex items-center justify-center">
-                <p className="text-warm-gray text-sm">Interactive map coming soon</p>
-              </div>
-            </Card>
-
-            {/* Trust Indicators */}
-            <Card className="p-6 bg-white border-0 shadow-lg">
-              <h3 className="text-lg font-playfair font-semibold text-charcoal mb-4">
-                Trusted Partners
-              </h3>
-              <div className="space-y-3 text-sm text-warm-gray">
-                <div className="flex items-center space-x-2">
-                  <div className="w-3 h-3 bg-gold rounded-full"></div>
-                  <span>UK Alliance of Wedding Planners</span>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <div className="w-3 h-3 bg-gold rounded-full"></div>
-                  <span>British Institute of Professional Photography</span>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <div className="w-3 h-3 bg-gold rounded-full"></div>
-                  <span>National Association of Catering Equipment Manufacturers</span>
-                </div>
-              </div>
-            </Card>
           </motion.div>
         </div>
       </div>

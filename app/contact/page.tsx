@@ -383,7 +383,7 @@ export default function ContactPage() {
                   disabled={isSubmitting}
                   className="w-full bg-gold hover:bg-gold/90 text-charcoal font-semibold py-4 rounded-2xl transition-all duration-200 hover:shadow-lg disabled:opacity-50"
                 >
-                  {isSubmitting ? 'Sending Your Inquiry...' : 'Send Detailed Inquiry'}
+                  {isSubmitting ? 'Submitting...' : 'Submit Request'}
                 </Button>
               </form>
             )}

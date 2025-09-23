@@ -18,23 +18,23 @@ export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-black text-white border-b border-gold/20">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-black border-b border-gold/20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-24 lg:h-32">
-          {/* ✅ BIG Logo on the left */}
+        <div className="flex items-center justify-between h-28 lg:h-36">
+          {/* ✅ BIG Logo */}
           <Link href="/" className="flex-shrink-0">
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.3 }}
-              className="flex items-center hover:opacity-80 transition-opacity duration-200"
+              className="flex items-center"
             >
               <Image
                 src="https://s3.eu-west-2.amazonaws.com/www.hrclassicevents.com/assets/ChatGPT+Image+Sep+23%2C+2025%2C+02_08_01+PM.png"
                 alt="HR Classic Events Logo"
-                width={380}   // 🔥 MASSIVE logo
-                height={150}
-                className="h-28 lg:h-32 w-auto object-contain"
+                width={420}   // 🔥 BIGGER
+                height={160}
+                className="h-20 lg:h-28 w-auto object-contain"
                 priority
               />
             </motion.div>
@@ -59,7 +59,7 @@ export default function Header() {
             ))}
           </nav>
 
-          {/* CTA Button */}
+          {/* CTA */}
           <motion.div
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
@@ -74,7 +74,7 @@ export default function Header() {
             </Button>
           </motion.div>
 
-          {/* Mobile Menu Button */}
+          {/* Mobile Menu */}
           <button
             onClick={() => setIsOpen(!isOpen)}
             className="lg:hidden p-2 text-white hover:text-gold transition-colors duration-200"

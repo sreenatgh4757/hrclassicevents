@@ -86,7 +86,7 @@ const locations = [
   { group: "Europe", items: ["United Kingdom", "France", "Germany", "Italy", "Spain"] },
   { group: "Africa", items: ["Nigeria", "South Africa", "Kenya", "Egypt"] },
   { group: "North America", items: ["Canada", "USA", "Ireland"] },
-  { group: "Special", items: ["India"] },
+  { group: "Asia", items: ["India"] },
 ];
 
 interface FormData {

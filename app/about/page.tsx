@@ -72,7 +72,7 @@ export default function AboutPage() {
             >
               <div className="aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl">
                 <img
-                  src="https://images.pexels.com/photos/1444442/pexels-photo-1444442.jpeg?auto=compress&cs=tinysrgb&w=800"
+                  src="https://s3.eu-west-2.amazonaws.com/www.hrclassicevents.com/assets/pexels-habib-hosseini-3650446.jpg"
                   alt="HR Classic Events team planning an elegant celebration"
                   className="w-full h-full object-cover"
                 />
@@ -201,22 +201,22 @@ export default function AboutPage() {
             >
               <div className="grid grid-cols-2 gap-4">
                 <img
-                  src="https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg?auto=compress&cs=tinysrgb&w=400"
+                  src="https://s3.eu-west-2.amazonaws.com/www.hrclassicevents.com/assets/pexels-bikareantalya-33979987.jpg"
                   alt="Professional event coordination"
                   className="aspect-square rounded-2xl object-cover"
                 />
                 <img
-                  src="https://images.pexels.com/photos/1190298/pexels-photo-1190298.jpeg?auto=compress&cs=tinysrgb&w=400"
+                  src="https://s3.eu-west-2.amazonaws.com/www.hrclassicevents.com/assets/pexels-nimblevideoproductions-3082764.jpg"
                   alt="Elegant event styling"
                   className="aspect-square rounded-2xl object-cover mt-8"
                 />
                 <img
-                  src="https://images.pexels.com/photos/1444442/pexels-photo-1444442.jpeg?auto=compress&cs=tinysrgb&w=400"
+                  src="https://s3.eu-west-2.amazonaws.com/www.hrclassicevents.com/assets/pexels-vikashkr50-27103969.jpg"
                   alt="Beautiful wedding setup"
                   className="aspect-square rounded-2xl object-cover -mt-4"
                 />
                 <img
-                  src="https://images.pexels.com/photos/2774556/pexels-photo-2774556.jpeg?auto=compress&cs=tinysrgb&w=400"
+                  src="https://s3.eu-west-2.amazonaws.com/www.hrclassicevents.com/assets/pexels-habib-hosseini-3650446.jpg"
                   alt="Corporate event excellence"
                   className="aspect-square rounded-2xl object-cover mt-4"
                 />

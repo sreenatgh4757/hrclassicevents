@@ -99,25 +99,14 @@ export default function ContactPage() {
 
   const validateForm = (): boolean => {
     const newErrors: Partial<FormData> = {};
-
-    if (!formData.name.trim()) {
-      newErrors.name = "Name is required";
-    }
-
+    if (!formData.name.trim()) newErrors.name = "Name is required";
     if (!formData.email.trim()) {
       newErrors.email = "Email is required";
     } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
       newErrors.email = "Please enter a valid email";
     }
-
-    if (!formData.eventType) {
-      newErrors.eventType = "Please select an event type";
-    }
-
-    if (!formData.eventDate) {
-      newErrors.eventDate = "Event date is required";
-    }
-
+    if (!formData.eventType) newErrors.eventType = "Please select an event type";
+    if (!formData.eventDate) newErrors.eventDate = "Event date is required";
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -125,16 +114,11 @@ export default function ContactPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!validateForm()) return;
-
     setIsSubmitting(true);
-
     await new Promise((resolve) => setTimeout(resolve, 1500));
-
     console.log("Contact form submission:", formData);
-
     setIsSubmitting(false);
     setShowSuccess(true);
-
     setTimeout(() => {
       setFormData({
         name: "",
@@ -159,72 +143,73 @@ export default function ContactPage() {
   };
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-ivory">
       <Header />
 
-      {/* Contact Section with Background */}
+      {/* Background Hero */}
       <section
-        className="pt-32 pb-20 bg-cover bg-center bg-no-repeat relative"
+        className="relative pt-32 pb-20 bg-cover bg-center bg-no-repeat"
         style={{
           backgroundImage:
             "url('https://s3.eu-west-2.amazonaws.com/www.hrclassicevents.com/assets/ChatGPT+Image+Sep+23%2C+2025%2C+11_35_48+AM.png')",
         }}
       >
-        {/* Overlay */}
-        <div className="absolute inset-0 bg-black/40"></div>
-
-        {/* Content */}
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
+        <div className="absolute inset-0 bg-black/40" /> {/* overlay */}
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-playfair font-bold mb-6">
+            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-playfair font-bold text-white mb-6">
               Let's Create Something{" "}
               <span className="text-gold text-shimmer">Extraordinary</span>
             </h1>
-            <p className="text-xl max-w-3xl mx-auto leading-relaxed">
+            <p className="text-xl text-white/90 max-w-3xl mx-auto leading-relaxed">
               Ready to start planning your perfect event? We're here to listen,
               advise, and bring your vision to life.
             </p>
           </motion.div>
+        </div>
+      </section>
 
-          {/* Contact Methods */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16 mb-20">
-            {contactMethods.map((method, index) => {
-              const IconComponent = method.icon;
-              return (
-                <motion.div
-                  key={method.title}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                >
-                  <Card className="p-6 text-center bg-white border-0 shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-300 group h-full text-charcoal">
-                    <a href={method.action} className="block">
-                      <div className="w-16 h-16 bg-blush rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:bg-gold/20 transition-colors duration-300">
-                        <IconComponent size={32} className="text-gold" />
-                      </div>
-                      <h3 className="text-xl font-playfair font-semibold mb-2">
-                        {method.title}
-                      </h3>
-                      <p className="mb-3">{method.description}</p>
-                      <p className="text-gold font-medium mb-2">
-                        {method.contact}
-                      </p>
-                      <p className="text-sm text-gray-500">
-                        {method.available}
-                      </p>
-                    </a>
-                  </Card>
-                </motion.div>
-              );
-            })}
-          </div>
+      {/* Contact Methods */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-16 pb-20">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+          {contactMethods.map((method, index) => {
+            const IconComponent = method.icon;
+            return (
+              <motion.div
+                key={method.title}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                viewport={{ once: true }}
+              >
+                <Card className="p-6 text-center bg-white border-0 shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-300 group h-full">
+                  <a href={method.action} className="block">
+                    <div className="w-16 h-16 bg-blush rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:bg-gold/20 transition-colors duration-300">
+                      <IconComponent size={32} className="text-gold" />
+                    </div>
+                    <h3 className="text-xl font-playfair font-semibold mb-2">
+                      {method.title}
+                    </h3>
+                    <p className="text-warm-gray mb-3">{method.description}</p>
+                    <p className="text-gold font-medium mb-2">
+                      {method.contact}
+                    </p>
+                    <p className="text-sm text-warm-gray/70">
+                      {method.available}
+                    </p>
+                  </a>
+                </Card>
+              </motion.div>
+            );
+          })}
+        </div>
 
-          {/* Contact Form */}
+        {/* Contact Form */}
+        <div className="max-w-3xl mx-auto">
           <Card className="p-8 bg-white shadow-xl border-0 text-charcoal">
             <h2 className="text-3xl font-playfair font-bold mb-6 text-center">
               Tell Us About Your Event
@@ -251,7 +236,7 @@ export default function ContactPage() {
               </motion.div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-6">
-                {/* Personal Info */}
+                {/* Name + Email */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                   <div>
                     <Label htmlFor="name">Full Name *</Label>
@@ -263,14 +248,13 @@ export default function ContactPage() {
                       }
                       className={`${
                         errors.name ? "border-red-500" : "border-gray-300"
-                      } focus:border-gold transition-colors`}
+                      } focus:border-gold`}
                       placeholder="Your full name"
                     />
                     {errors.name && (
                       <p className="text-red-500 text-sm mt-1">{errors.name}</p>
                     )}
                   </div>
-
                   <div>
                     <Label htmlFor="email">Email Address *</Label>
                     <Input
@@ -282,7 +266,7 @@ export default function ContactPage() {
                       }
                       className={`${
                         errors.email ? "border-red-500" : "border-gray-300"
-                      } focus:border-gold transition-colors`}
+                      } focus:border-gold`}
                       placeholder="your@email.com"
                     />
                     {errors.email && (
@@ -291,6 +275,7 @@ export default function ContactPage() {
                   </div>
                 </div>
 
+                {/* Phone */}
                 <div>
                   <Label htmlFor="phone">Phone Number</Label>
                   <Input
@@ -299,7 +284,7 @@ export default function ContactPage() {
                     onChange={(e) =>
                       handleInputChange("phone", e.target.value)
                     }
-                    className="border-gray-300 focus:border-gold transition-colors"
+                    className="border-gray-300 focus:border-gold"
                     placeholder="Your phone number"
                   />
                 </div>
@@ -317,7 +302,7 @@ export default function ContactPage() {
                       <SelectTrigger
                         className={`${
                           errors.eventType ? "border-red-500" : "border-gray-300"
-                        } focus:border-gold transition-colors`}
+                        } focus:border-gold`}
                       >
                         <SelectValue placeholder="Select event type" />
                       </SelectTrigger>
@@ -347,7 +332,7 @@ export default function ContactPage() {
                       }
                       className={`${
                         errors.eventDate ? "border-red-500" : "border-gray-300"
-                      } focus:border-gold transition-colors`}
+                      } focus:border-gold`}
                     />
                     {errors.eventDate && (
                       <p className="text-red-500 text-sm mt-1">
@@ -357,6 +342,7 @@ export default function ContactPage() {
                   </div>
                 </div>
 
+                {/* Guests + Budget */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                   <div>
                     <Label htmlFor="guestCount">Expected Guest Count</Label>
@@ -366,11 +352,10 @@ export default function ContactPage() {
                       onChange={(e) =>
                         handleInputChange("guestCount", e.target.value)
                       }
-                      className="border-gray-300 focus:border-gold transition-colors"
+                      className="border-gray-300 focus:border-gold"
                       placeholder="Approximate number"
                     />
                   </div>
-
                   <div>
                     <Label>Budget Range</Label>
                     <Select
@@ -379,7 +364,7 @@ export default function ContactPage() {
                         handleInputChange("budget", value)
                       }
                     >
-                      <SelectTrigger className="border-gray-300 focus:border-gold transition-colors">
+                      <SelectTrigger className="border-gray-300 focus:border-gold">
                         <SelectValue placeholder="Select budget range" />
                       </SelectTrigger>
                       <SelectContent>
@@ -393,6 +378,7 @@ export default function ContactPage() {
                   </div>
                 </div>
 
+                {/* Venue */}
                 <div>
                   <Label htmlFor="venue">Preferred Venue or Location</Label>
                   <Input
@@ -401,11 +387,12 @@ export default function ContactPage() {
                     onChange={(e) =>
                       handleInputChange("venue", e.target.value)
                     }
-                    className="border-gray-300 focus:border-gold transition-colors"
+                    className="border-gray-300 focus:border-gold"
                     placeholder="Venue name, location, or 'Need venue sourcing'"
                   />
                 </div>
 
+                {/* Vision */}
                 <div>
                   <Label htmlFor="message">Tell Us About Your Vision</Label>
                   <Textarea
@@ -415,23 +402,26 @@ export default function ContactPage() {
                       handleInputChange("message", e.target.value)
                     }
                     rows={5}
-                    className="border-gray-300 focus:border-gold transition-colors"
-                    placeholder="Share your event vision, style preferences, any specific requirements, or questions you have for us..."
+                    className="border-gray-300 focus:border-gold"
+                    placeholder="Share your event vision, style preferences, or questions..."
                   />
                 </div>
 
+                {/* Submit */}
                 <Button
                   type="submit"
                   disabled={isSubmitting}
                   className="w-full bg-gold hover:bg-gold/90 text-charcoal font-semibold py-4 rounded-2xl transition-all duration-200 hover:shadow-lg disabled:opacity-50"
                 >
-                  {isSubmitting ? "Sending Your Inquiry..." : "Send Detailed Inquiry"}
+                  {isSubmitting
+                    ? "Sending Your Inquiry..."
+                    : "Send Detailed Inquiry"}
                 </Button>
               </form>
             )}
           </Card>
         </div>
-      </section>
+      </div>
 
       <Footer />
     </div>

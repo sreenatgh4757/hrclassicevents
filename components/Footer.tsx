@@ -55,7 +55,7 @@ export default function Footer() {
               <Mail size={16} /> <span>info@hrclassicevents.com</span>
             </li>
             <li className="flex items-center space-x-2">
-              <MapPin size={16} /> <span>Bournemouth, UK</span>
+              <MapPin size={16} /> <span>United Kingdom</span>
             </li>
           </ul>
         </div>

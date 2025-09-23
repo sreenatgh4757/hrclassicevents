@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -21,7 +22,7 @@ export default function Header() {
     <header className="fixed top-0 left-0 right-0 z-50 bg-black text-white border-b border-gold/20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 lg:h-20">
-          {/* Logo */}
+          {/* ✅ Logo */}
           <Link href="/" className="flex-shrink-0">
             <motion.div
               initial={{ opacity: 0, x: -20 }}
@@ -29,9 +30,14 @@ export default function Header() {
               transition={{ duration: 0.3 }}
               className="flex items-center hover:opacity-80 transition-opacity duration-200"
             >
-              <span className="text-2xl lg:text-3xl font-playfair font-bold text-white">
-                HR Classic Events
-              </span>
+              <Image
+                src="https://s3.eu-west-2.amazonaws.com/www.hrclassicevents.com/assets/ChatGPT+Image+Sep+23%2C+2025%2C+02_08_01+PM.png" 
+                alt="HR Classic Events Logo"
+                width={160}
+                height={50}
+                className="h-auto w-auto max-h-12"
+                priority
+              />
             </motion.div>
           </Link>
 

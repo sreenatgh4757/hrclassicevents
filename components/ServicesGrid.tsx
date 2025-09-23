@@ -19,10 +19,10 @@ const services = [
     type: "image",
   },
   {
-    title: "Private Celebrations",
+    title: "Birthay Celebrations",
     description:
       "From milestone birthdays to anniversaries, we bring creativity and personal touches that make your special day unforgettable for you and your guests.",
-    media: "https://s3.eu-west-2.amazonaws.com/www.hrclassicevents.com/assets/pexels-boko-shots-812604874-33854722.jpg", // static image
+    media: "https://s3.eu-west-2.amazonaws.com/www.hrclassicevents.com/assets/WhatsApp+Image+2025-09-18+at+19.32.07.jpeg", // static image
     type: "image",
   },
   {

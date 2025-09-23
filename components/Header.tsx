@@ -16,18 +16,33 @@ const navigation = [
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const [text, setText] = useState("");
-  const fullText = "HR Classic Events";
+  const [isDeleting, setIsDeleting] = useState(false);
 
-  // ⌨️ Typewriter effect
+  const fullText = "HR Classic Events";
+  const typingSpeed = isDeleting ? 80 : 120;
+  const pauseTime = 1500; // pause before deleting
+
   useEffect(() => {
-    let i = 0;
-    const interval = setInterval(() => {
-      setText(fullText.slice(0, i + 1));
-      i++;
-      if (i === fullText.length) clearInterval(interval);
-    }, 120);
-    return () => clearInterval(interval);
-  }, []);
+    let timer: NodeJS.Timeout;
+
+    if (!isDeleting && text === fullText) {
+      // pause at end
+      timer = setTimeout(() => setIsDeleting(true), pauseTime);
+    } else if (isDeleting && text === "") {
+      // restart typing
+      setIsDeleting(false);
+    } else {
+      timer = setTimeout(() => {
+        setText(
+          isDeleting
+            ? fullText.substring(0, text.length - 1)
+            : fullText.substring(0, text.length + 1)
+        );
+      }, typingSpeed);
+    }
+
+    return () => clearTimeout(timer);
+  }, [text, isDeleting]);
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-black text-white border-b border-gold/20">
@@ -42,6 +57,7 @@ export default function Header() {
               transition={{ duration: 0.5 }}
             >
               {text}
+              <span className="border-r-2 border-gold ml-1 animate-pulse"></span>
             </motion.span>
           </Link>
 

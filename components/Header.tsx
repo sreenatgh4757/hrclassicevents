@@ -7,7 +7,7 @@ import { motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
-// Navigation links
+// ✅ Navigation links
 const navigation = [
   { name: "Home", href: "/" },
   { name: "Gallery", href: "/gallery" },
@@ -22,8 +22,8 @@ export default function Header() {
     <header className="fixed top-0 left-0 right-0 z-50 bg-black text-white border-b border-gold/20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 lg:h-20">
-          {/* ✅ Logo + Text */}
-          <Link href="/" className="flex items-center space-x-3">
+          {/* ✅ Logo Only */}
+          <Link href="/" className="flex-shrink-0">
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
@@ -32,19 +32,15 @@ export default function Header() {
             >
               <Image
                 src="https://s3.eu-west-2.amazonaws.com/www.hrclassicevents.com/assets/ChatGPT+Image+Sep+23%2C+2025%2C+02_08_01+PM.png"
-                alt="HR Classic Events Logo"
-                width={120}
-                height={60}
-                className="h-10 w-auto lg:h-12"
+                width={160}   // 🔥 Increase logo size
+                height={80}
+                className="h-12 w-auto lg:h-16"
                 priority
               />
-              <span className="hidden sm:block text-lg lg:text-2xl font-playfair font-bold text-white">
-                HR Classic Events
-              </span>
             </motion.div>
           </Link>
 
-          {/* Desktop Nav */}
+          {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center space-x-8">
             {navigation.map((item, index) => (
               <motion.div
@@ -88,7 +84,7 @@ export default function Header() {
           </button>
         </div>
 
-        {/* Mobile Nav */}
+        {/* Mobile Navigation */}
         {isOpen && (
           <motion.div
             initial={{ opacity: 0, height: 0 }}

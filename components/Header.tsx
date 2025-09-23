@@ -32,8 +32,8 @@ export default function Header() {
             >
               <Image
                 src="https://s3.eu-west-2.amazonaws.com/www.hrclassicevents.com/assets/ChatGPT+Image+Sep+23%2C+2025%2C+02_08_01+PM.png"
-                width={400}   // 🔥 Increase logo size
-                height={200}
+                width={600}   // 🔥 Increase logo size
+                height={300}
                alt="HR Classic Events Logo"
                 className="h-12 w-auto lg:h-16"
                 priority

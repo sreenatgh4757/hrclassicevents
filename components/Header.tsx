@@ -7,6 +7,7 @@ import { motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
+// ✅ Navigation links
 const navigation = [
   { name: "Home", href: "/" },
   { name: "Gallery", href: "/gallery" },
@@ -18,30 +19,30 @@ export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-black border-b border-gold/20">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-black text-white border-b border-gold/20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-28 lg:h-36">
-          {/* ✅ BIG Logo */}
+        <div className="flex items-center justify-between h-16 lg:h-20">
+          {/* ✅ Logo Bigger */}
           <Link href="/" className="flex-shrink-0">
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.3 }}
-              className="flex items-center"
+              className="flex items-center hover:opacity-90 transition-opacity duration-200"
             >
               <Image
                 src="https://s3.eu-west-2.amazonaws.com/www.hrclassicevents.com/assets/ChatGPT+Image+Sep+23%2C+2025%2C+02_08_01+PM.png"
                 alt="HR Classic Events Logo"
-                width={420}   // 🔥 BIGGER
-                height={160}
-                className="h-20 lg:h-28 w-auto object-contain"
+                width={220}   // 🔥 Bigger width
+                height={100}  // 🔥 Bigger height
+                className="h-16 lg:h-20 w-auto object-contain"
                 priority
               />
             </motion.div>
           </Link>
 
-          {/* Desktop Nav */}
-          <nav className="hidden lg:flex items-center space-x-10">
+          {/* Desktop Navigation */}
+          <nav className="hidden lg:flex items-center space-x-8">
             {navigation.map((item, index) => (
               <motion.div
                 key={item.name}
@@ -51,7 +52,7 @@ export default function Header() {
               >
                 <Link
                   href={item.href}
-                  className="text-white hover:text-gold transition-colors duration-200 font-medium text-lg"
+                  className="text-white hover:text-gold transition-colors duration-200 font-medium"
                 >
                   {item.name}
                 </Link>
@@ -59,7 +60,7 @@ export default function Header() {
             ))}
           </nav>
 
-          {/* CTA */}
+          {/* Desktop CTA */}
           <motion.div
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
@@ -68,23 +69,23 @@ export default function Header() {
           >
             <Button
               asChild
-              className="bg-gold hover:bg-gold/90 text-charcoal font-semibold px-8 py-3 rounded-2xl transition-all duration-200 hover:shadow-lg text-lg"
+              className="bg-gold hover:bg-gold/90 text-charcoal font-semibold px-6 py-2 rounded-2xl transition-all duration-200 hover:shadow-lg"
             >
               <Link href="/contact">Plan My Event</Link>
             </Button>
           </motion.div>
 
-          {/* Mobile Menu */}
+          {/* Mobile Menu Button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
             className="lg:hidden p-2 text-white hover:text-gold transition-colors duration-200"
             aria-label="Toggle menu"
           >
-            {isOpen ? <X size={28} /> : <Menu size={28} />}
+            {isOpen ? <X size={26} /> : <Menu size={26} />}
           </button>
         </div>
 
-        {/* Mobile Nav */}
+        {/* Mobile Navigation */}
         {isOpen && (
           <motion.div
             initial={{ opacity: 0, height: 0 }}
@@ -98,7 +99,7 @@ export default function Header() {
                 <Link
                   key={item.name}
                   href={item.href}
-                  className="text-white hover:text-gold transition-colors duration-200 font-medium text-lg py-2"
+                  className="text-white hover:text-gold transition-colors duration-200 font-medium py-2"
                   onClick={() => setIsOpen(false)}
                 >
                   {item.name}
@@ -106,7 +107,7 @@ export default function Header() {
               ))}
               <Button
                 asChild
-                className="bg-gold hover:bg-gold/90 text-charcoal font-semibold px-8 py-3 rounded-2xl transition-all duration-200 hover:shadow-lg text-lg mt-4"
+                className="bg-gold hover:bg-gold/90 text-charcoal font-semibold px-6 py-3 rounded-2xl transition-all duration-200 hover:shadow-lg mt-4"
               >
                 <Link href="/contact" onClick={() => setIsOpen(false)}>
                   Plan My Event

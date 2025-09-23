@@ -1,12 +1,11 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
-// ✅ Navigation links
 const navigation = [
   { name: "Home", href: "/" },
   { name: "Gallery", href: "/gallery" },
@@ -16,23 +15,34 @@ const navigation = [
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
+  const [text, setText] = useState("");
+  const fullText = "HR Classic Events";
+
+  // ⌨️ Typewriter effect
+  useEffect(() => {
+    let i = 0;
+    const interval = setInterval(() => {
+      setText(fullText.slice(0, i + 1));
+      i++;
+      if (i === fullText.length) clearInterval(interval);
+    }, 120);
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-black text-white border-b border-gold/20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16 lg:h-20">
-          {/* Logo */}
-          <Link href="/" className="flex-shrink-0">
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.3 }}
-              className="flex items-center hover:opacity-80 transition-opacity duration-200"
+        <div className="flex items-center justify-between h-20">
+          {/* ✅ Animated Logo Name */}
+          <Link href="/" className="flex-shrink-0 flex items-center">
+            <motion.span
+              className="text-2xl lg:text-3xl font-playfair font-bold text-gold whitespace-nowrap"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.5 }}
             >
-              <span className="text-2xl lg:text-3xl font-playfair font-bold text-white">
-                HR Classic Events
-              </span>
-            </motion.div>
+              {text}
+            </motion.span>
           </Link>
 
           {/* Desktop Nav */}
@@ -78,38 +88,6 @@ export default function Header() {
             {isOpen ? <X size={26} /> : <Menu size={26} />}
           </button>
         </div>
-
-        {/* Mobile Nav */}
-        {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.2 }}
-            className="lg:hidden pb-6 pt-4 border-t border-gold/20 mt-4"
-          >
-            <div className="flex flex-col space-y-4">
-              {navigation.map((item) => (
-                <Link
-                  key={item.name}
-                  href={item.href}
-                  className="text-white hover:text-gold transition-colors duration-200 font-medium py-2"
-                  onClick={() => setIsOpen(false)}
-                >
-                  {item.name}
-                </Link>
-              ))}
-              <Button
-                asChild
-                className="bg-gold hover:bg-gold/90 text-charcoal font-semibold px-6 py-3 rounded-2xl transition-all duration-200 hover:shadow-lg mt-4"
-              >
-                <Link href="/contact" onClick={() => setIsOpen(false)}>
-                  Plan My Event
-                </Link>
-              </Button>
-            </div>
-          </motion.div>
-        )}
       </div>
     </header>
   );

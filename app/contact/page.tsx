@@ -24,6 +24,7 @@ import {
 } from "@/components/ui/select";
 import { siteConfig } from "@/config/site.config";
 
+// Contact methods
 const contactMethods = [
   {
     icon: Phone,
@@ -51,6 +52,7 @@ const contactMethods = [
   },
 ];
 
+// Event types
 const eventTypes = [
   "Wedding & Reception",
   "Corporate Function & Gala",
@@ -60,6 +62,7 @@ const eventTypes = [
   "Other",
 ];
 
+// Budget ranges
 const budgetRanges = [
   "Under £5,000",
   "£5,000 - £15,000",
@@ -67,6 +70,23 @@ const budgetRanges = [
   "£30,000 - £50,000",
   "£50,000+",
   "Prefer to discuss",
+];
+
+// Guest count ranges
+const guestCounts = [
+  "Less than 50",
+  "50 - 100",
+  "100 - 200",
+  "200 - 500",
+  "500+",
+];
+
+// Locations dropdown
+const locations = [
+  { group: "Europe", items: ["United Kingdom", "France", "Germany", "Italy", "Spain"] },
+  { group: "Africa", items: ["Nigeria", "South Africa", "Kenya", "Egypt"] },
+  { group: "North America", items: ["Canada", "USA", "Ireland"] },
+  { group: "Special", items: ["India"] },
 ];
 
 interface FormData {
@@ -114,14 +134,11 @@ export default function ContactPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!validateForm()) return;
-
     setIsSubmitting(true);
-    await new Promise((resolve) => setTimeout(resolve, 1500)); // fake submit
+    await new Promise((resolve) => setTimeout(resolve, 1500));
     console.log("Contact form submission:", formData);
-
     setIsSubmitting(false);
     setShowSuccess(true);
-
     setTimeout(() => {
       setFormData({
         name: "",
@@ -140,296 +157,240 @@ export default function ContactPage() {
 
   const handleInputChange = (field: keyof FormData, value: string) => {
     setFormData((prev) => ({ ...prev, [field]: value }));
-    if (errors[field]) {
-      setErrors((prev) => ({ ...prev, [field]: undefined }));
-    }
+    if (errors[field]) setErrors((prev) => ({ ...prev, [field]: undefined }));
   };
 
   return (
     <div className="min-h-screen bg-ivory">
       <Header />
 
-      {/* ✅ Hero Section with Background Image */}
+      {/* Hero with Background */}
       <section
-        className="relative bg-cover bg-center text-center text-white py-32"
+        className="pt-32 pb-20 bg-cover bg-center relative"
         style={{
           backgroundImage:
             "url('https://s3.eu-west-2.amazonaws.com/www.hrclassicevents.com/assets/ChatGPT+Image+Sep+23%2C+2025%2C+11_35_48+AM.png')",
         }}
       >
         <div className="absolute inset-0 bg-black/40" />
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="relative z-10"
-        >
-          <h1 className="text-5xl sm:text-6xl lg:text-7xl font-playfair font-bold mb-6">
-            Let&apos;s Create Something{" "}
-            <span className="text-gold text-shimmer">Extraordinary</span>
-          </h1>
-          <p className="text-xl max-w-3xl mx-auto leading-relaxed text-ivory">
-            Ready to start planning your perfect event? We&apos;re here to listen,
-            advise, and bring your vision to life.
-          </p>
-        </motion.div>
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+          >
+            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-playfair font-bold text-white mb-6">
+              Let's Create Something <span className="text-gold text-shimmer">Extraordinary</span>
+            </h1>
+            <p className="text-xl text-white/90 max-w-3xl mx-auto leading-relaxed">
+              Ready to start planning your perfect event? We're here to listen, advise, and bring your vision to life.
+            </p>
+          </motion.div>
+        </div>
       </section>
 
-      {/* ✅ Contact Methods */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-20">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+      {/* Contact Methods */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-16 relative z-10">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20">
           {contactMethods.map((method, index) => {
             const IconComponent = method.icon;
             return (
-              <motion.div
+              <Card
                 key={method.title}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                viewport={{ once: true }}
+                className="p-6 text-center bg-white border-0 shadow-lg hover:shadow-xl transition-all duration-300"
               >
-                <Card className="p-6 text-center bg-white border-0 shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-300 group h-full">
-                  <a href={method.action} className="block">
-                    <div className="w-16 h-16 bg-blush rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:bg-gold/20 transition-colors duration-300">
-                      <IconComponent size={32} className="text-gold" />
-                    </div>
-                    <h3 className="text-xl font-playfair font-semibold mb-2">
-                      {method.title}
-                    </h3>
-                    <p className="text-warm-gray mb-3">{method.description}</p>
-                    <p className="text-gold font-medium mb-2">{method.contact}</p>
-                    <p className="text-sm text-warm-gray/70">
-                      {method.available}
-                    </p>
-                  </a>
-                </Card>
-              </motion.div>
+                <a href={method.action} className="block">
+                  <div className="w-16 h-16 bg-blush rounded-2xl flex items-center justify-center mx-auto mb-4">
+                    <IconComponent size={32} className="text-gold" />
+                  </div>
+                  <h3 className="text-xl font-playfair font-semibold text-charcoal mb-2">
+                    {method.title}
+                  </h3>
+                  <p className="text-warm-gray mb-3">{method.description}</p>
+                  <p className="text-gold font-medium mb-2">{method.contact}</p>
+                  <p className="text-sm text-warm-gray/70">{method.available}</p>
+                </a>
+              </Card>
             );
           })}
         </div>
+      </div>
 
-        {/* ✅ Inquiry Form */}
-        <motion.div
-          initial={{ opacity: 0, x: -30 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-          className="flex justify-center"
-        >
-          <Card className="p-8 bg-white shadow-xl border-0 w-full max-w-3xl">
-            <h2 className="text-3xl font-playfair font-bold text-charcoal mb-6 text-center">
-              Tell Us About Your Event
-            </h2>
+      {/* Form */}
+      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
+        <Card className="p-8 bg-white shadow-xl border-0">
+          <h2 className="text-3xl font-playfair font-bold text-charcoal mb-6 text-center">
+            Tell Us About Your Event
+          </h2>
 
-            {showSuccess ? (
-              <motion.div
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.3 }}
-                className="text-center py-12"
-              >
-                <CheckCircle
-                  size={64}
-                  className="text-gold mx-auto mb-4"
+          {showSuccess ? (
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.3 }}
+              className="text-center py-12"
+            >
+              <CheckCircle size={64} className="text-gold mx-auto mb-4" />
+              <h3 className="text-2xl font-playfair font-bold text-charcoal mb-2">
+                Thank You!
+              </h3>
+              <p className="text-warm-gray mb-4">
+                We've received your detailed inquiry and will be in touch within 24 hours with a tailored proposal.
+              </p>
+            </motion.div>
+          ) : (
+            <form onSubmit={handleSubmit} className="space-y-6">
+              {/* Name + Email */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <div>
+                  <Label>Full Name *</Label>
+                  <Input
+                    value={formData.name}
+                    onChange={(e) => handleInputChange("name", e.target.value)}
+                  />
+                  {errors.name && <p className="text-red-500 text-sm">{errors.name}</p>}
+                </div>
+                <div>
+                  <Label>Email Address *</Label>
+                  <Input
+                    type="email"
+                    value={formData.email}
+                    onChange={(e) => handleInputChange("email", e.target.value)}
+                  />
+                  {errors.email && <p className="text-red-500 text-sm">{errors.email}</p>}
+                </div>
+              </div>
+
+              {/* Phone */}
+              <div>
+                <Label>Phone Number</Label>
+                <Input
+                  value={formData.phone}
+                  onChange={(e) => handleInputChange("phone", e.target.value)}
                 />
-                <h3 className="text-2xl font-playfair font-bold text-charcoal mb-2">
-                  Thank You!
-                </h3>
-                <p className="text-warm-gray mb-4">
-                  We&apos;ve received your inquiry and will be in touch within 24
-                  hours with a tailored proposal.
-                </p>
-                <p className="text-sm text-warm-gray">
-                  In the meantime, feel free to call us at {siteConfig.phone}.
-                </p>
-              </motion.div>
-            ) : (
-              <form onSubmit={handleSubmit} className="space-y-6">
-                {/* Name + Email */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                  <div>
-                    <Label htmlFor="name">Full Name *</Label>
-                    <Input
-                      id="name"
-                      value={formData.name}
-                      onChange={(e) =>
-                        handleInputChange("name", e.target.value)
-                      }
-                      className={`${
-                        errors.name ? "border-red-500" : "border-warm-gray/30"
-                      }`}
-                      placeholder="Your full name"
-                    />
-                    {errors.name && (
-                      <p className="text-red-500 text-sm mt-1">{errors.name}</p>
-                    )}
-                  </div>
-                  <div>
-                    <Label htmlFor="email">Email Address *</Label>
-                    <Input
-                      id="email"
-                      type="email"
-                      value={formData.email}
-                      onChange={(e) =>
-                        handleInputChange("email", e.target.value)
-                      }
-                      className={`${
-                        errors.email ? "border-red-500" : "border-warm-gray/30"
-                      }`}
-                      placeholder="your@email.com"
-                    />
-                    {errors.email && (
-                      <p className="text-red-500 text-sm mt-1">{errors.email}</p>
-                    )}
-                  </div>
-                </div>
+              </div>
 
-                {/* Phone */}
+              {/* Event Type + Date */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <div>
-                  <Label htmlFor="phone">Phone Number</Label>
+                  <Label>Event Type *</Label>
+                  <Select
+                    value={formData.eventType}
+                    onValueChange={(value) => handleInputChange("eventType", value)}
+                  >
+                    <SelectTrigger>
+                      <SelectValue placeholder="Select event type" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {eventTypes.map((type) => (
+                        <SelectItem key={type} value={type}>
+                          {type}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                  {errors.eventType && <p className="text-red-500 text-sm">{errors.eventType}</p>}
+                </div>
+                <div>
+                  <Label>Event Date *</Label>
                   <Input
-                    id="phone"
-                    value={formData.phone}
-                    onChange={(e) =>
-                      handleInputChange("phone", e.target.value)
-                    }
-                    className="border-warm-gray/30"
-                    placeholder="Your phone number"
+                    type="date"
+                    value={formData.eventDate}
+                    onChange={(e) => handleInputChange("eventDate", e.target.value)}
                   />
+                  {errors.eventDate && <p className="text-red-500 text-sm">{errors.eventDate}</p>}
                 </div>
+              </div>
 
-                {/* Event Details */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                  <div>
-                    <Label>Event Type *</Label>
-                    <Select
-                      value={formData.eventType}
-                      onValueChange={(value) =>
-                        handleInputChange("eventType", value)
-                      }
-                    >
-                      <SelectTrigger
-                        className={`${
-                          errors.eventType
-                            ? "border-red-500"
-                            : "border-warm-gray/30"
-                        }`}
-                      >
-                        <SelectValue placeholder="Select event type" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        {eventTypes.map((type) => (
-                          <SelectItem key={type} value={type}>
-                            {type}
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
-                    {errors.eventType && (
-                      <p className="text-red-500 text-sm mt-1">
-                        {errors.eventType}
-                      </p>
-                    )}
-                  </div>
-                  <div>
-                    <Label htmlFor="eventDate">Event Date *</Label>
-                    <Input
-                      id="eventDate"
-                      type="date"
-                      value={formData.eventDate}
-                      onChange={(e) =>
-                        handleInputChange("eventDate", e.target.value)
-                      }
-                      className={`${
-                        errors.eventDate
-                          ? "border-red-500"
-                          : "border-warm-gray/30"
-                      }`}
-                    />
-                    {errors.eventDate && (
-                      <p className="text-red-500 text-sm mt-1">
-                        {errors.eventDate}
-                      </p>
-                    )}
-                  </div>
-                </div>
-
-                {/* Guest Count + Budget */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                  <div>
-                    <Label htmlFor="guestCount">Expected Guest Count</Label>
-                    <Input
-                      id="guestCount"
-                      value={formData.guestCount}
-                      onChange={(e) =>
-                        handleInputChange("guestCount", e.target.value)
-                      }
-                      className="border-warm-gray/30"
-                      placeholder="Approximate number"
-                    />
-                  </div>
-                  <div>
-                    <Label>Budget Range</Label>
-                    <Select
-                      value={formData.budget}
-                      onValueChange={(value) =>
-                        handleInputChange("budget", value)
-                      }
-                    >
-                      <SelectTrigger className="border-warm-gray/30">
-                        <SelectValue placeholder="Select budget range" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        {budgetRanges.map((range) => (
-                          <SelectItem key={range} value={range}>
-                            {range}
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
-                  </div>
-                </div>
-
-                {/* Venue */}
+              {/* Guest Count + Budget */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <div>
-                  <Label htmlFor="venue">Preferred Venue or Location</Label>
-                  <Input
-                    id="venue"
-                    value={formData.venue}
-                    onChange={(e) =>
-                      handleInputChange("venue", e.target.value)
-                    }
-                    className="border-warm-gray/30"
-                    placeholder="Venue name, location, or 'Need venue sourcing'"
-                  />
+                  <Label>Expected Guest Count</Label>
+                  <Select
+                    value={formData.guestCount}
+                    onValueChange={(value) => handleInputChange("guestCount", value)}
+                  >
+                    <SelectTrigger>
+                      <SelectValue placeholder="Select guest count" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {guestCounts.map((count) => (
+                        <SelectItem key={count} value={count}>
+                          {count}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
                 </div>
-
-                {/* Vision */}
                 <div>
-                  <Label htmlFor="message">Tell Us About Your Vision</Label>
-                  <Textarea
-                    id="message"
-                    value={formData.message}
-                    onChange={(e) =>
-                      handleInputChange("message", e.target.value)
-                    }
-                    rows={5}
-                    className="border-warm-gray/30"
-                    placeholder="Share your event vision, style preferences, any specific requirements, or questions you have for us..."
-                  />
+                  <Label>Budget Range</Label>
+                  <Select
+                    value={formData.budget}
+                    onValueChange={(value) => handleInputChange("budget", value)}
+                  >
+                    <SelectTrigger>
+                      <SelectValue placeholder="Select budget range" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {budgetRanges.map((range) => (
+                        <SelectItem key={range} value={range}>
+                          {range}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
                 </div>
+              </div>
 
-                <Button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className="w-full bg-gold hover:bg-gold/90 text-charcoal font-semibold py-4 rounded-2xl"
+              {/* Location */}
+              <div>
+                <Label>Preferred Venue or Location</Label>
+                <Select
+                  value={formData.venue}
+                  onValueChange={(value) => handleInputChange("venue", value)}
                 >
-                  {isSubmitting ? "Sending Your Inquiry..." : "Send Message"}
-                </Button>
-              </form>
-            )}
-          </Card>
-        </motion.div>
+                  <SelectTrigger>
+                    <SelectValue placeholder="Select location" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {locations.map((group) => (
+                      <>
+                        <div className="px-2 py-1 text-sm font-semibold text-gray-500">
+                          {group.group}
+                        </div>
+                        {group.items.map((item) => (
+                          <SelectItem key={item} value={item}>
+                            {item}
+                          </SelectItem>
+                        ))}
+                      </>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+
+              {/* Message */}
+              <div>
+                <Label>Tell Us About Your Vision</Label>
+                <Textarea
+                  value={formData.message}
+                  onChange={(e) => handleInputChange("message", e.target.value)}
+                  rows={5}
+                  placeholder="Share your event vision, style preferences, any specific requirements..."
+                />
+              </div>
+
+              {/* Submit */}
+              <Button
+                type="submit"
+                disabled={isSubmitting}
+                className="w-full bg-gold hover:bg-gold/90 text-charcoal font-semibold py-4 rounded-2xl transition-all duration-200 hover:shadow-lg disabled:opacity-50"
+              >
+                {isSubmitting ? "Sending Your Inquiry..." : "Send Detailed Inquiry"}
+              </Button>
+            </form>
+          )}
+        </Card>
       </div>
 
       <Footer />

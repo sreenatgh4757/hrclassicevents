@@ -5,9 +5,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import Image from "next/image";
 
-// ✅ Navigation links
 const navigation = [
   { name: "Home", href: "/" },
   { name: "Gallery", href: "/gallery" },
@@ -24,21 +22,14 @@ export default function Header() {
         <div className="flex items-center justify-between h-16 lg:h-20">
           {/* Logo */}
           <Link href="/" className="flex-shrink-0 flex items-center">
-            <motion.div
+            <motion.img
+              src="https://s3.eu-west-2.amazonaws.com/www.hrclassicevents.com/assets/ChatGPT+Image+Sep+23%2C+2025%2C+02_56_57+PM.png"
+              alt="HR Classic Events Logo"
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.3 }}
-              className="flex items-center"
-            >
-              <Image
-                src="https://s3.eu-west-2.amazonaws.com/www.hrclassicevents.com/assets/ChatGPT+Image+Sep+23%2C+2025%2C+02_56_57+PM.png"
-                alt="HR Classic Events Logo"
-                width={160}   // desktop width
-                height={60}
-                className="h-10 w-auto sm:h-12 lg:h-14 object-contain"
-                priority
-              />
-            </motion.div>
+              className="h-10 sm:h-12 lg:h-16 w-auto" 
+            />
           </Link>
 
           {/* Desktop Nav */}

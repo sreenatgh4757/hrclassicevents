@@ -22,20 +22,20 @@ export default function Header() {
     <header className="fixed top-0 left-0 right-0 z-50 bg-black text-white border-b border-gold/20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 lg:h-20">
-          {/* ✅ Logo Only */}
+          {/* ✅ Logo Bigger */}
           <Link href="/" className="flex-shrink-0">
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.3 }}
-              className="flex items-center hover:opacity-80 transition-opacity duration-200"
+              className="flex items-center hover:opacity-90 transition-opacity duration-200"
             >
               <Image
                 src="https://s3.eu-west-2.amazonaws.com/www.hrclassicevents.com/assets/ChatGPT+Image+Sep+23%2C+2025%2C+02_08_01+PM.png"
-                width={600}   // 🔥 Increase logo size
-                height={300}
-               alt="HR Classic Events Logo"
-                className="h-12 w-auto lg:h-16"
+                alt="HR Classic Events Logo"
+                width={220}   // 🔥 Bigger width
+                height={100}  // 🔥 Bigger height
+                className="h-16 lg:h-20 w-auto object-contain"
                 priority
               />
             </motion.div>

@@ -114,11 +114,14 @@ export default function ContactPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!validateForm()) return;
+
     setIsSubmitting(true);
-    await new Promise((resolve) => setTimeout(resolve, 1500));
+    await new Promise((resolve) => setTimeout(resolve, 1500)); // fake submit
     console.log("Contact form submission:", formData);
+
     setIsSubmitting(false);
     setShowSuccess(true);
+
     setTimeout(() => {
       setFormData({
         name: "",
@@ -146,35 +149,34 @@ export default function ContactPage() {
     <div className="min-h-screen bg-ivory">
       <Header />
 
-      {/* Background Hero */}
+      {/* ✅ Hero Section with Background Image */}
       <section
-        className="relative pt-32 pb-20 bg-cover bg-center bg-no-repeat"
+        className="relative bg-cover bg-center text-center text-white py-32"
         style={{
           backgroundImage:
             "url('https://s3.eu-west-2.amazonaws.com/www.hrclassicevents.com/assets/ChatGPT+Image+Sep+23%2C+2025%2C+11_35_48+AM.png')",
         }}
       >
-        <div className="absolute inset-0 bg-black/40" /> {/* overlay */}
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-playfair font-bold text-white mb-6">
-              Let's Create Something{" "}
-              <span className="text-gold text-shimmer">Extraordinary</span>
-            </h1>
-            <p className="text-xl text-white/90 max-w-3xl mx-auto leading-relaxed">
-              Ready to start planning your perfect event? We're here to listen,
-              advise, and bring your vision to life.
-            </p>
-          </motion.div>
-        </div>
+        <div className="absolute inset-0 bg-black/40" />
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="relative z-10"
+        >
+          <h1 className="text-5xl sm:text-6xl lg:text-7xl font-playfair font-bold mb-6">
+            Let&apos;s Create Something{" "}
+            <span className="text-gold text-shimmer">Extraordinary</span>
+          </h1>
+          <p className="text-xl max-w-3xl mx-auto leading-relaxed text-ivory">
+            Ready to start planning your perfect event? We&apos;re here to listen,
+            advise, and bring your vision to life.
+          </p>
+        </motion.div>
       </section>
 
-      {/* Contact Methods */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-16 pb-20">
+      {/* ✅ Contact Methods */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-20">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
           {contactMethods.map((method, index) => {
             const IconComponent = method.icon;
@@ -195,9 +197,7 @@ export default function ContactPage() {
                       {method.title}
                     </h3>
                     <p className="text-warm-gray mb-3">{method.description}</p>
-                    <p className="text-gold font-medium mb-2">
-                      {method.contact}
-                    </p>
+                    <p className="text-gold font-medium mb-2">{method.contact}</p>
                     <p className="text-sm text-warm-gray/70">
                       {method.available}
                     </p>
@@ -208,12 +208,19 @@ export default function ContactPage() {
           })}
         </div>
 
-        {/* Contact Form */}
-        <div className="max-w-3xl mx-auto">
-          <Card className="p-8 bg-white shadow-xl border-0 text-charcoal">
-            <h2 className="text-3xl font-playfair font-bold mb-6 text-center">
+        {/* ✅ Inquiry Form */}
+        <motion.div
+          initial={{ opacity: 0, x: -30 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          className="flex justify-center"
+        >
+          <Card className="p-8 bg-white shadow-xl border-0 w-full max-w-3xl">
+            <h2 className="text-3xl font-playfair font-bold text-charcoal mb-6 text-center">
               Tell Us About Your Event
             </h2>
+
             {showSuccess ? (
               <motion.div
                 initial={{ opacity: 0, scale: 0.95 }}
@@ -221,17 +228,19 @@ export default function ContactPage() {
                 transition={{ duration: 0.3 }}
                 className="text-center py-12"
               >
-                <CheckCircle size={64} className="text-gold mx-auto mb-4" />
-                <h3 className="text-2xl font-playfair font-bold mb-2">
+                <CheckCircle
+                  size={64}
+                  className="text-gold mx-auto mb-4"
+                />
+                <h3 className="text-2xl font-playfair font-bold text-charcoal mb-2">
                   Thank You!
                 </h3>
-                <p className="mb-4">
-                  We've received your detailed inquiry and will be in touch
-                  within 24 hours with a tailored proposal.
+                <p className="text-warm-gray mb-4">
+                  We&apos;ve received your inquiry and will be in touch within 24
+                  hours with a tailored proposal.
                 </p>
-                <p className="text-sm">
-                  In the meantime, feel free to call us at {siteConfig.phone} for
-                  immediate assistance.
+                <p className="text-sm text-warm-gray">
+                  In the meantime, feel free to call us at {siteConfig.phone}.
                 </p>
               </motion.div>
             ) : (
@@ -247,8 +256,8 @@ export default function ContactPage() {
                         handleInputChange("name", e.target.value)
                       }
                       className={`${
-                        errors.name ? "border-red-500" : "border-gray-300"
-                      } focus:border-gold`}
+                        errors.name ? "border-red-500" : "border-warm-gray/30"
+                      }`}
                       placeholder="Your full name"
                     />
                     {errors.name && (
@@ -265,8 +274,8 @@ export default function ContactPage() {
                         handleInputChange("email", e.target.value)
                       }
                       className={`${
-                        errors.email ? "border-red-500" : "border-gray-300"
-                      } focus:border-gold`}
+                        errors.email ? "border-red-500" : "border-warm-gray/30"
+                      }`}
                       placeholder="your@email.com"
                     />
                     {errors.email && (
@@ -284,7 +293,7 @@ export default function ContactPage() {
                     onChange={(e) =>
                       handleInputChange("phone", e.target.value)
                     }
-                    className="border-gray-300 focus:border-gold"
+                    className="border-warm-gray/30"
                     placeholder="Your phone number"
                   />
                 </div>
@@ -301,8 +310,10 @@ export default function ContactPage() {
                     >
                       <SelectTrigger
                         className={`${
-                          errors.eventType ? "border-red-500" : "border-gray-300"
-                        } focus:border-gold`}
+                          errors.eventType
+                            ? "border-red-500"
+                            : "border-warm-gray/30"
+                        }`}
                       >
                         <SelectValue placeholder="Select event type" />
                       </SelectTrigger>
@@ -320,7 +331,6 @@ export default function ContactPage() {
                       </p>
                     )}
                   </div>
-
                   <div>
                     <Label htmlFor="eventDate">Event Date *</Label>
                     <Input
@@ -331,8 +341,10 @@ export default function ContactPage() {
                         handleInputChange("eventDate", e.target.value)
                       }
                       className={`${
-                        errors.eventDate ? "border-red-500" : "border-gray-300"
-                      } focus:border-gold`}
+                        errors.eventDate
+                          ? "border-red-500"
+                          : "border-warm-gray/30"
+                      }`}
                     />
                     {errors.eventDate && (
                       <p className="text-red-500 text-sm mt-1">
@@ -342,7 +354,7 @@ export default function ContactPage() {
                   </div>
                 </div>
 
-                {/* Guests + Budget */}
+                {/* Guest Count + Budget */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                   <div>
                     <Label htmlFor="guestCount">Expected Guest Count</Label>
@@ -352,7 +364,7 @@ export default function ContactPage() {
                       onChange={(e) =>
                         handleInputChange("guestCount", e.target.value)
                       }
-                      className="border-gray-300 focus:border-gold"
+                      className="border-warm-gray/30"
                       placeholder="Approximate number"
                     />
                   </div>
@@ -364,7 +376,7 @@ export default function ContactPage() {
                         handleInputChange("budget", value)
                       }
                     >
-                      <SelectTrigger className="border-gray-300 focus:border-gold">
+                      <SelectTrigger className="border-warm-gray/30">
                         <SelectValue placeholder="Select budget range" />
                       </SelectTrigger>
                       <SelectContent>
@@ -387,7 +399,7 @@ export default function ContactPage() {
                     onChange={(e) =>
                       handleInputChange("venue", e.target.value)
                     }
-                    className="border-gray-300 focus:border-gold"
+                    className="border-warm-gray/30"
                     placeholder="Venue name, location, or 'Need venue sourcing'"
                   />
                 </div>
@@ -402,25 +414,22 @@ export default function ContactPage() {
                       handleInputChange("message", e.target.value)
                     }
                     rows={5}
-                    className="border-gray-300 focus:border-gold"
-                    placeholder="Share your event vision, style preferences, or questions..."
+                    className="border-warm-gray/30"
+                    placeholder="Share your event vision, style preferences, any specific requirements, or questions you have for us..."
                   />
                 </div>
 
-                {/* Submit */}
                 <Button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full bg-gold hover:bg-gold/90 text-charcoal font-semibold py-4 rounded-2xl transition-all duration-200 hover:shadow-lg disabled:opacity-50"
+                  className="w-full bg-gold hover:bg-gold/90 text-charcoal font-semibold py-4 rounded-2xl"
                 >
-                  {isSubmitting
-                    ? "Sending Your Inquiry..."
-                    : "Send Detailed Inquiry"}
+                  {isSubmitting ? "Sending Your Inquiry..." : "Send Message"}
                 </Button>
               </form>
             )}
           </Card>
-        </div>
+        </motion.div>
       </div>
 
       <Footer />

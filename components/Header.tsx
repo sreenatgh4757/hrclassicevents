@@ -1,27 +1,27 @@
 "use client";
 
-import { useState } from 'react';
-import Link from 'next/link';
-import { motion } from 'framer-motion';
-import { Menu, X } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { useState } from "react";
+import Link from "next/link";
+import { motion } from "framer-motion";
+import { Menu, X } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
-// ✅ Removed Services + Portfolio
+// ✅ Navigation links
 const navigation = [
-  { name: 'Home', href: '/' },
-  { name: 'Gallery', href: '/gallery' },
-  { name: 'About', href: '/about' },
-  { name: 'Contact', href: '/contact' },
+  { name: "Home", href: "/" },
+  { name: "Gallery", href: "/gallery" },
+  { name: "About", href: "/about" },
+  { name: "Contact", href: "/contact" },
 ];
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-   <header className="fixed top-0 left-0 right-0 z-50 bg-black text-white border-b border-gold/20">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-black text-white border-b border-gold/20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 lg:h-20">
-          {/* Logo - Text Only */}
+          {/* Logo */}
           <Link href="/" className="flex-shrink-0">
             <motion.div
               initial={{ opacity: 0, x: -20 }}
@@ -30,12 +30,12 @@ export default function Header() {
               className="flex items-center hover:opacity-80 transition-opacity duration-200"
             >
               <span className="text-2xl lg:text-3xl font-playfair font-bold text-white">
-  HR Classic Events
-</span>
+                HR Classic Events
+              </span>
             </motion.div>
           </Link>
 
-          {/* Desktop Navigation */}
+          {/* Desktop Nav */}
           <nav className="hidden lg:flex items-center space-x-8">
             {navigation.map((item, index) => (
               <motion.div
@@ -45,16 +45,16 @@ export default function Header() {
                 transition={{ duration: 0.3, delay: index * 0.1 }}
               >
                 <Link
-  href={item.href}
-  className="text-white hover:text-gold transition-colors duration-200 font-medium"
->
-  {item.name}
-</Link>
+                  href={item.href}
+                  className="text-white hover:text-gold transition-colors duration-200 font-medium"
+                >
+                  {item.name}
+                </Link>
               </motion.div>
             ))}
           </nav>
 
-          {/* CTA Button */}
+          {/* Desktop CTA */}
           <motion.div
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
@@ -72,18 +72,18 @@ export default function Header() {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="lg:hidden p-2 text-charcoal hover:text-gold transition-colors duration-200"
+            className="lg:hidden p-2 text-white hover:text-gold transition-colors duration-200"
             aria-label="Toggle menu"
           >
-            {isOpen ? <X size={24} /> : <Menu size={24} />}
+            {isOpen ? <X size={26} /> : <Menu size={26} />}
           </button>
         </div>
 
-        {/* Mobile Navigation */}
+        {/* Mobile Nav */}
         {isOpen && (
           <motion.div
             initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
+            animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.2 }}
             className="lg:hidden pb-6 pt-4 border-t border-gold/20 mt-4"
@@ -93,7 +93,7 @@ export default function Header() {
                 <Link
                   key={item.name}
                   href={item.href}
-                  className="text-warm-gray hover:text-gold transition-colors duration-200 font-medium py-2"
+                  className="text-white hover:text-gold transition-colors duration-200 font-medium py-2"
                   onClick={() => setIsOpen(false)}
                 >
                   {item.name}

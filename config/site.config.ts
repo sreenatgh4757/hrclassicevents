@@ -112,9 +112,9 @@ export const siteConfig = {
   ],
 
   stats: [
-    { label: "Years perfecting events", value: 5 },
-    { label: "Events delivered", value: 40 },
-    { label: "Trusted Venues", value: 15 },
+    { label: "Years perfecting events", value: 8 },
+    { label: "Events delivered", value: 45 },
+    { label: "Trusted Venues", value: 20 },
   ],
 
   process: [

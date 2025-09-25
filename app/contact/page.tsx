@@ -1,13 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import { motion } from "framer-motion";
-import {
-  Phone,
-  Mail,
-  MessageCircle,
-  CheckCircle,
-} from "lucide-react";
+import { Phone, Mail, MessageCircle, CircleCheck as CheckCircle } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Card } from "@/components/ui/card";
@@ -119,41 +114,75 @@ export default function ContactPage() {
 
   const validateForm = (): boolean => {
     const newErrors: Partial<FormData> = {};
-    if (!formData.name.trim()) newErrors.name = "Name is required";
+    
+    // Enhanced validation
+    if (!formData.name?.trim()) newErrors.name = "Name is required";
+    if (formData.name?.trim().length < 2) newErrors.name = "Name must be at least 2 characters";
+    
     if (!formData.email.trim()) {
       newErrors.email = "Email is required";
     } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
       newErrors.email = "Please enter a valid email";
     }
+    
     if (!formData.eventType) newErrors.eventType = "Please select an event type";
     if (!formData.eventDate) newErrors.eventDate = "Event date is required";
+    
+    // Validate future date
+    const selectedDate = new Date(formData.eventDate);
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    if (selectedDate < today) {
+      newErrors.eventDate = "Event date must be in the future";
+    }
+    
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = useCallback(async (e: React.FormEvent) => {
     e.preventDefault();
     if (!validateForm()) return;
+    
     setIsSubmitting(true);
-    await new Promise((resolve) => setTimeout(resolve, 1500));
-    console.log("Contact form submission:", formData);
-    setIsSubmitting(false);
-    setShowSuccess(true);
-    setTimeout(() => {
-      setFormData({
-        name: "",
-        email: "",
-        phone: "",
-        eventType: "",
-        eventDate: "",
-        guestCount: "",
-        budget: "",
-        venue: "",
-        message: "",
+    
+    try {
+      // Replace with your actual form submission logic
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
       });
-      setShowSuccess(false);
-    }, 4000);
-  };
+      
+      if (!response.ok) {
+        throw new Error('Failed to submit form');
+      }
+      
+      setShowSuccess(true);
+      setTimeout(() => {
+        setFormData({
+          name: "",
+          email: "",
+          phone: "",
+          eventType: "",
+          eventDate: "",
+          guestCount: "",
+          budget: "",
+          venue: "",
+          message: "",
+        });
+        setShowSuccess(false);
+      }, 4000);
+    } catch (error) {
+      console.error('Form submission error:', error);
+      // Handle error state
+      setErrors({ email: 'Failed to send message. Please try again.' });
+    } finally {
+      setIsSubmitting(false);
+    }
+  }, [formData]);
 
   const handleInputChange = (field: keyof FormData, value: string) => {
     setFormData((prev) => ({ ...prev, [field]: value }));
@@ -247,6 +276,7 @@ export default function ContactPage() {
                   <Input
                     value={formData.name}
                     onChange={(e) => handleInputChange("name", e.target.value)}
+                    className={errors.name ? "border-red-500" : ""}
                   />
                   {errors.name && <p className="text-red-500 text-sm">{errors.name}</p>}
                 </div>
@@ -256,6 +286,7 @@ export default function ContactPage() {
                     type="email"
                     value={formData.email}
                     onChange={(e) => handleInputChange("email", e.target.value)}
+                    className={errors.email ? "border-red-500" : ""}
                   />
                   {errors.email && <p className="text-red-500 text-sm">{errors.email}</p>}
                 </div>
@@ -297,6 +328,8 @@ export default function ContactPage() {
                     type="date"
                     value={formData.eventDate}
                     onChange={(e) => handleInputChange("eventDate", e.target.value)}
+                    min={new Date().toISOString().split('T')[0]}
+                    className={errors.eventDate ? "border-red-500" : ""}
                   />
                   {errors.eventDate && <p className="text-red-500 text-sm">{errors.eventDate}</p>}
                 </div>

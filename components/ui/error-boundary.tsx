@@ -1,7 +1,7 @@
 "use client";
 
 import React from 'react';
-import { AlertTriangle } from 'lucide-react';
+import { TriangleAlert as AlertTriangle } from 'lucide-react';
 import { Button } from './button';
 
 interface ErrorBoundaryState {

@@ -2,12 +2,7 @@
 
 import { useState, useCallback } from "react";
 import { motion } from "framer-motion";
-import {
-  Phone,
-  Mail,
-  MessageCircle,
-  CheckCircle,
-} from "lucide-react";
+import { Phone, Mail, MessageCircle, CircleCheck as CheckCircle } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Card } from "@/components/ui/card";

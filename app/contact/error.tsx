@@ -55,10 +55,10 @@ export default function ContactError({
             Still having issues? Contact us directly:
           </p>
           <a 
-            href="mailto:Afusatsaka@hrclassicevents.co.uk" 
+            href="mailto:info@hrclassicevents.com" 
             className="text-gold hover:underline font-medium"
           >
-            Afusatsaka@hrclassicevents.co.uk
+            info@hrclassicevents.com
           </a>
         </div>
       </div>

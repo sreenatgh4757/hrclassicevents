@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -89,6 +89,37 @@ export default function Header() {
           </button>
         </div>
       </div>
+
+      {/* ✅ Mobile Menu */}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.nav
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.3 }}
+            className="lg:hidden absolute top-20 left-0 w-full bg-black text-white flex flex-col items-center space-y-6 py-6 z-40 border-t border-gold/20"
+          >
+            {navigation.map((item) => (
+              <Link
+                key={item.name}
+                href={item.href}
+                className="text-lg font-medium hover:text-gold transition-colors duration-200"
+                onClick={() => setIsOpen(false)} // closes menu after click
+              >
+                {item.name}
+              </Link>
+            ))}
+
+            <Button
+              asChild
+              className="bg-gold hover:bg-gold/90 text-charcoal font-semibold px-6 py-2 rounded-2xl transition-all duration-200 hover:shadow-lg"
+            >
+              <Link href="/contact">Plan My Event</Link>
+            </Button>
+          </motion.nav>
+        )}
+      </AnimatePresence>
     </header>
   );
 }

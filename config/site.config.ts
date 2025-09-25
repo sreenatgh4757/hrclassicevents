@@ -4,13 +4,12 @@ export const siteConfig = {
     "We believe every occasion should feel effortless and extraordinary. From elegant UK venues to breathtaking destination weddings abroad, we design and deliver events that reflect your style and story—so you can relax and enjoy the moment.",
   url: "https://hrclassicevents.co.uk",
   phone: "+44 7909067857",
-  email: "Afusatsaka@hrclassicevents.co.uk",
+  email: "info@hrclassicevents.com",
   whatsapp: "+44 7909067857",
-  address: "Bournemouth, UK",
+  address: "United Kingdom",
   social: {
     instagram: "https://instagram.com/hrclassicevents",
     facebook: "https://facebook.com/hrclassicevents",
-    linkedin: "https://linkedin.com/company/hrclassicevents",
   },
 
   // ✅ Updated Reviews

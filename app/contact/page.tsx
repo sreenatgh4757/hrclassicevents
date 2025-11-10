@@ -57,15 +57,20 @@ const eventTypes = [
   "Other",
 ];
 
-// Budget ranges
-const budgetRanges = [
-  "Under £5,000",
-  "£5,000 - £15,000",
-  "£15,000 - £30,000",
-  "£30,000 - £50,000",
-  "£50,000+",
-  "Prefer to discuss",
-];
+// Countries/regions with their budget ranges
+const countryBudgetConfig = {
+  "United Kingdom": { currency: "£", symbol: "£", min: 1000, max: 100000 },
+  "United States": { currency: "USD", symbol: "$", min: 1000, max: 120000 },
+  "Europe": { currency: "EUR", symbol: "€", min: 1000, max: 100000 },
+  "India": { currency: "INR", symbol: "₹", min: 50000, max: 5000000 },
+  "UAE": { currency: "AED", symbol: "AED ", min: 5000, max: 500000 },
+  "Nigeria": { currency: "NGN", symbol: "₦", min: 500000, max: 20000000 },
+  "Kenya": { currency: "KES", symbol: "KSh ", min: 200000, max: 10000000 },
+  "South Africa": { currency: "ZAR", symbol: "R", min: 50000, max: 2000000 },
+  "Australia": { currency: "AUD", symbol: "A$", min: 2000, max: 100000 },
+  "Canada": { currency: "CAD", symbol: "CA$", min: 2000, max: 120000 },
+  "Other": { currency: "USD", symbol: "$", min: 1000, max: 100000 },
+};
 
 // Guest count ranges
 const guestCounts = [
@@ -91,6 +96,7 @@ interface FormData {
   eventType: string;
   eventDate: string;
   guestCount: string;
+  country: string;
   budget: string;
   venue: string;
   message: string;
@@ -104,7 +110,8 @@ export default function ContactPage() {
     eventType: "",
     eventDate: "",
     guestCount: "",
-    budget: "",
+    country: "United Kingdom",
+    budget: "1000",
     venue: "",
     message: "",
   });
@@ -169,7 +176,8 @@ export default function ContactPage() {
           eventType: "",
           eventDate: "",
           guestCount: "",
-          budget: "",
+          country: "United Kingdom",
+          budget: "1000",
           venue: "",
           message: "",
         });
@@ -335,43 +343,89 @@ export default function ContactPage() {
                 </div>
               </div>
 
-              {/* Guest Count + Budget */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                <div>
-                  <Label>Expected Guest Count</Label>
-                  <Select
-                    value={formData.guestCount}
-                    onValueChange={(value) => handleInputChange("guestCount", value)}
-                  >
-                    <SelectTrigger>
-                      <SelectValue placeholder="Select guest count" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {guestCounts.map((count) => (
-                        <SelectItem key={count} value={count}>
-                          {count}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                </div>
-                <div>
-                  <Label>Budget Range</Label>
-                  <Select
+              {/* Guest Count */}
+              <div>
+                <Label>Expected Guest Count</Label>
+                <Select
+                  value={formData.guestCount}
+                  onValueChange={(value) => handleInputChange("guestCount", value)}
+                >
+                  <SelectTrigger>
+                    <SelectValue placeholder="Select guest count" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {guestCounts.map((count) => (
+                      <SelectItem key={count} value={count}>
+                        {count}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+
+              {/* Country/Region Selector */}
+              <div>
+                <Label>Country or Region</Label>
+                <Select
+                  value={formData.country}
+                  onValueChange={(value) => {
+                    handleInputChange("country", value);
+                    const config = countryBudgetConfig[value as keyof typeof countryBudgetConfig];
+                    handleInputChange("budget", config.min.toString());
+                  }}
+                >
+                  <SelectTrigger>
+                    <SelectValue placeholder="Select country or region" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {Object.keys(countryBudgetConfig).map((country) => (
+                      <SelectItem key={country} value={country}>
+                        {country}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+
+              {/* Budget Slider */}
+              <div>
+                <Label>Estimated Budget</Label>
+                <div className="mt-2 space-y-4">
+                  <input
+                    type="range"
+                    min={countryBudgetConfig[formData.country as keyof typeof countryBudgetConfig].min}
+                    max={countryBudgetConfig[formData.country as keyof typeof countryBudgetConfig].max}
                     value={formData.budget}
-                    onValueChange={(value) => handleInputChange("budget", value)}
-                  >
-                    <SelectTrigger>
-                      <SelectValue placeholder="Select budget range" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {budgetRanges.map((range) => (
-                        <SelectItem key={range} value={range}>
-                          {range}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
+                    onChange={(e) => handleInputChange("budget", e.target.value)}
+                    className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-pink-500 hover:accent-pink-600 transition-colors"
+                    style={{
+                      background: `linear-gradient(to right, rgb(236 72 153) 0%, rgb(236 72 153) ${
+                        ((Number(formData.budget) - countryBudgetConfig[formData.country as keyof typeof countryBudgetConfig].min) /
+                          (countryBudgetConfig[formData.country as keyof typeof countryBudgetConfig].max -
+                            countryBudgetConfig[formData.country as keyof typeof countryBudgetConfig].min)) *
+                        100
+                      }%, rgb(229 231 235) ${
+                        ((Number(formData.budget) - countryBudgetConfig[formData.country as keyof typeof countryBudgetConfig].min) /
+                          (countryBudgetConfig[formData.country as keyof typeof countryBudgetConfig].max -
+                            countryBudgetConfig[formData.country as keyof typeof countryBudgetConfig].min)) *
+                        100
+                      }%, rgb(229 231 235) 100%)`,
+                    }}
+                  />
+                  <div className="flex justify-between items-center">
+                    <span className="text-sm text-warm-gray">
+                      {countryBudgetConfig[formData.country as keyof typeof countryBudgetConfig].symbol}
+                      {countryBudgetConfig[formData.country as keyof typeof countryBudgetConfig].min.toLocaleString()}
+                    </span>
+                    <span className="text-lg font-semibold text-charcoal">
+                      Your estimated budget: {countryBudgetConfig[formData.country as keyof typeof countryBudgetConfig].symbol}
+                      {Number(formData.budget).toLocaleString()}
+                    </span>
+                    <span className="text-sm text-warm-gray">
+                      {countryBudgetConfig[formData.country as keyof typeof countryBudgetConfig].symbol}
+                      {countryBudgetConfig[formData.country as keyof typeof countryBudgetConfig].max.toLocaleString()}
+                    </span>
+                  </div>
                 </div>
               </div>
 

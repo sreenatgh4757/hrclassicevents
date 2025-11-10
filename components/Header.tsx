@@ -35,7 +35,7 @@ export default function Header() {
         <div className="flex items-center justify-between h-20">
           {/* ✅ Animated Logo + Brand Name */}
           <Link href="/" className="flex-shrink-0 flex items-center gap-3">
-            {/* Logo SVG */}
+            {/* Refined HR Monogram Logo */}
             <motion.div
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
@@ -50,44 +50,66 @@ export default function Header() {
                 xmlns="http://www.w3.org/2000/svg"
                 className="w-10 h-10 lg:w-12 lg:h-12"
               >
-                {/* Elegant Crown Icon */}
-                <path
-                  d="M8 18L12 28H36L40 18L32 24L24 14L16 24L8 18Z"
-                  fill="#D4AF37"
+                {/* Ornate Circle Border */}
+                <circle
+                  cx="24"
+                  cy="24"
+                  r="22"
                   stroke="#D4AF37"
                   strokeWidth="1.5"
-                  strokeLinejoin="round"
+                  fill="none"
                 />
-                <path
-                  d="M10 28H38V32C38 33.1046 37.1046 34 36 34H12C10.8954 34 10 33.1046 10 32V28Z"
-                  fill="#D4AF37"
+                <circle
+                  cx="24"
+                  cy="24"
+                  r="19"
                   stroke="#D4AF37"
-                  strokeWidth="1.5"
+                  strokeWidth="0.5"
+                  fill="none"
+                  opacity="0.6"
+                />
+
+                {/* Elegant HR Monogram */}
+                {/* Letter H */}
+                <path
+                  d="M13 14 L13 34 M13 24 L19 24 M19 14 L19 34"
+                  stroke="#D4AF37"
+                  strokeWidth="2.5"
+                  strokeLinecap="round"
                   strokeLinejoin="round"
                 />
-                {/* Decorative Gems */}
-                <circle cx="16" cy="24" r="1.5" fill="#1a1a1a" />
-                <circle cx="24" cy="20" r="1.5" fill="#1a1a1a" />
-                <circle cx="32" cy="24" r="1.5" fill="#1a1a1a" />
-                {/* Elegant Flourish */}
+
+                {/* Letter R with elegant curve */}
                 <path
-                  d="M14 34C14 34 16 36 18 36"
-                  stroke="#1a1a1a"
+                  d="M25 14 L25 34 M25 14 L31 14 C33 14 34 15 34 17 C34 19 33 20 31 20 L25 20 M30 20 L34 34"
+                  stroke="#D4AF37"
+                  strokeWidth="2.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+
+                {/* Decorative flourishes at top and bottom */}
+                <path
+                  d="M24 6 L24 10"
+                  stroke="#D4AF37"
                   strokeWidth="1"
                   strokeLinecap="round"
                 />
                 <path
-                  d="M34 34C34 34 32 36 30 36"
-                  stroke="#1a1a1a"
+                  d="M24 38 L24 42"
+                  stroke="#D4AF37"
                   strokeWidth="1"
                   strokeLinecap="round"
                 />
+                <circle cx="24" cy="5" r="1" fill="#D4AF37" />
+                <circle cx="24" cy="43" r="1" fill="#D4AF37" />
               </svg>
             </motion.div>
 
-            {/* Brand Name */}
+            {/* Brand Name with refined typography */}
             <motion.span
-              className="text-2xl lg:text-3xl font-playfair font-bold text-gold whitespace-nowrap"
+              className="text-2xl lg:text-3xl font-playfair font-bold tracking-wide"
+              style={{ color: '#D4AF37', letterSpacing: '0.02em' }}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.5 }}

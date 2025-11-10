@@ -216,10 +216,10 @@ export default function ContactPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-playfair font-bold text-white mb-6">
+            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-playfair text-white mb-6" style={{ fontWeight: 700, letterSpacing: '0.3px' }}>
               Let's Create Something <span className="text-gold text-shimmer">Extraordinary</span>
             </h1>
-            <p className="text-xl text-white/90 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-xl text-white/90 max-w-3xl mx-auto leading-relaxed font-poppins" style={{ fontWeight: 400, letterSpacing: '0.2px' }}>
               Ready to start planning your perfect event? We're here to listen, advise, and bring your vision to life.
             </p>
           </motion.div>
@@ -240,12 +240,12 @@ export default function ContactPage() {
                   <div className="w-16 h-16 bg-blush rounded-2xl flex items-center justify-center mx-auto mb-4">
                     <IconComponent size={32} className="text-gold" />
                   </div>
-                  <h3 className="text-xl font-playfair font-semibold text-charcoal mb-2">
+                  <h3 className="text-xl font-playfair text-charcoal mb-2" style={{ fontWeight: 600, letterSpacing: '0.3px' }}>
                     {method.title}
                   </h3>
-                  <p className="text-warm-gray mb-3">{method.description}</p>
-                  <p className="text-gold font-medium mb-2">{method.contact}</p>
-                  <p className="text-sm text-warm-gray/70">{method.available}</p>
+                  <p className="text-warm-gray mb-3 font-poppins" style={{ fontWeight: 400, letterSpacing: '0.2px' }}>{method.description}</p>
+                  <p className="text-gold font-poppins mb-2" style={{ fontWeight: 500, letterSpacing: '0.2px' }}>{method.contact}</p>
+                  <p className="text-sm text-warm-gray/70 font-poppins" style={{ fontWeight: 400, letterSpacing: '0.2px' }}>{method.available}</p>
                 </a>
               </Card>
             );
@@ -256,7 +256,7 @@ export default function ContactPage() {
       {/* Form */}
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
         <Card className="p-8 bg-white shadow-xl border-0">
-          <h2 className="text-3xl font-playfair font-bold text-charcoal mb-6 text-center">
+          <h2 className="text-3xl font-playfair text-charcoal mb-6 text-center" style={{ fontWeight: 700, letterSpacing: '0.3px' }}>
             Tell Us About Your Event
           </h2>
 
@@ -268,10 +268,10 @@ export default function ContactPage() {
               className="text-center py-12"
             >
               <CheckCircle size={64} className="text-gold mx-auto mb-4" />
-              <h3 className="text-2xl font-playfair font-bold text-charcoal mb-2">
+              <h3 className="text-2xl font-playfair text-charcoal mb-2" style={{ fontWeight: 700, letterSpacing: '0.3px' }}>
                 Thank You!
               </h3>
-              <p className="text-warm-gray mb-4">
+              <p className="text-warm-gray mb-4 font-poppins" style={{ fontWeight: 400, letterSpacing: '0.2px' }}>
                 We've received your detailed inquiry and will be in touch within 24 hours with a tailored proposal.
               </p>
             </motion.div>
@@ -471,7 +471,8 @@ export default function ContactPage() {
               <Button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full bg-gold hover:bg-gold/90 text-charcoal font-semibold py-4 rounded-2xl transition-all duration-200 hover:shadow-lg disabled:opacity-50"
+                className="w-full bg-gold hover:bg-gold/90 text-charcoal font-poppins py-4 rounded-2xl transition-all duration-200 hover:shadow-lg disabled:opacity-50"
+                style={{ fontWeight: 500, letterSpacing: '0.2px' }}
               >
                 {isSubmitting ? "Sending Your Inquiry..." : "Send Detailed Inquiry"}
               </Button>

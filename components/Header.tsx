@@ -108,8 +108,8 @@ export default function Header() {
 
             {/* Brand Name with refined typography */}
             <motion.span
-              className="text-2xl lg:text-3xl font-playfair font-bold tracking-wide"
-              style={{ color: '#D4AF37', letterSpacing: '0.02em' }}
+              className="text-2xl lg:text-3xl font-playfair text-gold"
+              style={{ fontWeight: 700, letterSpacing: '0.3px' }}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.5 }}
@@ -129,7 +129,8 @@ export default function Header() {
               >
                 <Link
                   href={item.href}
-                  className="text-white hover:text-gold transition-colors duration-200 font-medium"
+                  className="text-white hover:text-gold transition-colors duration-200 font-poppins"
+                  style={{ fontWeight: 400, letterSpacing: '0.2px' }}
                 >
                   {item.name}
                 </Link>
@@ -146,7 +147,8 @@ export default function Header() {
           >
             <Button
               asChild
-              className="bg-gold hover:bg-gold/90 text-charcoal font-semibold px-6 py-2 rounded-2xl transition-all duration-200 hover:shadow-lg"
+              className="bg-gold hover:bg-gold/90 text-charcoal font-poppins px-6 py-2 rounded-2xl transition-all duration-200 hover:shadow-lg"
+              style={{ fontWeight: 500, letterSpacing: '0.2px' }}
             >
               <Link href="/contact">Plan My Event</Link>
             </Button>

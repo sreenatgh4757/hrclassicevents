@@ -39,11 +39,18 @@ export default function GalleryPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-playfair font-bold text-charcoal mb-6">
-              Our <span className="text-gold text-shimmer">Gallery</span>
+            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-allura text-gold mb-8 heading-glow" style={{ letterSpacing: '2px' }}>
+              Our Gallery
             </h1>
-            <p className="text-xl text-warm-gray max-w-3xl mx-auto leading-relaxed">
-              Explore moments we’ve brought to life — from weddings and anniversaries
+            {/* Decorative flourish */}
+            <svg className="w-48 h-6 mx-auto mb-6" viewBox="0 0 200 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M10 10 Q50 2, 100 10 T190 10" stroke="#D4AF37" strokeWidth="1.5" fill="none" opacity="0.6"/>
+              <circle cx="100" cy="10" r="3" fill="#D4AF37"/>
+              <circle cx="20" cy="10" r="2" fill="#D4AF37" opacity="0.5"/>
+              <circle cx="180" cy="10" r="2" fill="#D4AF37" opacity="0.5"/>
+            </svg>
+            <p className="text-xl text-warm-gray max-w-3xl mx-auto leading-relaxed font-poppins" style={{ fontWeight: 400, letterSpacing: '0.2px' }}>
+              Explore moments we've brought to life — from weddings and anniversaries
               to private celebrations and grand corporate functions.
             </p>
           </motion.div>

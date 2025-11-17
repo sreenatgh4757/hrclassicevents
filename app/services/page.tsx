@@ -53,17 +53,10 @@ export default function ServicesSection() {
           viewport={{ once: true }}
           className="text-center mb-12"
         >
-          <h2 className="text-4xl sm:text-5xl font-playfair text-gold mb-6 heading-glow" style={{ fontWeight: 700, letterSpacing: '2px' }}>
-            Our Services
+          <h2 className="text-4xl sm:text-5xl font-playfair font-bold text-charcoal mb-4">
+            Our <span className="text-gold">Services</span>
           </h2>
-          {/* Decorative flourish */}
-          <svg className="w-48 h-6 mx-auto mb-6" viewBox="0 0 200 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M10 10 Q50 2, 100 10 T190 10" stroke="#D4AF37" strokeWidth="1.5" fill="none" opacity="0.6"/>
-            <circle cx="100" cy="10" r="3" fill="#D4AF37"/>
-            <circle cx="20" cy="10" r="2" fill="#D4AF37" opacity="0.5"/>
-            <circle cx="180" cy="10" r="2" fill="#D4AF37" opacity="0.5"/>
-          </svg>
-          <p className="text-lg text-warm-gray max-w-2xl mx-auto font-poppins" style={{ fontWeight: 400, letterSpacing: '0.2px' }}>
+          <p className="text-lg text-warm-gray max-w-2xl mx-auto">
             From weddings to private celebrations and corporate events, we craft
             unforgettable experiences tailored to you.
           </p>
@@ -89,10 +82,10 @@ export default function ServicesSection() {
                 />
               </div>
               <div className="p-6">
-                <h3 className="text-2xl font-great-vibes text-gold mb-2" style={{ letterSpacing: '1px' }}>
+                <h3 className="text-xl font-playfair font-bold text-charcoal mb-2">
                   {service.title}
                 </h3>
-                <p className="text-warm-gray text-sm leading-relaxed font-poppins" style={{ fontWeight: 400, letterSpacing: '0.2px' }}>
+                <p className="text-warm-gray text-sm leading-relaxed">
                   {service.description}
                 </p>
               </div>

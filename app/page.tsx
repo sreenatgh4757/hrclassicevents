@@ -36,16 +36,9 @@ export default function HomePage() {
 
         {/* Foreground content */}
         <div className="relative z-20 flex flex-col items-center justify-center h-full text-center text-white px-4">
-          <h1 className="text-6xl md:text-7xl lg:text-8xl font-allura text-gold mb-8 heading-glow" style={{ letterSpacing: '2px' }}>
+          <h1 className="text-5xl md:text-6xl font-playfair text-gold mb-4" style={{ fontWeight: 700, letterSpacing: '0.3px' }}>
             HR Classic Events
           </h1>
-          {/* Decorative flourish */}
-          <svg className="w-64 h-8 mb-6" viewBox="0 0 200 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M10 10 Q50 2, 100 10 T190 10" stroke="#D4AF37" strokeWidth="1.5" fill="none" opacity="0.6"/>
-            <circle cx="100" cy="10" r="3" fill="#D4AF37"/>
-            <circle cx="20" cy="10" r="2" fill="#D4AF37" opacity="0.5"/>
-            <circle cx="180" cy="10" r="2" fill="#D4AF37" opacity="0.5"/>
-          </svg>
           <p className="text-lg md:text-xl mb-6 max-w-2xl font-poppins" style={{ fontWeight: 400, letterSpacing: '0.2px' }}>
             We make your celebrations unforgettable — weddings, corporate
             functions, conferences, and private events.

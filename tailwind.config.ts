@@ -10,8 +10,6 @@ const config: Config = {
   theme: {
     extend: {
       fontFamily: {
-        allura: ['var(--font-allura)', 'Allura', 'cursive'],
-        'great-vibes': ['var(--font-great-vibes)', 'Great Vibes', 'cursive'],
         poppins: ['var(--font-poppins)', 'Poppins', 'sans-serif'],
         playfair: ['var(--font-playfair)', 'Playfair Display', 'serif'],
       },

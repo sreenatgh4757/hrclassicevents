@@ -15,107 +15,36 @@ const navigation = [
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
-  const [text, setText] = useState("");
-  const fullText = "HR Classic Events";
-
-  // ⌨️ Typewriter effect
-  useEffect(() => {
-    let i = 0;
-    const interval = setInterval(() => {
-      setText(fullText.slice(0, i + 1));
-      i++;
-      if (i === fullText.length) clearInterval(interval);
-    }, 120);
-    return () => clearInterval(interval);
-  }, []);
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-black text-white border-b border-gold/20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
-          {/* ✅ Animated Logo + Brand Name */}
-          <Link href="/" className="flex-shrink-0 flex items-center gap-3">
-            {/* Refined HR Monogram Logo */}
+          {/* ✍️ Handwritten Signature Logo */}
+          <Link href="/" className="flex-shrink-0 flex items-center gap-2">
             <motion.div
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5 }}
-              className="flex-shrink-0"
+              transition={{ duration: 0.8, ease: "easeOut" }}
+              className="signature-logo-container"
             >
-              <svg
-                width="48"
-                height="48"
-                viewBox="0 0 48 48"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                className="w-10 h-10 lg:w-12 lg:h-12"
-              >
-                {/* Ornate Circle Border */}
-                <circle
-                  cx="24"
-                  cy="24"
-                  r="22"
-                  stroke="#D4AF37"
-                  strokeWidth="1.5"
-                  fill="none"
-                />
-                <circle
-                  cx="24"
-                  cy="24"
-                  r="19"
-                  stroke="#D4AF37"
-                  strokeWidth="0.5"
-                  fill="none"
-                  opacity="0.6"
-                />
-
-                {/* Elegant HR Monogram */}
-                {/* Letter H */}
-                <path
-                  d="M13 14 L13 34 M13 24 L19 24 M19 14 L19 34"
-                  stroke="#D4AF37"
-                  strokeWidth="2.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-
-                {/* Letter R with elegant curve */}
-                <path
-                  d="M25 14 L25 34 M25 14 L31 14 C33 14 34 15 34 17 C34 19 33 20 31 20 L25 20 M30 20 L34 34"
-                  stroke="#D4AF37"
-                  strokeWidth="2.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-
-                {/* Decorative flourishes at top and bottom */}
-                <path
-                  d="M24 6 L24 10"
-                  stroke="#D4AF37"
-                  strokeWidth="1"
-                  strokeLinecap="round"
-                />
-                <path
-                  d="M24 38 L24 42"
-                  stroke="#D4AF37"
-                  strokeWidth="1"
-                  strokeLinecap="round"
-                />
-                <circle cx="24" cy="5" r="1" fill="#D4AF37" />
-                <circle cx="24" cy="43" r="1" fill="#D4AF37" />
-              </svg>
+              <div className="signature-wrapper">
+                <span className="hr-signature">HR</span>
+                <span className="classic-signature">Classic Events</span>
+                <svg className="signature-flourish" width="180" height="8" viewBox="0 0 180 8">
+                  <motion.path
+                    d="M 2 4 Q 45 1, 90 4 T 178 4"
+                    stroke="#D4AF37"
+                    strokeWidth="1.5"
+                    fill="none"
+                    strokeLinecap="round"
+                    initial={{ pathLength: 0, opacity: 0 }}
+                    animate={{ pathLength: 1, opacity: 0.7 }}
+                    transition={{ duration: 1.5, delay: 0.5 }}
+                  />
+                </svg>
+              </div>
             </motion.div>
-
-            {/* Brand Name with refined typography */}
-            <motion.span
-              className="text-2xl lg:text-3xl font-playfair text-gold"
-              style={{ fontWeight: 700, letterSpacing: '0.3px' }}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.5 }}
-            >
-              {text}
-            </motion.span>
           </Link>
 
           {/* Desktop Nav */}
@@ -164,6 +93,80 @@ export default function Header() {
           </button>
         </div>
       </div>
+
+      <style jsx>{`
+        @import url('https://fonts.googleapis.com/css2?family=Alex+Brush&family=Allura&family=Great+Vibes&display=swap');
+
+        .signature-logo-container {
+          position: relative;
+        }
+
+        .signature-wrapper {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          gap: -8px;
+        }
+
+        .hr-signature {
+          font-family: 'Allura', cursive;
+          font-size: 56px;
+          color: #D4AF37;
+          font-weight: 400;
+          line-height: 0.9;
+          text-shadow: 2px 2px 6px rgba(212, 175, 55, 0.4);
+          letter-spacing: 4px;
+          transform: rotate(-2deg);
+          display: block;
+          margin-bottom: -12px;
+        }
+
+        .classic-signature {
+          font-family: 'Great Vibes', cursive;
+          font-size: 28px;
+          color: #D4AF37;
+          font-weight: 400;
+          text-shadow: 1px 1px 4px rgba(212, 175, 55, 0.3);
+          letter-spacing: 2px;
+          margin-left: 8px;
+          display: block;
+        }
+
+        .signature-flourish {
+          position: absolute;
+          bottom: -8px;
+          left: 0;
+          opacity: 0.7;
+        }
+
+        .signature-logo-container:hover .hr-signature,
+        .signature-logo-container:hover .classic-signature {
+          color: #FFD700;
+          text-shadow: 2px 2px 8px rgba(255, 215, 0, 0.6);
+          transform: scale(1.03);
+          transition: all 0.4s ease;
+        }
+
+        .signature-logo-container:hover .signature-flourish path {
+          stroke: #FFD700;
+          transition: all 0.4s ease;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+          .hr-signature {
+            font-size: 42px;
+          }
+          
+          .classic-signature {
+            font-size: 22px;
+          }
+
+          .signature-flourish {
+            width: 140px;
+          }
+        }
+      `}</style>
     </header>
   );
 }

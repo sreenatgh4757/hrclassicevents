@@ -52,16 +52,9 @@ export default function AboutPage() {
             transition={{ duration: 0.6 }}
             className="text-center mb-20"
           >
-            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-allura text-gold mb-8 heading-glow" style={{ letterSpacing: '2px' }}>
-              Elegance in Every Detail
+            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-playfair font-bold text-charcoal mb-6">
+              Elegance in <span className="text-gold text-shimmer">Every Detail</span>
             </h1>
-            {/* Decorative flourish */}
-            <svg className="w-48 h-6 mx-auto mb-6" viewBox="0 0 200 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M10 10 Q50 2, 100 10 T190 10" stroke="#D4AF37" strokeWidth="1.5" fill="none" opacity="0.6"/>
-              <circle cx="100" cy="10" r="3" fill="#D4AF37"/>
-              <circle cx="20" cy="10" r="2" fill="#D4AF37" opacity="0.5"/>
-              <circle cx="180" cy="10" r="2" fill="#D4AF37" opacity="0.5"/>
-            </svg>
             <p className="text-xl text-warm-gray max-w-3xl mx-auto leading-relaxed">
               At HR Classic Events, we turn ideas into effortless, unforgettable moments.
             </p>
@@ -97,7 +90,7 @@ export default function AboutPage() {
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
             >
-              <h2 className="text-3xl sm:text-4xl font-playfair text-gold mb-6 heading-glow" style={{ fontWeight: 700, letterSpacing: '2px' }}>
+              <h2 className="text-3xl sm:text-4xl font-playfair font-bold text-charcoal mb-6">
                 Our Story
               </h2>
               
@@ -133,7 +126,7 @@ export default function AboutPage() {
             viewport={{ once: true }}
             className="mb-20"
           >
-            <h2 className="text-3xl sm:text-4xl font-playfair text-gold text-center mb-12 heading-glow" style={{ fontWeight: 700, letterSpacing: '2px' }}>
+            <h2 className="text-3xl sm:text-4xl font-playfair font-bold text-charcoal text-center mb-12">
               What We Stand For
             </h2>
 
@@ -152,7 +145,7 @@ export default function AboutPage() {
                       <div className="w-16 h-16 bg-blush rounded-2xl flex items-center justify-center mx-auto mb-4">
                         <IconComponent size={32} className="text-gold" />
                       </div>
-                      <h3 className="text-xl font-great-vibes text-gold mb-3" style={{ letterSpacing: '1px' }}>
+                      <h3 className="text-lg font-playfair font-semibold text-charcoal mb-3">
                         {value.title}
                       </h3>
                       <p className="text-warm-gray text-sm leading-relaxed">
@@ -173,7 +166,7 @@ export default function AboutPage() {
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
             >
-              <h2 className="text-3xl sm:text-4xl font-playfair text-gold mb-6 heading-glow" style={{ fontWeight: 700, letterSpacing: '2px' }}>
+              <h2 className="text-3xl sm:text-4xl font-playfair font-bold text-charcoal mb-6">
                 Our Standards
               </h2>
               

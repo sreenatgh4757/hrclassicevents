@@ -88,14 +88,14 @@ export default function Header() {
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="flex flex-col"
+              className="signature-text-container"
             >
-              <div className="flex items-baseline gap-2">
-                <span className="font-allura text-3xl lg:text-4xl text-gold" style={{ letterSpacing: '1px' }}>HR</span>
-                <span className="font-great-vibes text-2xl lg:text-3xl text-gold" style={{ letterSpacing: '1px' }}>Classic Events</span>
+              <div className="signature-horizontal">
+                <span className="hr-text">HR</span>
+                <span className="classic-text">Classic Events</span>
               </div>
               {/* Elegant underline flourish */}
-              <svg className="w-48 lg:w-56 h-2 -mt-1" viewBox="0 0 220 6">
+              <svg className="signature-line" width="220" height="6" viewBox="0 0 220 6">
                 <motion.path
                   d="M 2 3 Q 55 1, 110 3 T 218 3"
                   stroke="#D4AF37"

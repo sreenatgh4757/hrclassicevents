@@ -36,9 +36,8 @@ export default function HomePage() {
 
         {/* Foreground content */}
         <div className="relative z-20 flex flex-col items-center justify-center h-full text-center text-white px-4">
-          <h1 className="flex flex-wrap items-baseline justify-center gap-3 mb-8">
-            <span className="font-allura text-6xl md:text-7xl lg:text-8xl text-gold heading-glow" style={{ letterSpacing: '2px' }}>HR</span>
-            <span className="font-great-vibes text-5xl md:text-6xl lg:text-7xl text-gold heading-glow" style={{ letterSpacing: '2px' }}>Classic Events</span>
+          <h1 className="text-6xl md:text-7xl lg:text-8xl font-allura text-gold mb-8 heading-glow" style={{ letterSpacing: '2px' }}>
+            HR Classic Events
           </h1>
           {/* Decorative flourish */}
           <svg className="w-64 h-8 mb-6" viewBox="0 0 200 20" fill="none" xmlns="http://www.w3.org/2000/svg">

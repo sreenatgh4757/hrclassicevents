@@ -216,9 +216,16 @@ export default function ContactPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-playfair text-white mb-6" style={{ fontWeight: 700, letterSpacing: '0.3px' }}>
-              Let's Create Something <span className="text-gold text-shimmer">Extraordinary</span>
+            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-allura text-gold mb-8 heading-glow" style={{ letterSpacing: '2px' }}>
+              Let's Create Something Extraordinary
             </h1>
+            {/* Decorative flourish */}
+            <svg className="w-48 h-6 mx-auto mb-6" viewBox="0 0 200 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M10 10 Q50 2, 100 10 T190 10" stroke="#D4AF37" strokeWidth="1.5" fill="none" opacity="0.6"/>
+              <circle cx="100" cy="10" r="3" fill="#D4AF37"/>
+              <circle cx="20" cy="10" r="2" fill="#D4AF37" opacity="0.5"/>
+              <circle cx="180" cy="10" r="2" fill="#D4AF37" opacity="0.5"/>
+            </svg>
             <p className="text-xl text-white/90 max-w-3xl mx-auto leading-relaxed font-poppins" style={{ fontWeight: 400, letterSpacing: '0.2px' }}>
               Ready to start planning your perfect event? We're here to listen, advise, and bring your vision to life.
             </p>
@@ -240,7 +247,7 @@ export default function ContactPage() {
                   <div className="w-16 h-16 bg-blush rounded-2xl flex items-center justify-center mx-auto mb-4">
                     <IconComponent size={32} className="text-gold" />
                   </div>
-                  <h3 className="text-xl font-playfair text-charcoal mb-2" style={{ fontWeight: 600, letterSpacing: '0.3px' }}>
+                  <h3 className="text-2xl font-great-vibes text-gold mb-2" style={{ letterSpacing: '1px' }}>
                     {method.title}
                   </h3>
                   <p className="text-warm-gray mb-3 font-poppins" style={{ fontWeight: 400, letterSpacing: '0.2px' }}>{method.description}</p>
@@ -256,7 +263,7 @@ export default function ContactPage() {
       {/* Form */}
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
         <Card className="p-8 bg-white shadow-xl border-0">
-          <h2 className="text-3xl font-playfair text-charcoal mb-6 text-center" style={{ fontWeight: 700, letterSpacing: '0.3px' }}>
+          <h2 className="text-4xl md:text-5xl font-playfair text-gold mb-6 text-center heading-glow" style={{ fontWeight: 700, letterSpacing: '2px' }}>
             Tell Us About Your Event
           </h2>
 
@@ -268,7 +275,7 @@ export default function ContactPage() {
               className="text-center py-12"
             >
               <CheckCircle size={64} className="text-gold mx-auto mb-4" />
-              <h3 className="text-2xl font-playfair text-charcoal mb-2" style={{ fontWeight: 700, letterSpacing: '0.3px' }}>
+              <h3 className="text-3xl font-great-vibes text-gold mb-2 heading-glow" style={{ letterSpacing: '1px' }}>
                 Thank You!
               </h3>
               <p className="text-warm-gray mb-4 font-poppins" style={{ fontWeight: 400, letterSpacing: '0.2px' }}>

@@ -33,7 +33,7 @@ export default function ContactVideoSection() {
             transition={{ duration: 0.4, delay: 0.1 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-4xl font-playfair text-charcoal mb-6" style={{ fontWeight: 700, letterSpacing: '0.3px' }}>
+            <h2 className="text-4xl md:text-5xl font-playfair text-gold mb-6 heading-glow" style={{ fontWeight: 700, letterSpacing: '2px' }}>
               Your Dream Event, Planned to Perfection
             </h2>
             <p className="text-lg text-warm-gray mb-8 leading-relaxed font-poppins" style={{ fontWeight: 400, letterSpacing: '0.2px' }}>

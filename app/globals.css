@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Allura&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
@@ -6,6 +8,8 @@
 @tailwind utilities;
 
 :root {
+  --font-allura: 'Allura', cursive;
+  --font-great-vibes: 'Great Vibes', cursive;
   --font-poppins: 'Poppins', sans-serif;
   --font-playfair: 'Playfair Display', serif;
   --foreground-rgb: 11, 11, 14;
@@ -52,7 +56,26 @@
     font-weight: 400;
     letter-spacing: 0.2px;
   }
-  h1, h2, h3, h4, h5, h6 {
+  h1 {
+    font-family: var(--font-allura), cursive;
+    font-weight: 400;
+    letter-spacing: 2px;
+    color: #D4AF37;
+    text-shadow: 0 2px 12px rgba(212, 175, 55, 0.3);
+  }
+  h2 {
+    font-family: var(--font-playfair), serif;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: #D4AF37;
+  }
+  h3 {
+    font-family: var(--font-great-vibes), cursive;
+    font-weight: 400;
+    letter-spacing: 1px;
+    color: #D4AF37;
+  }
+  h4, h5, h6 {
     @apply font-playfair;
     font-weight: 600;
     letter-spacing: 0.3px;
@@ -78,6 +101,12 @@
 }
 
 @layer utilities {
+  .font-allura {
+    font-family: var(--font-allura), cursive;
+  }
+  .font-great-vibes {
+    font-family: var(--font-great-vibes), cursive;
+  }
   .font-playfair {
     font-family: var(--font-playfair), serif;
   }
@@ -93,6 +122,13 @@
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     animation: shimmer 2s ease-in-out infinite;
+  }
+  .heading-glow {
+    text-shadow: 0 2px 12px rgba(212, 175, 55, 0.3);
+    transition: text-shadow 0.3s ease;
+  }
+  .heading-glow:hover {
+    text-shadow: 0 4px 20px rgba(212, 175, 55, 0.5);
   }
   @keyframes shimmer {
     0%, 100% { background-position: 0% 50%; }

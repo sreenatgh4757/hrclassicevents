@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
+import { supabase } from '@/lib/supabase';
 
-// Validation schema
 const contactSchema = z.object({
   name: z.string().min(2, 'Name must be at least 2 characters'),
   email: z.string().email('Invalid email address'),
@@ -32,27 +32,40 @@ export async function POST(request: NextRequest) {
         { status: 400 }
       );
     }
-    
-    // Here you would typically:
-    // 1. Save to database
-    // 2. Send email notification
-    // 3. Integrate with CRM
-    
-    // For now, we'll just log the data
-    console.log('Contact form submission:', validatedData);
-    
-    // Simulate processing time
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    
-    // In production, you might want to:
-    // - Send email using services like SendGrid, Resend, or Nodemailer
-    // - Save to database (Supabase, MongoDB, etc.)
-    // - Send to CRM or marketing automation platform
-    
+
+    const { data, error: dbError } = await supabase
+      .from('contacts')
+      .insert([
+        {
+          name: validatedData.name,
+          email: validatedData.email,
+          phone: validatedData.phone || null,
+          event_type: validatedData.eventType,
+          event_date: validatedData.eventDate,
+          guest_count: validatedData.guestCount || null,
+          budget: validatedData.budget || null,
+          venue: validatedData.venue || null,
+          message: validatedData.message || null,
+          status: 'new',
+        },
+      ])
+      .select();
+
+    if (dbError) {
+      console.error('Database error:', dbError);
+      return NextResponse.json(
+        { error: 'Failed to save contact information. Please try again.' },
+        { status: 500 }
+      );
+    }
+
+    console.log('Contact form submission saved:', data);
+
     return NextResponse.json(
-      { 
-        success: true, 
-        message: 'Thank you for your inquiry. We will be in touch within 24 hours.' 
+      {
+        success: true,
+        message: 'Thank you for your inquiry. We will be in touch within 24 hours.',
+        submissionId: data[0]?.id
       },
       { status: 200 }
     );

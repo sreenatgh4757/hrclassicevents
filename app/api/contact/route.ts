@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
-import { supabase } from '@/lib/supabase';
+import { insertContact } from '@/lib/db';
 
 const contactSchema = z.object({
   name: z.string().min(2, 'Name must be at least 2 characters'),
@@ -33,31 +33,17 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const { data, error: dbError } = await supabase
-      .from('contacts')
-      .insert([
-        {
-          name: validatedData.name,
-          email: validatedData.email,
-          phone: validatedData.phone || null,
-          event_type: validatedData.eventType,
-          event_date: validatedData.eventDate,
-          guest_count: validatedData.guestCount || null,
-          budget: validatedData.budget || null,
-          venue: validatedData.venue || null,
-          message: validatedData.message || null,
-          status: 'new',
-        },
-      ])
-      .select();
-
-    if (dbError) {
-      console.error('Database error:', dbError);
-      return NextResponse.json(
-        { error: 'Failed to save contact information. Please try again.' },
-        { status: 500 }
-      );
-    }
+    const data = await insertContact({
+      name: validatedData.name,
+      email: validatedData.email,
+      phone: validatedData.phone || undefined,
+      event_type: validatedData.eventType,
+      event_date: validatedData.eventDate,
+      guest_count: validatedData.guestCount || undefined,
+      budget: validatedData.budget || undefined,
+      venue: validatedData.venue || undefined,
+      message: validatedData.message || undefined,
+    });
 
     console.log('Contact form submission saved:', data);
 
@@ -65,7 +51,7 @@ export async function POST(request: NextRequest) {
       {
         success: true,
         message: 'Thank you for your inquiry. We will be in touch within 24 hours.',
-        submissionId: data[0]?.id
+        submissionId: data && data.length > 0 ? data[0].id : null
       },
       { status: 200 }
     );

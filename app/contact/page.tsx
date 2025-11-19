@@ -118,6 +118,7 @@ export default function ContactPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
   const [errors, setErrors] = useState<Partial<FormData>>({});
+  const [generalError, setGeneralError] = useState<string>("");
 
   const validateForm = (): boolean => {
     const newErrors: Partial<FormData> = {};
@@ -150,11 +151,11 @@ export default function ContactPage() {
   const handleSubmit = useCallback(async (e: React.FormEvent) => {
     e.preventDefault();
     if (!validateForm()) return;
-    
+
     setIsSubmitting(true);
-    
+    setGeneralError("");
+
     try {
-      // Replace with your actual form submission logic
       const response = await fetch('/api/contact', {
         method: 'POST',
         headers: {
@@ -162,11 +163,25 @@ export default function ContactPage() {
         },
         body: JSON.stringify(formData),
       });
-      
+
+      const data = await response.json();
+
       if (!response.ok) {
-        throw new Error('Failed to submit form');
+        if (data.details && Array.isArray(data.details)) {
+          const newErrors: Partial<FormData> = {};
+          data.details.forEach((err: any) => {
+            const field = err.path[0] as keyof FormData;
+            if (field) {
+              newErrors[field] = err.message;
+            }
+          });
+          setErrors(newErrors);
+        } else {
+          setGeneralError(data.error || 'Failed to submit form. Please try again.');
+        }
+        return;
       }
-      
+
       setShowSuccess(true);
       setTimeout(() => {
         setFormData({
@@ -185,8 +200,7 @@ export default function ContactPage() {
       }, 4000);
     } catch (error) {
       console.error('Form submission error:', error);
-      // Handle error state
-      setErrors({ email: 'Failed to send message. Please try again.' });
+      setGeneralError('Network error. Please check your connection and try again.');
     } finally {
       setIsSubmitting(false);
     }
@@ -277,6 +291,13 @@ export default function ContactPage() {
             </motion.div>
           ) : (
             <form onSubmit={handleSubmit} className="space-y-6">
+              {/* General Error Message */}
+              {generalError && (
+                <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg">
+                  <p className="font-poppins text-sm">{generalError}</p>
+                </div>
+              )}
+
               {/* Name + Email */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <div>

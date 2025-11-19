@@ -8,6 +8,7 @@ interface ContactRecord {
   event_type: string;
   event_date: string;
   guest_count?: string;
+  country?: string;
   budget?: string;
   venue?: string;
   message?: string;
@@ -34,6 +35,7 @@ export async function insertContact(contactData: {
   event_type: string;
   event_date: string;
   guest_count?: string;
+  country?: string;
   budget?: string;
   venue?: string;
   message?: string;

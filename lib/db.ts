@@ -42,19 +42,22 @@ export async function insertContact(contactData: {
 }): Promise<ContactRecord[]> {
   const dbClient = getDbClient();
 
-  const { data, error } = await dbClient
-    .from('contacts')
-    .insert([
-      {
-        ...contactData,
-        status: 'new',
-      },
-    ])
-    .select();
+  const { data: contactId, error } = await dbClient.rpc('insert_contact_submission', {
+    p_name: contactData.name,
+    p_email: contactData.email,
+    p_phone: contactData.phone || null,
+    p_event_type: contactData.event_type,
+    p_event_date: contactData.event_date,
+    p_guest_count: contactData.guest_count || null,
+    p_country: contactData.country || null,
+    p_budget: contactData.budget || null,
+    p_venue: contactData.venue || null,
+    p_message: contactData.message || null,
+  });
 
   if (error) {
     throw error;
   }
 
-  return (data || []) as ContactRecord[];
+  return [{ id: contactId as string } as ContactRecord];
 }

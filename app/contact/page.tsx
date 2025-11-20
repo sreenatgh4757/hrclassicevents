@@ -57,15 +57,20 @@ const eventTypes = [
   "Other",
 ];
 
-// Budget ranges
-const budgetRanges = [
-  "Under £5,000",
-  "£5,000 - £15,000",
-  "£15,000 - £30,000",
-  "£30,000 - £50,000",
-  "£50,000+",
-  "Prefer to discuss",
-];
+// Countries/regions with their budget ranges
+const countryBudgetConfig = {
+  "United Kingdom": { currency: "£", symbol: "£", min: 1000, max: 100000 },
+  "United States": { currency: "USD", symbol: "$", min: 1000, max: 120000 },
+  "Europe": { currency: "EUR", symbol: "€", min: 1000, max: 100000 },
+  "India": { currency: "INR", symbol: "₹", min: 50000, max: 5000000 },
+  "UAE": { currency: "AED", symbol: "AED ", min: 5000, max: 500000 },
+  "Nigeria": { currency: "NGN", symbol: "₦", min: 500000, max: 20000000 },
+  "Kenya": { currency: "KES", symbol: "KSh ", min: 200000, max: 10000000 },
+  "South Africa": { currency: "ZAR", symbol: "R", min: 50000, max: 2000000 },
+  "Australia": { currency: "AUD", symbol: "A$", min: 2000, max: 100000 },
+  "Canada": { currency: "CAD", symbol: "CA$", min: 2000, max: 120000 },
+  "Other": { currency: "USD", symbol: "$", min: 1000, max: 100000 },
+};
 
 // Guest count ranges
 const guestCounts = [
@@ -91,6 +96,7 @@ interface FormData {
   eventType: string;
   eventDate: string;
   guestCount: string;
+  country: string;
   budget: string;
   venue: string;
   message: string;
@@ -104,13 +110,15 @@ export default function ContactPage() {
     eventType: "",
     eventDate: "",
     guestCount: "",
-    budget: "",
+    country: "United Kingdom",
+    budget: "1000",
     venue: "",
     message: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
   const [errors, setErrors] = useState<Partial<FormData>>({});
+  const [generalError, setGeneralError] = useState<string>("");
 
   const validateForm = (): boolean => {
     const newErrors: Partial<FormData> = {};
@@ -143,11 +151,11 @@ export default function ContactPage() {
   const handleSubmit = useCallback(async (e: React.FormEvent) => {
     e.preventDefault();
     if (!validateForm()) return;
-    
+
     setIsSubmitting(true);
-    
+    setGeneralError("");
+
     try {
-      // Replace with your actual form submission logic
       const response = await fetch('/api/contact', {
         method: 'POST',
         headers: {
@@ -155,11 +163,25 @@ export default function ContactPage() {
         },
         body: JSON.stringify(formData),
       });
-      
+
+      const data = await response.json();
+
       if (!response.ok) {
-        throw new Error('Failed to submit form');
+        if (data.details && Array.isArray(data.details)) {
+          const newErrors: Partial<FormData> = {};
+          data.details.forEach((err: any) => {
+            const field = err.path[0] as keyof FormData;
+            if (field) {
+              newErrors[field] = err.message;
+            }
+          });
+          setErrors(newErrors);
+        } else {
+          setGeneralError(data.error || 'Failed to submit form. Please try again.');
+        }
+        return;
       }
-      
+
       setShowSuccess(true);
       setTimeout(() => {
         setFormData({
@@ -169,7 +191,8 @@ export default function ContactPage() {
           eventType: "",
           eventDate: "",
           guestCount: "",
-          budget: "",
+          country: "United Kingdom",
+          budget: "1000",
           venue: "",
           message: "",
         });
@@ -177,8 +200,7 @@ export default function ContactPage() {
       }, 4000);
     } catch (error) {
       console.error('Form submission error:', error);
-      // Handle error state
-      setErrors({ email: 'Failed to send message. Please try again.' });
+      setGeneralError('Network error. Please check your connection and try again.');
     } finally {
       setIsSubmitting(false);
     }
@@ -208,10 +230,10 @@ export default function ContactPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-playfair font-bold text-white mb-6">
+            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-playfair text-white mb-6" style={{ fontWeight: 700, letterSpacing: '0.3px' }}>
               Let's Create Something <span className="text-gold text-shimmer">Extraordinary</span>
             </h1>
-            <p className="text-xl text-white/90 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-xl text-white/90 max-w-3xl mx-auto leading-relaxed font-poppins" style={{ fontWeight: 400, letterSpacing: '0.2px' }}>
               Ready to start planning your perfect event? We're here to listen, advise, and bring your vision to life.
             </p>
           </motion.div>
@@ -232,12 +254,12 @@ export default function ContactPage() {
                   <div className="w-16 h-16 bg-blush rounded-2xl flex items-center justify-center mx-auto mb-4">
                     <IconComponent size={32} className="text-gold" />
                   </div>
-                  <h3 className="text-xl font-playfair font-semibold text-charcoal mb-2">
+                  <h3 className="text-xl font-playfair text-charcoal mb-2" style={{ fontWeight: 600, letterSpacing: '0.3px' }}>
                     {method.title}
                   </h3>
-                  <p className="text-warm-gray mb-3">{method.description}</p>
-                  <p className="text-gold font-medium mb-2">{method.contact}</p>
-                  <p className="text-sm text-warm-gray/70">{method.available}</p>
+                  <p className="text-warm-gray mb-3 font-poppins" style={{ fontWeight: 400, letterSpacing: '0.2px' }}>{method.description}</p>
+                  <p className="text-gold font-poppins mb-2" style={{ fontWeight: 500, letterSpacing: '0.2px' }}>{method.contact}</p>
+                  <p className="text-sm text-warm-gray/70 font-poppins" style={{ fontWeight: 400, letterSpacing: '0.2px' }}>{method.available}</p>
                 </a>
               </Card>
             );
@@ -248,7 +270,7 @@ export default function ContactPage() {
       {/* Form */}
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
         <Card className="p-8 bg-white shadow-xl border-0">
-          <h2 className="text-3xl font-playfair font-bold text-charcoal mb-6 text-center">
+          <h2 className="text-3xl font-playfair text-charcoal mb-6 text-center" style={{ fontWeight: 700, letterSpacing: '0.3px' }}>
             Tell Us About Your Event
           </h2>
 
@@ -260,15 +282,22 @@ export default function ContactPage() {
               className="text-center py-12"
             >
               <CheckCircle size={64} className="text-gold mx-auto mb-4" />
-              <h3 className="text-2xl font-playfair font-bold text-charcoal mb-2">
+              <h3 className="text-2xl font-playfair text-charcoal mb-2" style={{ fontWeight: 700, letterSpacing: '0.3px' }}>
                 Thank You!
               </h3>
-              <p className="text-warm-gray mb-4">
+              <p className="text-warm-gray mb-4 font-poppins" style={{ fontWeight: 400, letterSpacing: '0.2px' }}>
                 We've received your detailed inquiry and will be in touch within 24 hours with a tailored proposal.
               </p>
             </motion.div>
           ) : (
             <form onSubmit={handleSubmit} className="space-y-6">
+              {/* General Error Message */}
+              {generalError && (
+                <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg">
+                  <p className="font-poppins text-sm">{generalError}</p>
+                </div>
+              )}
+
               {/* Name + Email */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <div>
@@ -335,43 +364,89 @@ export default function ContactPage() {
                 </div>
               </div>
 
-              {/* Guest Count + Budget */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                <div>
-                  <Label>Expected Guest Count</Label>
-                  <Select
-                    value={formData.guestCount}
-                    onValueChange={(value) => handleInputChange("guestCount", value)}
-                  >
-                    <SelectTrigger>
-                      <SelectValue placeholder="Select guest count" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {guestCounts.map((count) => (
-                        <SelectItem key={count} value={count}>
-                          {count}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                </div>
-                <div>
-                  <Label>Budget Range</Label>
-                  <Select
+              {/* Guest Count */}
+              <div>
+                <Label>Expected Guest Count</Label>
+                <Select
+                  value={formData.guestCount}
+                  onValueChange={(value) => handleInputChange("guestCount", value)}
+                >
+                  <SelectTrigger>
+                    <SelectValue placeholder="Select guest count" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {guestCounts.map((count) => (
+                      <SelectItem key={count} value={count}>
+                        {count}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+
+              {/* Country/Region Selector */}
+              <div>
+                <Label>Country or Region</Label>
+                <Select
+                  value={formData.country}
+                  onValueChange={(value) => {
+                    handleInputChange("country", value);
+                    const config = countryBudgetConfig[value as keyof typeof countryBudgetConfig];
+                    handleInputChange("budget", config.min.toString());
+                  }}
+                >
+                  <SelectTrigger>
+                    <SelectValue placeholder="Select country or region" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {Object.keys(countryBudgetConfig).map((country) => (
+                      <SelectItem key={country} value={country}>
+                        {country}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+
+              {/* Budget Slider */}
+              <div>
+                <Label>Estimated Budget</Label>
+                <div className="mt-2 space-y-4">
+                  <input
+                    type="range"
+                    min={countryBudgetConfig[formData.country as keyof typeof countryBudgetConfig].min}
+                    max={countryBudgetConfig[formData.country as keyof typeof countryBudgetConfig].max}
                     value={formData.budget}
-                    onValueChange={(value) => handleInputChange("budget", value)}
-                  >
-                    <SelectTrigger>
-                      <SelectValue placeholder="Select budget range" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {budgetRanges.map((range) => (
-                        <SelectItem key={range} value={range}>
-                          {range}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
+                    onChange={(e) => handleInputChange("budget", e.target.value)}
+                    className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-pink-500 hover:accent-pink-600 transition-colors"
+                    style={{
+                      background: `linear-gradient(to right, rgb(236 72 153) 0%, rgb(236 72 153) ${
+                        ((Number(formData.budget) - countryBudgetConfig[formData.country as keyof typeof countryBudgetConfig].min) /
+                          (countryBudgetConfig[formData.country as keyof typeof countryBudgetConfig].max -
+                            countryBudgetConfig[formData.country as keyof typeof countryBudgetConfig].min)) *
+                        100
+                      }%, rgb(229 231 235) ${
+                        ((Number(formData.budget) - countryBudgetConfig[formData.country as keyof typeof countryBudgetConfig].min) /
+                          (countryBudgetConfig[formData.country as keyof typeof countryBudgetConfig].max -
+                            countryBudgetConfig[formData.country as keyof typeof countryBudgetConfig].min)) *
+                        100
+                      }%, rgb(229 231 235) 100%)`,
+                    }}
+                  />
+                  <div className="flex justify-between items-center">
+                    <span className="text-sm text-warm-gray">
+                      {countryBudgetConfig[formData.country as keyof typeof countryBudgetConfig].symbol}
+                      {countryBudgetConfig[formData.country as keyof typeof countryBudgetConfig].min.toLocaleString()}
+                    </span>
+                    <span className="text-lg font-semibold text-charcoal">
+                      Your estimated budget: {countryBudgetConfig[formData.country as keyof typeof countryBudgetConfig].symbol}
+                      {Number(formData.budget).toLocaleString()}
+                    </span>
+                    <span className="text-sm text-warm-gray">
+                      {countryBudgetConfig[formData.country as keyof typeof countryBudgetConfig].symbol}
+                      {countryBudgetConfig[formData.country as keyof typeof countryBudgetConfig].max.toLocaleString()}
+                    </span>
+                  </div>
                 </div>
               </div>
 
@@ -417,7 +492,8 @@ export default function ContactPage() {
               <Button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full bg-gold hover:bg-gold/90 text-charcoal font-semibold py-4 rounded-2xl transition-all duration-200 hover:shadow-lg disabled:opacity-50"
+                className="w-full bg-gold hover:bg-gold/90 text-charcoal font-poppins py-4 rounded-2xl transition-all duration-200 hover:shadow-lg disabled:opacity-50"
+                style={{ fontWeight: 500, letterSpacing: '0.2px' }}
               >
                 {isSubmitting ? "Sending Your Inquiry..." : "Send Detailed Inquiry"}
               </Button>

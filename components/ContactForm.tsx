@@ -33,18 +33,19 @@ export default function ContactVideoSection() {
             transition={{ duration: 0.4, delay: 0.1 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-4xl font-playfair font-bold text-charcoal mb-6">
+            <h2 className="text-4xl font-playfair text-charcoal mb-6" style={{ fontWeight: 700, letterSpacing: '0.3px' }}>
               Your Dream Event, Planned to Perfection
             </h2>
-            <p className="text-lg text-warm-gray mb-8 leading-relaxed">
-              From the first idea to the last dance, HR Classic Events takes care 
-              of every detail. Whether it’s an elegant wedding, a corporate gala, 
-              or a private celebration, our expert planning ensures your special 
+            <p className="text-lg text-warm-gray mb-8 leading-relaxed font-poppins" style={{ fontWeight: 400, letterSpacing: '0.2px' }}>
+              From the first idea to the last dance, HR Classic Events takes care
+              of every detail. Whether it's an elegant wedding, a corporate gala,
+              or a private celebration, our expert planning ensures your special
               day is stress-free, stunning, and unforgettable.
             </p>
             <Button
               asChild
-              className="bg-gold hover:bg-gold/90 text-charcoal font-semibold px-6 py-3 rounded-2xl transition-all duration-200 hover:shadow-lg"
+              className="bg-gold hover:bg-gold/90 text-charcoal font-poppins px-6 py-3 rounded-2xl transition-all duration-200 hover:shadow-lg"
+              style={{ fontWeight: 500, letterSpacing: '0.2px' }}
             >
               <a href="/contact">Plan My Event</a>
             </Button>

@@ -4,16 +4,44 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Star, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Card } from '@/components/ui/card';
-import { siteConfig } from '@/config/site.config';
+import { createBrowserClient } from '@/lib/supabase-browser';
+import type { Review } from '@/lib/supabase';
 
 export default function ReviewCarousel() {
   const [currentReview, setCurrentReview] = useState(0);
   const [isPlaying, setIsPlaying] = useState(true);
-  const reviews = siteConfig.reviews;
+  const [reviews, setReviews] = useState<Review[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    if (!isPlaying) return;
-    
+    async function fetchReviews() {
+      try {
+        const supabase = createBrowserClient();
+        const { data, error } = await supabase
+          .from('reviews')
+          .select('*')
+          .eq('is_approved', true)
+          .order('display_order', { ascending: true });
+
+        if (error) {
+          console.error('Error fetching reviews:', error);
+          return;
+        }
+
+        setReviews(data || []);
+      } catch (error) {
+        console.error('Error loading reviews:', error);
+      } finally {
+        setIsLoading(false);
+      }
+    }
+
+    fetchReviews();
+  }, []);
+
+  useEffect(() => {
+    if (!isPlaying || reviews.length === 0) return;
+
     const interval = setInterval(() => {
       setCurrentReview((prev) => (prev + 1) % reviews.length);
     }, 6000);
@@ -29,6 +57,33 @@ export default function ReviewCarousel() {
     setCurrentReview((prev) => (prev + 1) % reviews.length);
   };
 
+  if (isLoading) {
+    return (
+      <section className="py-20 bg-charcoal relative overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-playfair font-bold text-white mb-6">
+              What Our <span className="text-gold text-shimmer">Clients Say</span>
+            </h2>
+            <p className="text-xl text-white/80 max-w-3xl mx-auto leading-relaxed">
+              Don't just take our word for it — hear from the couples, companies, and families
+              whose special moments we've helped create
+            </p>
+          </div>
+          <div className="max-w-4xl mx-auto">
+            <Card className="p-8 lg:p-12 bg-white/95 backdrop-blur-sm border-0 shadow-2xl animate-pulse">
+              <div className="h-64 bg-warm-gray/20 rounded" />
+            </Card>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  if (reviews.length === 0) {
+    return null;
+  }
+
   return (
     <section className="py-20 bg-charcoal relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -43,7 +98,7 @@ export default function ReviewCarousel() {
             What Our <span className="text-gold text-shimmer">Clients Say</span>
           </h2>
           <p className="text-xl text-white/80 max-w-3xl mx-auto leading-relaxed">
-            Don't just take our word for it — hear from the couples, companies, and families 
+            Don't just take our word for it — hear from the couples, companies, and families
             whose special moments we've helped create
           </p>
         </motion.div>
@@ -64,10 +119,10 @@ export default function ReviewCarousel() {
                   {/* Stars */}
                   <div className="flex justify-center mb-6">
                     {[...Array(reviews[currentReview].rating)].map((_, i) => (
-                      <Star 
-                        key={i} 
-                        size={24} 
-                        className="text-gold fill-current" 
+                      <Star
+                        key={i}
+                        size={24}
+                        className="text-gold fill-current"
                       />
                     ))}
                   </div>
@@ -83,10 +138,10 @@ export default function ReviewCarousel() {
                       {reviews[currentReview].name}
                     </p>
                     <p className="text-gold font-medium mb-2">
-                      {reviews[currentReview].eventType}
+                      {reviews[currentReview].event_type}
                     </p>
                     <p className="text-warm-gray">
-                      {reviews[currentReview].eventDate}
+                      {reviews[currentReview].event_date}
                     </p>
                   </div>
                 </div>

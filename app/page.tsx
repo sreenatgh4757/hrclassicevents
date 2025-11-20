@@ -36,17 +36,18 @@ export default function HomePage() {
 
         {/* Foreground content */}
         <div className="relative z-20 flex flex-col items-center justify-center h-full text-center text-white px-4">
-          <h1 className="text-5xl md:text-6xl font-bold mb-4">
+          <h1 className="text-5xl md:text-6xl font-playfair text-gold mb-4" style={{ fontWeight: 700, letterSpacing: '0.3px' }}>
             HR Classic Events
           </h1>
-          <p className="text-lg md:text-xl mb-6 max-w-2xl">
+          <p className="text-lg md:text-xl mb-6 max-w-2xl font-poppins" style={{ fontWeight: 400, letterSpacing: '0.2px' }}>
             We make your celebrations unforgettable — weddings, corporate
             functions, conferences, and private events.
           </p>
           <div className="flex gap-4">
             <a
               href="/contact"
-              className="px-6 py-3 rounded-2xl bg-gold text-black font-semibold hover:bg-white hover:text-gold transition"
+              className="px-6 py-3 rounded-2xl bg-gold text-black font-poppins hover:bg-white hover:text-gold transition"
+              style={{ fontWeight: 500, letterSpacing: '0.2px' }}
             >
               Plan My Event
             </a>

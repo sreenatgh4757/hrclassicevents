@@ -54,11 +54,11 @@ export default function ContactError({
           <p className="text-warm-gray/70 text-sm mb-2">
             Still having issues? Contact us directly:
           </p>
-          <a 
-            href="mailto:Afusatsaka@hrclassicevents.co.uk" 
+          <a
+            href="mailto:info@hrclassicevents.com"
             className="text-gold hover:underline font-medium"
           >
-            Afusatsaka@hrclassicevents.co.uk
+            info@hrclassicevents.com
           </a>
         </div>
       </div>

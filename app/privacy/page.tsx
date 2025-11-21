@@ -23,8 +23,8 @@ export default function PrivacyPage() {
                 Privacy policy content will be added here.
                 <br />
                 Please contact us at{' '}
-                <a href="mailto:hello@hrclassicevents.co.uk" className="text-gold hover:underline">
-                  hello@hrclassicevents.co.uk
+                <a href="mailto:info@hrclassicevents.com" className="text-gold hover:underline">
+                  info@hrclassicevents.com
                 </a>
                 {' '}for any privacy-related questions.
               </p>

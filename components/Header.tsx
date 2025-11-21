@@ -286,61 +286,38 @@ export default function Header() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
-          className="fixed inset-0 bg-black z-[200] lg:hidden flex flex-col"
+          transition={{ duration: 0.25, ease: "easeOut" }}
+          className="fixed inset-0 bg-black/98 backdrop-blur-md z-[9999] lg:hidden flex flex-col"
+          style={{ touchAction: 'none' }}
         >
           {/* Menu Header */}
-          <div className="flex items-center justify-between px-6 py-5 border-b border-gold/20 bg-black/95 backdrop-blur-lg">
-            <div className="flex items-center gap-3">
-              {/* Small Logo */}
-              <div className="w-10 h-10">
-                <svg
-                  width="40"
-                  height="40"
-                  viewBox="0 0 60 60"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <defs>
-                    <linearGradient id="mobileGoldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                      <stop offset="0%" stopColor="#FFD700" />
-                      <stop offset="50%" stopColor="#D4AF37" />
-                      <stop offset="100%" stopColor="#FFA500" />
-                    </linearGradient>
-                  </defs>
-                  <circle cx="30" cy="30" r="28" stroke="url(#mobileGoldGradient)" strokeWidth="0.5" fill="none" opacity="0.3" />
-                  <path d="M30 8 L44 16 L44 32 L30 40 L16 32 L16 16 Z" stroke="url(#mobileGoldGradient)" strokeWidth="1.5" fill="none" opacity="0.6" />
-                  <path d="M20 20 Q20 30, 20 38 M20 29 L28 29 M28 20 Q28 30, 28 38" stroke="url(#mobileGoldGradient)" strokeWidth="2.5" strokeLinecap="round" fill="none" />
-                  <path d="M32 20 L32 38 M32 20 L39 20 Q41 20, 41 23 Q41 26, 39 26 L32 26 M38 26 Q41 32, 41 38" stroke="url(#mobileGoldGradient)" strokeWidth="2.5" strokeLinecap="round" fill="none" />
-                </svg>
-              </div>
-              <span className="text-gold font-playfair text-xl font-semibold tracking-wide">Menu</span>
-            </div>
+          <div className="flex items-center justify-between px-6 py-4 border-b border-gold/20">
+            <span className="text-gold font-playfair text-lg font-semibold tracking-wide">Menu</span>
             <button
               onClick={() => setIsOpen(false)}
-              className="p-2 text-white hover:text-gold transition-colors duration-200"
+              className="p-2 text-white hover:text-gold transition-colors duration-200 -mr-2"
               aria-label="Close menu"
             >
-              <X size={28} strokeWidth={2.5} />
+              <X size={30} strokeWidth={2} />
             </button>
           </div>
 
-          {/* Navigation Items - Scrollable */}
-          <nav className="flex-1 overflow-y-auto">
-            <div className="flex flex-col py-6">
+          {/* Centered Navigation Items */}
+          <nav className="flex-1 flex items-center justify-center overflow-y-auto">
+            <div className="flex flex-col w-full px-8 py-8">
               {navigation.map((item, index) => (
                 <motion.div
                   key={item.name}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.4, delay: index * 0.1 + 0.1 }}
+                  transition={{ duration: 0.3, delay: index * 0.08 + 0.1 }}
                 >
                   <Link
                     href={item.href}
                     onClick={() => setIsOpen(false)}
-                    className="block py-5 px-6 text-white hover:text-gold hover:bg-gold/5 transition-all duration-200 border-b border-white/10 active:bg-gold/10"
+                    className="block py-6 text-center text-white/80 hover:text-gold transition-all duration-200 active:scale-95"
                   >
-                    <span className="text-xl font-poppins font-normal" style={{ letterSpacing: '0.5px' }}>
+                    <span className="text-2xl font-poppins font-light" style={{ letterSpacing: '0.5px' }}>
                       {item.name}
                     </span>
                   </Link>
@@ -353,14 +330,14 @@ export default function Header() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4, delay: 0.5 }}
-            className="p-6 pb-8 border-t border-gold/20 bg-black/95 backdrop-blur-lg"
+            transition={{ duration: 0.3, delay: 0.4 }}
+            className="p-6 pb-8"
             style={{ paddingBottom: 'max(2rem, env(safe-area-inset-bottom))' }}
           >
             <Button
               asChild
-              className="w-full bg-gradient-to-r from-[#D4AF37] via-[#FFD700] to-[#D4AF37] text-black font-semibold py-4 text-base rounded-xl hover:shadow-lg hover:shadow-gold/50 transition-all duration-300 active:scale-98"
-              style={{ letterSpacing: '0.8px' }}
+              className="w-full bg-gradient-to-r from-[#D4AF37] via-[#FFD700] to-[#D4AF37] text-black font-semibold py-5 text-base rounded-2xl hover:shadow-xl hover:shadow-gold/50 transition-all duration-300 active:scale-95"
+              style={{ letterSpacing: '1px' }}
             >
               <Link href="/contact" onClick={() => setIsOpen(false)}>
                 Plan My Event

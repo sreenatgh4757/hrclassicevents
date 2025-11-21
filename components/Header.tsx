@@ -280,75 +280,95 @@ export default function Header() {
         </div>
       </div>
 
-      {/* Mobile Menu Backdrop */}
+      {/* Full-Screen Mobile Menu Overlay */}
       {isOpen && (
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 0.3 }}
-          className="fixed inset-0 bg-black/70 backdrop-blur-sm z-[100] lg:hidden"
-          onClick={() => setIsOpen(false)}
-        />
-      )}
-
-      {/* Mobile Menu Panel */}
-      <motion.div
-        initial={{ x: "100%" }}
-        animate={{ x: isOpen ? 0 : "100%" }}
-        transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
-        className="fixed top-0 right-0 bottom-0 w-[280px] bg-gradient-to-b from-black via-black/98 to-black/95 z-[101] lg:hidden shadow-2xl"
-      >
-        <div className="flex flex-col h-full">
-          {/* Mobile Menu Header */}
-          <div className="flex items-center justify-between px-5 py-4 border-b border-gold/20">
-            <span className="text-gold font-playfair text-lg font-semibold tracking-wide">Menu</span>
+          transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
+          className="fixed inset-0 bg-black z-[200] lg:hidden flex flex-col"
+        >
+          {/* Menu Header */}
+          <div className="flex items-center justify-between px-6 py-5 border-b border-gold/20 bg-black/95 backdrop-blur-lg">
+            <div className="flex items-center gap-3">
+              {/* Small Logo */}
+              <div className="w-10 h-10">
+                <svg
+                  width="40"
+                  height="40"
+                  viewBox="0 0 60 60"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <defs>
+                    <linearGradient id="mobileGoldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stopColor="#FFD700" />
+                      <stop offset="50%" stopColor="#D4AF37" />
+                      <stop offset="100%" stopColor="#FFA500" />
+                    </linearGradient>
+                  </defs>
+                  <circle cx="30" cy="30" r="28" stroke="url(#mobileGoldGradient)" strokeWidth="0.5" fill="none" opacity="0.3" />
+                  <path d="M30 8 L44 16 L44 32 L30 40 L16 32 L16 16 Z" stroke="url(#mobileGoldGradient)" strokeWidth="1.5" fill="none" opacity="0.6" />
+                  <path d="M20 20 Q20 30, 20 38 M20 29 L28 29 M28 20 Q28 30, 28 38" stroke="url(#mobileGoldGradient)" strokeWidth="2.5" strokeLinecap="round" fill="none" />
+                  <path d="M32 20 L32 38 M32 20 L39 20 Q41 20, 41 23 Q41 26, 39 26 L32 26 M38 26 Q41 32, 41 38" stroke="url(#mobileGoldGradient)" strokeWidth="2.5" strokeLinecap="round" fill="none" />
+                </svg>
+              </div>
+              <span className="text-gold font-playfair text-xl font-semibold tracking-wide">Menu</span>
+            </div>
             <button
               onClick={() => setIsOpen(false)}
-              className="p-2 text-white hover:text-gold transition-colors duration-200 rounded-lg hover:bg-white/5"
+              className="p-2 text-white hover:text-gold transition-colors duration-200"
               aria-label="Close menu"
             >
-              <X size={24} />
+              <X size={28} strokeWidth={2.5} />
             </button>
           </div>
 
-          {/* Mobile Navigation Links */}
-          <nav className="flex-1 overflow-y-auto py-4">
-            <div className="flex flex-col space-y-0 px-4">
+          {/* Navigation Items - Scrollable */}
+          <nav className="flex-1 overflow-y-auto">
+            <div className="flex flex-col py-6">
               {navigation.map((item, index) => (
                 <motion.div
                   key={item.name}
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={{ opacity: isOpen ? 1 : 0, x: isOpen ? 0 : 20 }}
-                  transition={{ duration: 0.3, delay: index * 0.08 }}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4, delay: index * 0.1 + 0.1 }}
                 >
                   <Link
                     href={item.href}
                     onClick={() => setIsOpen(false)}
-                    className="block py-3.5 px-4 text-white hover:text-gold hover:bg-gold/5 rounded-lg transition-all duration-200 font-poppins text-base border-b border-white/5 last:border-0"
-                    style={{ fontWeight: 400, letterSpacing: '0.3px' }}
+                    className="block py-5 px-6 text-white hover:text-gold hover:bg-gold/5 transition-all duration-200 border-b border-white/10 active:bg-gold/10"
                   >
-                    {item.name}
+                    <span className="text-xl font-poppins font-normal" style={{ letterSpacing: '0.5px' }}>
+                      {item.name}
+                    </span>
                   </Link>
                 </motion.div>
               ))}
             </div>
           </nav>
 
-          {/* Mobile CTA Button */}
-          <div className="p-4 border-t border-gold/20">
+          {/* Fixed CTA Button at Bottom */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, delay: 0.5 }}
+            className="p-6 pb-8 border-t border-gold/20 bg-black/95 backdrop-blur-lg"
+            style={{ paddingBottom: 'max(2rem, env(safe-area-inset-bottom))' }}
+          >
             <Button
               asChild
-              className="w-full bg-gradient-to-r from-[#D4AF37] via-[#FFD700] to-[#D4AF37] text-black font-semibold py-3 rounded-xl hover:shadow-lg hover:shadow-gold/40 transition-all duration-300 text-sm"
-              style={{ letterSpacing: '0.5px' }}
+              className="w-full bg-gradient-to-r from-[#D4AF37] via-[#FFD700] to-[#D4AF37] text-black font-semibold py-4 text-base rounded-xl hover:shadow-lg hover:shadow-gold/50 transition-all duration-300 active:scale-98"
+              style={{ letterSpacing: '0.8px' }}
             >
               <Link href="/contact" onClick={() => setIsOpen(false)}>
                 Plan My Event
               </Link>
             </Button>
-          </div>
-        </div>
-      </motion.div>
+          </motion.div>
+        </motion.div>
+      )}
 
       <style jsx>{`
         @import url('https://fonts.googleapis.com/css2?family=Allura&family=Great+Vibes&family=Alex+Brush&family=Tangerine:wght@700&display=swap');

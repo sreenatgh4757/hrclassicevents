@@ -269,6 +269,74 @@ export default function Header() {
         </div>
       </div>
 
+      {/* Mobile Menu Panel */}
+      <motion.div
+        initial={{ x: "100%" }}
+        animate={{ x: isOpen ? 0 : "100%" }}
+        transition={{ duration: 0.3, ease: "easeInOut" }}
+        className="fixed top-0 right-0 bottom-0 w-full sm:w-80 bg-black/98 backdrop-blur-xl z-50 lg:hidden"
+      >
+        <div className="flex flex-col h-full">
+          {/* Mobile Menu Header */}
+          <div className="flex items-center justify-between p-6 border-b border-gold/20">
+            <span className="text-gold font-playfair text-xl font-semibold">Menu</span>
+            <button
+              onClick={() => setIsOpen(false)}
+              className="p-2 text-white hover:text-gold transition-colors duration-200"
+              aria-label="Close menu"
+            >
+              <X size={26} />
+            </button>
+          </div>
+
+          {/* Mobile Navigation Links */}
+          <nav className="flex-1 overflow-y-auto py-8">
+            <div className="flex flex-col space-y-1 px-6">
+              {navigation.map((item, index) => (
+                <motion.div
+                  key={item.name}
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: isOpen ? 1 : 0, x: isOpen ? 0 : 20 }}
+                  transition={{ duration: 0.3, delay: index * 0.1 }}
+                >
+                  <Link
+                    href={item.href}
+                    onClick={() => setIsOpen(false)}
+                    className="block py-4 px-4 text-white hover:text-gold hover:bg-gold/10 rounded-xl transition-all duration-200 font-poppins text-lg"
+                  >
+                    {item.name}
+                  </Link>
+                </motion.div>
+              ))}
+            </div>
+          </nav>
+
+          {/* Mobile CTA Button */}
+          <div className="p-6 border-t border-gold/20">
+            <Button
+              asChild
+              className="w-full bg-gradient-to-r from-gold via-[#FFD700] to-gold text-black font-semibold py-4 rounded-2xl hover:shadow-lg hover:shadow-gold/50 transition-all duration-300"
+            >
+              <Link href="/contact" onClick={() => setIsOpen(false)}>
+                Plan My Event
+              </Link>
+            </Button>
+          </div>
+        </div>
+      </motion.div>
+
+      {/* Mobile Menu Backdrop */}
+      {isOpen && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.3 }}
+          className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40 lg:hidden"
+          onClick={() => setIsOpen(false)}
+        />
+      )}
+
       <style jsx>{`
         @import url('https://fonts.googleapis.com/css2?family=Allura&family=Great+Vibes&family=Alex+Brush&family=Tangerine:wght@700&display=swap');
 

@@ -1,4 +1,5 @@
 import Header from '@/components/Header';
+import HeroVideo from '@/components/HeroVideo';
 import StatsSection from '@/components/StatsSection';
 import ServicesGrid from '@/components/ServicesGrid';
 import ProcessTimeline from '@/components/ProcessTimeline';
@@ -13,22 +14,10 @@ export default function HomePage() {
 
       {/* Hero Section with Video Background */}
       <section className="relative w-full h-screen overflow-hidden bg-black">
-        {/* Background video */}
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="absolute top-0 left-0 w-full h-full object-cover z-0"
-        >
-          <source src="https://s3.eu-west-2.amazonaws.com/www.hrclassicevents.com/assets/couple-tradition.mp4" type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
-
-        {/* Fallback background image (shows if video fails) */}
-        <div
-          className="absolute top-0 left-0 w-full h-full bg-cover bg-center z-0"
-          style={{ backgroundImage: "url('/fallback.jpg')" }}
+        <HeroVideo
+          videoSrc="https://s3.eu-west-2.amazonaws.com/www.hrclassicevents.com/assets/couple-tradition.mp4"
+          posterSrc="https://s3.eu-west-2.amazonaws.com/www.hrclassicevents.com/assets/couple-tradition-poster.jpg"
+          fallbackSrc="https://s3.eu-west-2.amazonaws.com/www.hrclassicevents.com/assets/couple-tradition-poster.jpg"
         />
 
         {/* Dark overlay */}

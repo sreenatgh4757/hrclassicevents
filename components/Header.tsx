@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { motion, useAnimation } from "framer-motion";
+import { motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -38,479 +38,531 @@ export default function Header() {
   }, [isOpen]);
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-black/95 backdrop-blur-xl text-white border-b border-gold/20">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20">
-          {/* 🔥 2026 TREND LOGO - Handwritten + Animated + Sparkles */}
-          <Link href="/" className="flex-shrink-0 flex items-center gap-4 group">
-            
-            {/* ✨ Animated Logo Icon with Sparkles */}
-            <motion.div
-              className="relative"
-              initial={{ opacity: 0, scale: 0, rotate: -180 }}
-              animate={{ opacity: 1, scale: 1, rotate: 0 }}
-              transition={{ 
-                duration: 1.2, 
-                ease: [0.34, 1.56, 0.64, 1],
-                type: "spring" 
-              }}
-            >
-              <div className="logo-wrapper">
-                {/* Main Logo SVG */}
-                <svg
-                  width="60"
-                  height="60"
-                  viewBox="0 0 60 60"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="logo-svg"
-                >
-                  {/* Gradient Definitions */}
-                  <defs>
-                    <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                      <stop offset="0%" stopColor="#FFD700" />
-                      <stop offset="50%" stopColor="#D4AF37" />
-                      <stop offset="100%" stopColor="#FFA500" />
-                    </linearGradient>
-                    
-                    <filter id="glow">
-                      <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
-                      <feMerge>
-                        <feMergeNode in="coloredBlur"/>
-                        <feMergeNode in="SourceGraphic"/>
-                      </feMerge>
-                    </filter>
-                  </defs>
-
-                  {/* Animated rotating outer ring */}
-                  <motion.circle
-                    cx="30"
-                    cy="30"
-                    r="28"
-                    stroke="url(#goldGradient)"
-                    strokeWidth="0.5"
+    <>
+      <header className="fixed top-0 left-0 right-0 z-50 bg-black/95 backdrop-blur-xl text-white border-b border-gold/20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-20">
+            {/* Logo */}
+            <Link href="/" className="flex-shrink-0 flex items-center gap-4 group">
+              
+              {/* Animated Logo Icon with Sparkles */}
+              <motion.div
+                className="relative"
+                initial={{ opacity: 0, scale: 0, rotate: -180 }}
+                animate={{ opacity: 1, scale: 1, rotate: 0 }}
+                transition={{ 
+                  duration: 1.2, 
+                  ease: [0.34, 1.56, 0.64, 1],
+                  type: "spring" 
+                }}
+              >
+                <div className="logo-wrapper">
+                  {/* Main Logo SVG */}
+                  <svg
+                    width="60"
+                    height="60"
+                    viewBox="0 0 60 60"
                     fill="none"
-                    opacity="0.3"
-                    initial={{ rotate: 0 }}
-                    animate={{ rotate: 360 }}
-                    transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                    style={{ transformOrigin: "center" }}
-                  />
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="logo-svg"
+                  >
+                    {/* Gradient Definitions */}
+                    <defs>
+                      <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stopColor="#FFD700" />
+                        <stop offset="50%" stopColor="#D4AF37" />
+                        <stop offset="100%" stopColor="#FFA500" />
+                      </linearGradient>
+                      
+                      <filter id="glow">
+                        <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+                        <feMerge>
+                          <feMergeNode in="coloredBlur"/>
+                          <feMergeNode in="SourceGraphic"/>
+                        </feMerge>
+                      </filter>
+                    </defs>
 
-                  {/* Decorative hexagon */}
+                    {/* Animated rotating outer ring */}
+                    <motion.circle
+                      cx="30"
+                      cy="30"
+                      r="28"
+                      stroke="url(#goldGradient)"
+                      strokeWidth="0.5"
+                      fill="none"
+                      opacity="0.3"
+                      initial={{ rotate: 0 }}
+                      animate={{ rotate: 360 }}
+                      transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                      style={{ transformOrigin: "center" }}
+                    />
+
+                    {/* Decorative hexagon */}
+                    <motion.path
+                      d="M30 8 L44 16 L44 32 L30 40 L16 32 L16 16 Z"
+                      stroke="url(#goldGradient)"
+                      strokeWidth="1.5"
+                      fill="none"
+                      filter="url(#glow)"
+                      initial={{ pathLength: 0, opacity: 0 }}
+                      animate={{ pathLength: 1, opacity: 0.6 }}
+                      transition={{ duration: 2, delay: 0.5 }}
+                    />
+
+                    {/* Handwritten HR in center */}
+                    <motion.path
+                      d="M20 20 Q20 30, 20 38 M20 29 L28 29 M28 20 Q28 30, 28 38"
+                      stroke="url(#goldGradient)"
+                      strokeWidth="2.5"
+                      strokeLinecap="round"
+                      fill="none"
+                      filter="url(#glow)"
+                      initial={{ pathLength: 0 }}
+                      animate={{ pathLength: 1 }}
+                      transition={{ duration: 1.5, delay: 0.8 }}
+                    />
+
+                    <motion.path
+                      d="M32 20 L32 38 M32 20 L39 20 Q41 20, 41 23 Q41 26, 39 26 L32 26 M38 26 Q41 32, 41 38"
+                      stroke="url(#goldGradient)"
+                      strokeWidth="2.5"
+                      strokeLinecap="round"
+                      fill="none"
+                      filter="url(#glow)"
+                      initial={{ pathLength: 0 }}
+                      animate={{ pathLength: 1 }}
+                      transition={{ duration: 1.5, delay: 1 }}
+                    />
+
+                    {/* Decorative corner elements */}
+                    <circle cx="30" cy="6" r="1.5" fill="url(#goldGradient)">
+                      <animate attributeName="opacity" values="0.5;1;0.5" dur="2s" repeatCount="indefinite"/>
+                    </circle>
+                    <circle cx="30" cy="54" r="1.5" fill="url(#goldGradient)">
+                      <animate attributeName="opacity" values="1;0.5;1" dur="2s" repeatCount="indefinite"/>
+                    </circle>
+                  </svg>
+
+                  {/* Floating Sparkles */}
+                  {sparkles.map((sparkle, index) => (
+                    <motion.div
+                      key={index}
+                      className="sparkle"
+                      style={{ left: `${sparkle.x}%`, top: `${sparkle.y}%` }}
+                      initial={{ scale: 0, opacity: 0 }}
+                      animate={{
+                        scale: [0, 1, 0],
+                        opacity: [0, 1, 0],
+                        rotate: [0, 180, 360],
+                      }}
+                      transition={{
+                        duration: 2,
+                        delay: sparkle.delay,
+                        repeat: Infinity,
+                        repeatDelay: 1,
+                      }}
+                    >
+                      ✨
+                    </motion.div>
+                  ))}
+
+                  {/* Glowing ring on hover */}
+                  <motion.div
+                    className="glow-ring"
+                    initial={{ scale: 1, opacity: 0 }}
+                    whileHover={{ scale: 1.2, opacity: 0.4 }}
+                    transition={{ duration: 0.3 }}
+                  />
+                </div>
+              </motion.div>
+
+              {/* Handwritten Signature Text */}
+              <motion.div
+                className="signature-container"
+                initial={{ opacity: 0, x: -30 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 1, delay: 0.5 }}
+              >
+                <div className="signature-text">
+                  <motion.span 
+                    className="hr-signature"
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, delay: 1 }}
+                  >
+                    HR
+                  </motion.span>
+                  <motion.span 
+                    className="classic-signature"
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, delay: 1.2 }}
+                  >
+                    Classic Events
+                  </motion.span>
+                </div>
+                
+                {/* Animated elegant underline */}
+                <svg className="signature-underline" width="240" height="8" viewBox="0 0 240 8">
                   <motion.path
-                    d="M30 8 L44 16 L44 32 L30 40 L16 32 L16 16 Z"
+                    d="M 5 4 Q 60 2, 120 4 T 235 4"
                     stroke="url(#goldGradient)"
                     strokeWidth="1.5"
                     fill="none"
-                    filter="url(#glow)"
+                    strokeLinecap="round"
                     initial={{ pathLength: 0, opacity: 0 }}
-                    animate={{ pathLength: 1, opacity: 0.6 }}
-                    transition={{ duration: 2, delay: 0.5 }}
+                    animate={{ pathLength: 1, opacity: 0.7 }}
+                    transition={{ duration: 2, delay: 1.5 }}
                   />
-
-                  {/* Handwritten HR in center */}
-                  <motion.path
-                    d="M20 20 Q20 30, 20 38 M20 29 L28 29 M28 20 Q28 30, 28 38"
-                    stroke="url(#goldGradient)"
-                    strokeWidth="2.5"
-                    strokeLinecap="round"
-                    fill="none"
-                    filter="url(#glow)"
-                    initial={{ pathLength: 0 }}
-                    animate={{ pathLength: 1 }}
-                    transition={{ duration: 1.5, delay: 0.8 }}
+                  {/* Small decorative dots */}
+                  <motion.circle 
+                    cx="5" cy="4" r="2" 
+                    fill="#D4AF37"
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    transition={{ delay: 1.5 }}
                   />
-
-                  <motion.path
-                    d="M32 20 L32 38 M32 20 L39 20 Q41 20, 41 23 Q41 26, 39 26 L32 26 M38 26 Q41 32, 41 38"
-                    stroke="url(#goldGradient)"
-                    strokeWidth="2.5"
-                    strokeLinecap="round"
-                    fill="none"
-                    filter="url(#glow)"
-                    initial={{ pathLength: 0 }}
-                    animate={{ pathLength: 1 }}
-                    transition={{ duration: 1.5, delay: 1 }}
+                  <motion.circle 
+                    cx="235" cy="4" r="2" 
+                    fill="#D4AF37"
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    transition={{ delay: 2 }}
                   />
-
-                  {/* Decorative corner elements */}
-                  <circle cx="30" cy="6" r="1.5" fill="url(#goldGradient)">
-                    <animate attributeName="opacity" values="0.5;1;0.5" dur="2s" repeatCount="indefinite"/>
-                  </circle>
-                  <circle cx="30" cy="54" r="1.5" fill="url(#goldGradient)">
-                    <animate attributeName="opacity" values="1;0.5;1" dur="2s" repeatCount="indefinite"/>
-                  </circle>
                 </svg>
+              </motion.div>
+            </Link>
 
-                {/* ✨ Floating Sparkles */}
-                {sparkles.map((sparkle, index) => (
-                  <motion.div
-                    key={index}
-                    className="sparkle"
-                    style={{ left: `${sparkle.x}%`, top: `${sparkle.y}%` }}
-                    initial={{ scale: 0, opacity: 0 }}
-                    animate={{
-                      scale: [0, 1, 0],
-                      opacity: [0, 1, 0],
-                      rotate: [0, 180, 360],
-                    }}
-                    transition={{
-                      duration: 2,
-                      delay: sparkle.delay,
-                      repeat: Infinity,
-                      repeatDelay: 1,
-                    }}
-                  >
-                    ✨
-                  </motion.div>
-                ))}
-
-                {/* Glowing ring on hover */}
+            {/* Desktop Nav */}
+            <nav className="hidden lg:flex items-center space-x-8">
+              {navigation.map((item, index) => (
                 <motion.div
-                  className="glow-ring"
-                  initial={{ scale: 1, opacity: 0 }}
-                  whileHover={{ scale: 1.2, opacity: 0.4 }}
-                  transition={{ duration: 0.3 }}
-                />
-              </div>
-            </motion.div>
-
-            {/* 🎨 Handwritten Signature Text - Side by Side */}
-            <motion.div
-              className="signature-container"
-              initial={{ opacity: 0, x: -30 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 1, delay: 0.5 }}
-            >
-              <div className="signature-text">
-                <motion.span 
-                  className="hr-signature"
+                  key={item.name}
                   initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: 1 }}
+                  transition={{ duration: 0.3, delay: index * 0.1 + 0.5 }}
                 >
-                  HR
-                </motion.span>
-                <motion.span 
-                  className="classic-signature"
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: 1.2 }}
-                >
-                  Classic Events
-                </motion.span>
-              </div>
-              
-              {/* Animated elegant underline */}
-              <svg className="signature-underline" width="240" height="8" viewBox="0 0 240 8">
-                <motion.path
-                  d="M 5 4 Q 60 2, 120 4 T 235 4"
-                  stroke="url(#goldGradient)"
-                  strokeWidth="1.5"
-                  fill="none"
-                  strokeLinecap="round"
-                  initial={{ pathLength: 0, opacity: 0 }}
-                  animate={{ pathLength: 1, opacity: 0.7 }}
-                  transition={{ duration: 2, delay: 1.5 }}
-                />
-                {/* Small decorative dots */}
-                <motion.circle 
-                  cx="5" cy="4" r="2" 
-                  fill="#D4AF37"
-                  initial={{ scale: 0 }}
-                  animate={{ scale: 1 }}
-                  transition={{ delay: 1.5 }}
-                />
-                <motion.circle 
-                  cx="235" cy="4" r="2" 
-                  fill="#D4AF37"
-                  initial={{ scale: 0 }}
-                  animate={{ scale: 1 }}
-                  transition={{ delay: 2 }}
-                />
-              </svg>
-            </motion.div>
-          </Link>
+                  <Link
+                    href={item.href}
+                    className="text-white hover:text-gold transition-colors duration-200 font-poppins relative group"
+                    style={{ fontWeight: 400, letterSpacing: '0.2px' }}
+                  >
+                    {item.name}
+                    <span className="nav-underline"></span>
+                  </Link>
+                </motion.div>
+              ))}
+            </nav>
 
-          {/* Desktop Nav */}
-          <nav className="hidden lg:flex items-center space-x-8">
-            {navigation.map((item, index) => (
-              <motion.div
-                key={item.name}
-                initial={{ opacity: 0, y: -10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.3, delay: index * 0.1 + 0.5 }}
-              >
-                <Link
-                  href={item.href}
-                  className="text-white hover:text-gold transition-colors duration-200 font-poppins relative group"
-                  style={{ fontWeight: 400, letterSpacing: '0.2px' }}
-                >
-                  {item.name}
-                  <span className="nav-underline"></span>
-                </Link>
-              </motion.div>
-            ))}
-          </nav>
-
-          {/* Desktop CTA */}
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.3, delay: 0.8 }}
-            className="hidden lg:block"
-          >
-            <Button
-              asChild
-              className="cta-button"
+            {/* Desktop CTA */}
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.3, delay: 0.8 }}
+              className="hidden lg:block"
             >
-              <Link href="/contact">Plan My Event</Link>
-            </Button>
-          </motion.div>
+              <Button
+                asChild
+                className="cta-button"
+              >
+                <Link href="/contact">Plan My Event</Link>
+              </Button>
+            </motion.div>
 
-          {/* Mobile Menu Button */}
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            className="lg:hidden p-2 text-white hover:text-gold transition-colors duration-200"
-            aria-label="Toggle menu"
-          >
-            {isOpen ? <X size={26} /> : <Menu size={26} />}
-          </button>
+            {/* Mobile Menu Button */}
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className="lg:hidden p-2 text-white hover:text-gold transition-colors duration-200 z-[100000]"
+              aria-label="Toggle menu"
+            >
+              {isOpen ? <X size={26} /> : <Menu size={26} />}
+            </button>
+          </div>
         </div>
-      </div>
 
-      {/* Full-Screen Mobile Menu Overlay */}
+        <style jsx>{`
+          @import url('https://fonts.googleapis.com/css2?family=Allura&family=Great+Vibes&family=Alex+Brush&family=Tangerine:wght@700&display=swap');
+
+          /* Logo Container */
+          .logo-wrapper {
+            position: relative;
+            width: 60px;
+            height: 60px;
+          }
+
+          .logo-svg {
+            filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.4));
+            transition: all 0.4s ease;
+          }
+
+          .logo-wrapper:hover .logo-svg {
+            filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.8));
+            transform: scale(1.1);
+          }
+
+          /* Sparkles */
+          .sparkle {
+            position: absolute;
+            font-size: 12px;
+            pointer-events: none;
+            filter: drop-shadow(0 0 3px rgba(255, 215, 0, 0.8));
+          }
+
+          /* Glow Ring */
+          .glow-ring {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255,215,0,0.3) 0%, transparent 70%);
+          }
+
+          /* Signature Container */
+          .signature-container {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            gap: -5px;
+          }
+
+          .signature-text {
+            display: flex;
+            align-items: baseline;
+            gap: 10px;
+          }
+
+          .hr-signature {
+            font-family: 'Alex Brush', cursive;
+            font-size: 52px;
+            background: linear-gradient(135deg, #FFD700 0%, #D4AF37 50%, #FFA500 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 400;
+            letter-spacing: 3px;
+            filter: drop-shadow(2px 2px 4px rgba(212, 175, 55, 0.3));
+            transform: rotate(-3deg);
+            display: inline-block;
+          }
+
+          .classic-signature {
+            font-family: 'Great Vibes', cursive;
+            font-size: 36px;
+            background: linear-gradient(135deg, #FFD700 0%, #D4AF37 50%, #FFA500 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 400;
+            letter-spacing: 2px;
+            filter: drop-shadow(1px 1px 3px rgba(212, 175, 55, 0.3));
+          }
+
+          .signature-underline {
+            margin-top: -6px;
+            filter: drop-shadow(0 0 3px rgba(212, 175, 55, 0.4));
+          }
+
+          /* Hover Effects */
+          .signature-container:hover .hr-signature,
+          .signature-container:hover .classic-signature {
+            filter: drop-shadow(2px 2px 12px rgba(255, 215, 0, 0.8));
+            transform: scale(1.02);
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+          }
+
+          /* Navigation Underline Effect */
+          .nav-underline {
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #FFD700, #D4AF37);
+            transition: width 0.3s ease;
+          }
+
+          a:hover .nav-underline {
+            width: 100%;
+          }
+
+          /* CTA Button */
+          .cta-button {
+            background: linear-gradient(135deg, #D4AF37 0%, #FFD700 50%, #D4AF37 100%);
+            background-size: 200% 200%;
+            color: #000;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            padding: 12px 28px;
+            border-radius: 25px;
+            border: none;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
+            transition: all 0.4s ease;
+            letter-spacing: 0.5px;
+            animation: gradientShift 3s ease infinite;
+          }
+
+          .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(255, 215, 0, 0.6);
+            background-position: 100% 0;
+          }
+
+          @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+          }
+
+          /* Responsive */
+          @media (max-width: 1024px) {
+            .hr-signature {
+              font-size: 44px;
+            }
+            .classic-signature {
+              font-size: 30px;
+            }
+            .signature-underline {
+              width: 200px;
+            }
+          }
+
+          @media (max-width: 768px) {
+            .logo-wrapper {
+              width: 50px;
+              height: 50px;
+            }
+            .hr-signature {
+              font-size: 38px;
+            }
+            .classic-signature {
+              font-size: 26px;
+            }
+            .signature-underline {
+              width: 180px;
+            }
+          }
+        `}</style>
+      </header>
+
+      {/* MOBILE MENU - MOVED OUTSIDE HEADER */}
       {isOpen && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.25, ease: "easeOut" }}
-          className="fixed inset-0 bg-black/98 backdrop-blur-md z-[9999] lg:hidden flex flex-col"
-          style={{ touchAction: 'none' }}
+        <div
+          className="lg:hidden"
+          style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            width: '100vw',
+            height: '100vh',
+            backgroundColor: '#000000',
+            zIndex: 99999,
+            display: 'flex',
+            flexDirection: 'column',
+          }}
         >
           {/* Menu Header */}
-          <div className="flex items-center justify-between px-6 py-4 border-b border-gold/20">
-            <span className="text-gold font-playfair text-lg font-semibold tracking-wide">Menu</span>
+          <div 
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              padding: '16px 24px',
+              borderBottom: '1px solid rgba(212, 175, 55, 0.2)',
+            }}
+          >
+            <span 
+              style={{
+                color: '#D4AF37',
+                fontSize: '18px',
+                fontWeight: 600,
+                letterSpacing: '0.5px',
+              }}
+            >
+              Menu
+            </span>
             <button
               onClick={() => setIsOpen(false)}
-              className="p-2 text-white hover:text-gold transition-colors duration-200 -mr-2"
+              style={{
+                padding: '8px',
+                color: '#ffffff',
+                background: 'none',
+                border: 'none',
+                cursor: 'pointer',
+              }}
               aria-label="Close menu"
             >
               <X size={30} strokeWidth={2} />
             </button>
           </div>
 
-          {/* Centered Navigation Items */}
-          <nav className="flex-1 flex items-center justify-center overflow-y-auto">
-            <div className="flex flex-col w-full px-8 py-8">
-              {navigation.map((item, index) => (
-                <motion.div
-                  key={item.name}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.3, delay: index * 0.08 + 0.1 }}
-                >
-                  <Link
-                    href={item.href}
-                    onClick={() => setIsOpen(false)}
-                    className="block py-6 text-center text-white/80 hover:text-gold transition-all duration-200 active:scale-95"
-                  >
-                    <span className="text-2xl font-poppins font-light" style={{ letterSpacing: '0.5px' }}>
-                      {item.name}
-                    </span>
-                  </Link>
-                </motion.div>
-              ))}
-            </div>
+          {/* Navigation Items */}
+          <nav 
+            style={{
+              flex: 1,
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              justifyContent: 'center',
+              padding: '32px',
+              gap: '8px',
+            }}
+          >
+            {navigation.map((item) => (
+              <Link
+                key={item.name}
+                href={item.href}
+                onClick={() => setIsOpen(false)}
+                style={{
+                  display: 'block',
+                  padding: '20px 0',
+                  textAlign: 'center',
+                  color: '#ffffff',
+                  fontSize: '24px',
+                  fontWeight: 300,
+                  letterSpacing: '0.5px',
+                  textDecoration: 'none',
+                  width: '100%',
+                }}
+              >
+                {item.name}
+              </Link>
+            ))}
           </nav>
 
-          {/* Fixed CTA Button at Bottom */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.3, delay: 0.4 }}
-            className="p-6 pb-8"
-            style={{ paddingBottom: 'max(2rem, env(safe-area-inset-bottom))' }}
+          {/* CTA Button at Bottom */}
+          <div 
+            style={{
+              padding: '24px',
+              paddingBottom: '32px',
+            }}
           >
-            <Button
-              asChild
-              className="w-full bg-gradient-to-r from-[#D4AF37] via-[#FFD700] to-[#D4AF37] text-black font-semibold py-5 text-base rounded-2xl hover:shadow-xl hover:shadow-gold/50 transition-all duration-300 active:scale-95"
-              style={{ letterSpacing: '1px' }}
+            <Link
+              href="/contact"
+              onClick={() => setIsOpen(false)}
+              style={{
+                display: 'block',
+                width: '100%',
+                padding: '16px 24px',
+                textAlign: 'center',
+                background: 'linear-gradient(to right, #D4AF37, #FFD700, #D4AF37)',
+                color: '#000000',
+                fontSize: '16px',
+                fontWeight: 600,
+                letterSpacing: '1px',
+                textDecoration: 'none',
+                borderRadius: '16px',
+              }}
             >
-              <Link href="/contact" onClick={() => setIsOpen(false)}>
-                Plan My Event
-              </Link>
-            </Button>
-          </motion.div>
-        </motion.div>
+              Plan My Event
+            </Link>
+          </div>
+        </div>
       )}
-
-      <style jsx>{`
-        @import url('https://fonts.googleapis.com/css2?family=Allura&family=Great+Vibes&family=Alex+Brush&family=Tangerine:wght@700&display=swap');
-
-        /* Logo Container */
-        .logo-wrapper {
-          position: relative;
-          width: 60px;
-          height: 60px;
-        }
-
-        .logo-svg {
-          filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.4));
-          transition: all 0.4s ease;
-        }
-
-        .logo-wrapper:hover .logo-svg {
-          filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.8));
-          transform: scale(1.1);
-        }
-
-        /* Sparkles */
-        .sparkle {
-          position: absolute;
-          font-size: 12px;
-          pointer-events: none;
-          filter: drop-shadow(0 0 3px rgba(255, 215, 0, 0.8));
-        }
-
-        /* Glow Ring */
-        .glow-ring {
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          transform: translate(-50%, -50%);
-          width: 70px;
-          height: 70px;
-          border-radius: 50%;
-          background: radial-gradient(circle, rgba(255,215,0,0.3) 0%, transparent 70%);
-        }
-
-        /* Signature Container */
-        .signature-container {
-          position: relative;
-          display: flex;
-          flex-direction: column;
-          gap: -5px;
-        }
-
-        .signature-text {
-          display: flex;
-          align-items: baseline;
-          gap: 10px;
-        }
-
-        .hr-signature {
-          font-family: 'Alex Brush', cursive;
-          font-size: 52px;
-          background: linear-gradient(135deg, #FFD700 0%, #D4AF37 50%, #FFA500 100%);
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;
-          background-clip: text;
-          font-weight: 400;
-          letter-spacing: 3px;
-          filter: drop-shadow(2px 2px 4px rgba(212, 175, 55, 0.3));
-          transform: rotate(-3deg);
-          display: inline-block;
-        }
-
-        .classic-signature {
-          font-family: 'Great Vibes', cursive;
-          font-size: 36px;
-          background: linear-gradient(135deg, #FFD700 0%, #D4AF37 50%, #FFA500 100%);
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;
-          background-clip: text;
-          font-weight: 400;
-          letter-spacing: 2px;
-          filter: drop-shadow(1px 1px 3px rgba(212, 175, 55, 0.3));
-        }
-
-        .signature-underline {
-          margin-top: -6px;
-          filter: drop-shadow(0 0 3px rgba(212, 175, 55, 0.4));
-        }
-
-        /* Hover Effects */
-        .signature-container:hover .hr-signature,
-        .signature-container:hover .classic-signature {
-          filter: drop-shadow(2px 2px 12px rgba(255, 215, 0, 0.8));
-          transform: scale(1.02);
-          transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-        }
-
-        /* Navigation Underline Effect */
-        .nav-underline {
-          position: absolute;
-          bottom: -4px;
-          left: 0;
-          width: 0;
-          height: 2px;
-          background: linear-gradient(90deg, #FFD700, #D4AF37);
-          transition: width 0.3s ease;
-        }
-
-        a:hover .nav-underline {
-          width: 100%;
-        }
-
-        /* CTA Button */
-        .cta-button {
-          background: linear-gradient(135deg, #D4AF37 0%, #FFD700 50%, #D4AF37 100%);
-          background-size: 200% 200%;
-          color: #000;
-          font-family: 'Poppins', sans-serif;
-          font-weight: 600;
-          padding: 12px 28px;
-          border-radius: 25px;
-          border: none;
-          box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
-          transition: all 0.4s ease;
-          letter-spacing: 0.5px;
-          animation: gradientShift 3s ease infinite;
-        }
-
-        .cta-button:hover {
-          transform: translateY(-2px);
-          box-shadow: 0 6px 25px rgba(255, 215, 0, 0.6);
-          background-position: 100% 0;
-        }
-
-        @keyframes gradientShift {
-          0%, 100% { background-position: 0% 50%; }
-          50% { background-position: 100% 50%; }
-        }
-
-        /* Responsive */
-        @media (max-width: 1024px) {
-          .hr-signature {
-            font-size: 44px;
-          }
-          .classic-signature {
-            font-size: 30px;
-          }
-          .signature-underline {
-            width: 200px;
-          }
-        }
-
-        @media (max-width: 768px) {
-          .logo-wrapper {
-            width: 50px;
-            height: 50px;
-          }
-          .hr-signature {
-            font-size: 38px;
-          }
-          .classic-signature {
-            font-size: 26px;
-          }
-          .signature-underline {
-            width: 180px;
-          }
-        }
-      `}</style>
-    </header>
+    </>
   );
 }
